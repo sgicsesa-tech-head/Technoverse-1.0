@@ -24,7 +24,7 @@ export const eventsData = {
               "Time limit: 5 hours total",
               "Internet access permitted for resources"
             ],
-            image: "https://via.placeholder.com/300x450/E50914/fff?text=Web+Design"
+            image: "../assets/thumb.png"
           },
           {
             id: 2,
@@ -44,7 +44,7 @@ export const eventsData = {
               "Time limit: 2.5 hours",
               "Choice of C++, Java, or Python"
             ],
-            image: "https://via.placeholder.com/300x450/E50914/fff?text=DSA+%2F+DTS"
+            image: "../assets/thumb.png"
           },
           {
             id: 3,
@@ -64,7 +64,7 @@ export const eventsData = {
               "Professional conduct expected",
               "Feedback provided to all participants"
             ],
-            image: "https://via.placeholder.com/300x450/E50914/fff?text=Suits"
+            image: "../assets/thumb.png"
           },
           {
             id: 4,
@@ -83,7 +83,7 @@ export const eventsData = {
               "Respect campus property",
               "First team to finish wins"
             ],
-            image: "https://via.placeholder.com/300x450/E50914/fff?text=Squid+Game"
+            image: "../assets/thumb.png"
           },
           {
             id: 5,
@@ -103,7 +103,7 @@ export const eventsData = {
               "Fair play policy strictly enforced",
               "Points based on kills and placement"
             ],
-            image: "https://via.placeholder.com/300x450/E50914/fff?text=BGMI"
+            image: "../assets/thumb.png"
           },
           {
             id: 6,
@@ -122,7 +122,7 @@ export const eventsData = {
               "Pre-registered accounts only",
               "Time limit per match: 5 minutes"
             ],
-            image: "https://via.placeholder.com/300x450/E50914/fff?text=Clash+Royale"
+            image: "../assets/thumb.png"
           }
         ]
       },
@@ -146,7 +146,7 @@ export const eventsData = {
               "Time limit: 2.5 hours",
               "Code will be tested after submission"
             ],
-            image: "https://via.placeholder.com/300x450/E50914/fff?text=Blind+Coding"
+            image: "../assets/thumb.png"
           },
           {
             id: 8,
@@ -165,7 +165,7 @@ export const eventsData = {
               "Time limit: TBD",
               "Collaboration with AI is the goal"
             ],
-            image: "https://via.placeholder.com/300x450/E50914/fff?text=Vibe+Coding"
+            image: "../assets/thumb.png"
           },
           {
             id: 9,
@@ -184,7 +184,7 @@ export const eventsData = {
               "Sound system provided",
               "Audience participation encouraged"
             ],
-            image: "https://via.placeholder.com/300x450/E50914/fff?text=Cultural+Event"
+            image: "../assets/thumb.png"
           },
           {
             id: 10,
@@ -203,7 +203,7 @@ export const eventsData = {
               "No hacks or cheats",
               "Kill points + placement points"
             ],
-            image: "https://via.placeholder.com/300x450/E50914/fff?text=Free+Fire"
+            image: "../assets/thumb.png"
           },
           {
             id: 11,
@@ -222,7 +222,7 @@ export const eventsData = {
               "No custom skins/cheats",
               "Spike Rush warmup allowed"
             ],
-            image: "https://via.placeholder.com/300x450/E50914/fff?text=Valorant"
+            image: "../assets/thumb.png"
           }
         ]
       }

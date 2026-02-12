@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './NetflixIntro.css';
 import introSound from '../assets/introAudio.mp3';
-import logo from '../assets/logo.jpeg';
+import logo from '../assets/logo.png';
 
 function NetflixIntro({ onComplete }) {
   const [showIntro, setShowIntro] = useState(true);

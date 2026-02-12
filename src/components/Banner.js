@@ -5,8 +5,8 @@ function Banner({ onRegister }) {
   return (
     <div className="banner">
       <div className="banner-content">
-        <h1 className="banner-title">Featured Competition</h1>
-        <h2 className="banner-subtitle">Web Design (Canvas)</h2>
+        <h1 className="banner-title">Technoverse 1.0</h1>
+        <h2 className="banner-subtitle">SGIs biggest Techfest</h2>
         <p className="banner-description">
           Unleash your creativity in this ultimate web design challenge. Create stunning, responsive 
           websites that push the boundaries of modern design. Join 80+ participants in this 5-hour 

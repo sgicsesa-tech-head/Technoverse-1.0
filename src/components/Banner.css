@@ -1,7 +1,9 @@
 /* Banner */
 .banner {
-  position: relative;
   height: 70vh;
+  width: 100%;
+  padding: 10px 50px;
+  border: 2px solid red;
   background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
               url('https://via.placeholder.com/1920x1080/141414/E50914?text=Featured+Competition') center/cover;
   display: flex;
