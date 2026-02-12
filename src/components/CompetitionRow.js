@@ -17,9 +17,7 @@ function CompetitionRow({ title, competitions, onEventClick }) {
               <h3>{comp.title}</h3>
               <p>{comp.category}</p>
               <div className="card-actions">
-                <button className="card-action-btn play">▶</button>
-                <button className="card-action-btn">+</button>
-                <button className="card-action-btn">ℹ</button>
+                <button className="card-action-btn">Register ▶</button>
               </div>
             </div>
           </div>

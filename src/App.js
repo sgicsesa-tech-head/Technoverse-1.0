@@ -33,22 +33,31 @@ function App() {
         <>
           <Navbar />
           <Banner onRegister={handleFeaturedEventClick} />
-          <div className="competitions-container">
-            <CompetitionRow 
+          <div id='events' className="competitions-container">
+            <CompetitionRow
+              id='technical' 
               title="Technical Competitions" 
               competitions={events.technical} 
               onEventClick={handleEventClick}
             />
             <CompetitionRow 
+              id='non-technical'
               title="Non-Technical Competitions" 
               competitions={events.nonTechnical}
               onEventClick={handleEventClick}
             />
             <CompetitionRow 
+              id='esports'
               title="E-Sports Competitions" 
               competitions={events.esports}
               onEventClick={handleEventClick}
             />
+            {/* <CompetitionRow 
+              id='funGames'
+              title="Fun & Games" 
+              competitions={events.funGames}
+              onEventClick={handleEventClick}
+            /> */}
           </div>
           {selectedEvent && (
             <EventModal event={selectedEvent} onClose={handleCloseModal} />

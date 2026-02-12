@@ -27,7 +27,7 @@ function Navbar() {
         </ul>
         </div>
       <div className="navbar-right">
-        <button className="nav-btn">Register</button>
+        <a href="#events" className="nav-btn">Register</a>
       </div>
     </nav>
   );

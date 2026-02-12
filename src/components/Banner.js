@@ -6,11 +6,9 @@ function Banner({ onRegister }) {
     <div className="banner">
       <div className="banner-content">
         <h1 className="banner-title">Technoverse 1.0</h1>
-        <h2 className="banner-subtitle">SGIs biggest Techfest</h2>
+        <h2 className="banner-subtitle">Streaming the Future of Technology</h2>
         <p className="banner-description">
-          Unleash your creativity in this ultimate web design challenge. Create stunning, responsive 
-          websites that push the boundaries of modern design. Join 80+ participants in this 5-hour 
-          marathon of innovation and artistry.
+          Technoverse is designed as a Holistic Engagement Model. By integrating technical rigor with cultural and recreational events, we ensure maximum student participation while maintaining the high academic standards of the CSESA.
         </p>
         <div className="banner-info">
           <span className="banner-info-item">📅 13/02/2026 to 14/02/2026</span>
@@ -20,9 +18,6 @@ function Banner({ onRegister }) {
         <div className="banner-buttons">
           <button className="btn btn-primary" onClick={onRegister}>
             <span>▶</span> Register Now
-          </button>
-          <button className="btn btn-secondary" onClick={onRegister}>
-            <span>ℹ</span> More Info
           </button>
         </div>
       </div>
