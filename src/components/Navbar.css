@@ -6,6 +6,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
   z-index: 100;
   transition: background-color 0.3s ease;
   background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
@@ -20,6 +23,18 @@
   align-items: center;
   gap: 30px;
   height: 100%;
+}
+
+.navbar-left a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.navbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .logo {
@@ -38,6 +53,13 @@
   display: flex;
   list-style: none;
   gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links a {
@@ -45,25 +67,31 @@
   text-decoration: none;
   font-size: 1.1rem;
   transition: color 0.3s;
+  padding: 8px 15px;
+  border-radius: 4px;
 }
 
 .nav-links a:hover {
-  color: #b3b3b3;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .navbar-right .nav-btn {
   background-color: #E50914;
   color: white;
   border: none;
-  padding: 8px 20px;
+  padding: 10px 24px;
   border-radius: 4px;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .navbar-right .nav-btn:hover {
   background-color: #f40612;
+  transform: scale(1.05);
 }
 
 /* Responsive */
