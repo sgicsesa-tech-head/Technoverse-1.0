@@ -1,20 +1,23 @@
 /* Banner */
 .banner {
-  height: 70vh;
+  min-height: 70vh;
   width: 100%;
-  padding: 10px 50px;
-  border: 2px solid red;
   background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
               url('https://via.placeholder.com/1920x1080/141414/E50914?text=Featured+Competition') center/cover;
+  background-size: cover;
   display: flex;
-  align-items: center;
-  padding: 0 50px;
-  margin-top: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 100px 50px 50px;
 }
 
 .banner-content {
-  max-width: 550px;
-  padding-top: 80px;
+  max-width: 90%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .banner-title {
@@ -58,6 +61,7 @@
 .banner-buttons {
   display: flex;
   gap: 15px;
+  flex-wrap: wrap;
 }
 
 .btn {
@@ -92,27 +96,38 @@
   background-color: rgba(109,109,110,0.5);
 }
 
-.banner-fade {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 150px;
-  background: linear-gradient(180deg, transparent 0%, #141414 100%);
+/* Responsive */
+@media (max-width: 1200px) {
+  .banner {
+    padding: 100px 40px 40px;
+  }
+  
+  .banner-content {
+    max-width: 95%;
+  }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .banner {
-    height: 60vh;
-    padding: 0 20px;
+    min-height: 60vh;
+    padding: 80px 20px 30px;
+  }
+  
+  .banner-content {
+    max-width: 100%;
+    gap: 10px;
+  }
+
+  .banner-title {
+    font-size: 0.85rem;
   }
 
   .banner-subtitle {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   .banner-description {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .banner-info {
@@ -120,6 +135,35 @@
   }
 
   .banner-info-item {
+    font-size: 0.8rem;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner {
+    min-height: 50vh;
+    padding: 70px 15px 20px;
+  }
+  
+  .banner-subtitle {
+    font-size: 1.5rem;
+  }
+  
+  .banner-description {
+    font-size: 0.85rem;
+  }
+  
+  .banner-buttons {
+    gap: 10px;
+  }
+  
+  .btn {
+    padding: 8px 16px;
     font-size: 0.85rem;
   }
 }

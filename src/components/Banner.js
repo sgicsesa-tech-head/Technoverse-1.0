@@ -26,7 +26,6 @@ function Banner({ onRegister }) {
           </button>
         </div>
       </div>
-      <div className="banner-fade"></div>
     </div>
   );
 }

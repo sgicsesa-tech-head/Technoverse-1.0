@@ -247,15 +247,18 @@
 .modal-rules {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .modal-rules li {
   padding: 12px 0 12px 30px;
-  position: relative;
   font-size: 1rem;
   line-height: 1.6;
   color: #e5e5e5;
   border-bottom: 1px solid #333;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
 }
 
 .modal-rules li:last-child {
@@ -264,14 +267,28 @@
 
 .modal-rules li:before {
   content: "✓";
-  position: absolute;
-  left: 0;
   color: #E50914;
   font-weight: 900;
   font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-left: -30px;
 }
 
 /* Responsive */
+@media (max-width: 1200px) {
+  .modal-hero {
+    height: 350px;
+  }
+  
+  .modal-title {
+    font-size: 2.5rem;
+  }
+  
+  .modal-body {
+    padding: 25px 35px 35px;
+  }
+}
+
 @media (max-width: 768px) {
   .modal-content {
     width: 95%;
@@ -282,8 +299,18 @@
     height: 300px;
   }
 
+  .modal-hero-content {
+    left: 25px;
+    bottom: 20px;
+  }
+
   .modal-title {
     font-size: 2rem;
+  }
+
+  .modal-tag {
+    font-size: 0.8rem;
+    padding: 4px 10px;
   }
 
   .modal-body {
@@ -297,9 +324,124 @@
   .modal-btn {
     width: 100%;
     justify-content: center;
+    padding: 10px 20px;
+    font-size: 1rem;
   }
 
   .modal-details {
     grid-template-columns: 1fr;
+  }
+  
+  .modal-description {
+    font-size: 1rem;
+  }
+  
+  .modal-section-title {
+    font-size: 1.3rem;
+  }
+  
+  .modal-episode {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .modal-rules li {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-overlay {
+    padding: 10px 0;
+  }
+  
+  .modal-content {
+    width: 98%;
+    border-radius: 6px;
+  }
+  
+  .modal-close {
+    top: 15px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    font-size: 1.3rem;
+  }
+
+  .modal-hero {
+    height: 250px;
+    border-radius: 6px 6px 0 0;
+  }
+  
+  .modal-hero-content {
+    left: 15px;
+    bottom: 15px;
+  }
+
+  .modal-title {
+    font-size: 1.6rem;
+  }
+  
+  .modal-meta {
+    gap: 8px;
+  }
+
+  .modal-tag {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+  }
+
+  .modal-body {
+    padding: 15px;
+  }
+  
+  .modal-actions {
+    gap: 10px;
+  }
+
+  .modal-btn {
+    padding: 8px 15px;
+    font-size: 0.95rem;
+    gap: 8px;
+  }
+  
+  .modal-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .modal-section-title {
+    font-size: 1.2rem;
+  }
+  
+  .modal-label {
+    font-size: 0.85rem;
+  }
+  
+  .modal-value {
+    font-size: 0.95rem;
+  }
+  
+  .modal-cast {
+    font-size: 0.95rem;
+  }
+  
+  .episode-number {
+    font-size: 1.3rem;
+  }
+  
+  .episode-title {
+    font-size: 0.95rem;
+  }
+  
+  .modal-rules li {
+    font-size: 0.9rem;
+    padding: 10px 0 10px 25px;
+  }
+  
+  .modal-rules li:before {
+    font-size: 1.1rem;
+    margin-left: -25px;
   }
 }

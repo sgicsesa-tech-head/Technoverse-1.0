@@ -111,8 +111,36 @@
 }
 
 /* Responsive */
+@media (max-width: 1200px) {
+  .logo-image {
+    max-width: 500px;
+  }
+  
+  .click-prompt {
+    font-size: 0.95rem;
+  }
+}
+
 @media (max-width: 768px) {
   .logo-image {
-    max-width: 90vw;
+    max-width: 400px;
+    width: 85%;
+  }
+  
+  .click-prompt {
+    font-size: 0.9rem;
+    bottom: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-image {
+    max-width: 300px;
+    width: 90%;
+  }
+  
+  .click-prompt {
+    font-size: 0.85rem;
+    bottom: 30px;
   }
 }
