@@ -13,9 +13,9 @@ function Banner({ onRegister }) {
           marathon of innovation and artistry.
         </p>
         <div className="banner-info">
-          <span className="banner-info-item">📅 Day 1</span>
-          <span className="banner-info-item">🕐 11:00 AM - 4:00 PM</span>
-          <span className="banner-info-item">📍 CC Lab</span>
+          <span className="banner-info-item">📅 13/02/2026 to 14/02/2026</span>
+          <span className="banner-info-item">🕐 10:15 AM - 5:00 PM</span>
+          <span className="banner-info-item">📍 SGI Campus</span>
         </div>
         <div className="banner-buttons">
           <button className="btn btn-primary" onClick={onRegister}>

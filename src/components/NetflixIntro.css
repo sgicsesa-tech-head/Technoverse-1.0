@@ -1,23 +1,18 @@
 /* Netflix Intro Animation */
 .netflix-intro {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
+  border: 2px solid red;
   background: #000;
   z-index: 9999;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
 
 .click-prompt {
-  position: absolute;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
   color: #b3b3b3;
   font-size: 1rem;
   z-index: 10;
@@ -25,8 +20,13 @@
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 .netflix-intro.animating {
@@ -45,8 +45,10 @@
 }
 
 .intro-logo {
-  position: relative;
   z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 1;
   transform: scale(1);
 }
@@ -73,11 +75,12 @@
 }
 
 @keyframes pulse {
-  0%, 100% { 
+  0%,
+  100% {
     opacity: 0.6;
     transform: scale(1);
   }
-  50% { 
+  50% {
     opacity: 1;
     transform: scale(1.02);
   }
@@ -103,10 +106,10 @@
 
 @keyframes glowPulse {
   0% {
-    filter: drop-shadow(0 0 10px #E50914);
+    filter: drop-shadow(0 0 10px #e50914);
   }
   100% {
-    filter: drop-shadow(0 0 60px #E50914) drop-shadow(0 0 100px #ff0a1f);
+    filter: drop-shadow(0 0 60px #e50914) drop-shadow(0 0 100px #ff0a1f);
   }
 }
 
@@ -115,7 +118,7 @@
   .logo-image {
     max-width: 500px;
   }
-  
+
   .click-prompt {
     font-size: 0.95rem;
   }
@@ -126,7 +129,7 @@
     max-width: 400px;
     width: 85%;
   }
-  
+
   .click-prompt {
     font-size: 0.9rem;
     bottom: 40px;
@@ -138,7 +141,7 @@
     max-width: 300px;
     width: 90%;
   }
-  
+
   .click-prompt {
     font-size: 0.85rem;
     bottom: 30px;

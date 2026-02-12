@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './NetflixIntro.css';
 import introSound from '../assets/introAudio.mp3';
-import logo from '../assets/logo.png';
+import logo from '../assets/technoverse_logo.png';
 
 function NetflixIntro({ onComplete }) {
   const [showIntro, setShowIntro] = useState(true);
@@ -16,7 +16,7 @@ function NetflixIntro({ onComplete }) {
     
     // Play audio immediately
     if (audioRef.current) {
-      audioRef.current.volume = 0.7;
+      audioRef.current.volume = 1;
       audioRef.current.play().catch(err => console.log('Audio play failed:', err));
     }
     
@@ -27,7 +27,7 @@ function NetflixIntro({ onComplete }) {
     setTimeout(() => {
       setShowIntro(false);
       onComplete();
-    }, 6500); // 6.5s animation duration
+    }, 1500); // 1.5s animation duration
   };
 
   if (!showIntro) return null;
@@ -37,7 +37,6 @@ function NetflixIntro({ onComplete }) {
       className={`netflix-intro ${startAnimation ? 'animating' : ''}`}
       onClick={handleStart}
     >
-      <div className="intro-background"></div>
       <div className="intro-logo">
         <img src={logo} alt="Technoverse" className="logo-image" />
       </div>

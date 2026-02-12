@@ -1,3 +1,5 @@
+import thumbnail from '../assets/thumbnail.png';
+
 export const eventsData = {
   techfest_2026: {
     organization: "CSESA",
@@ -24,7 +26,7 @@ export const eventsData = {
               "Time limit: 5 hours total",
               "Internet access permitted for resources"
             ],
-            image: "../assets/thumb.png"
+            image: thumbnail
           },
           {
             id: 2,
@@ -44,7 +46,7 @@ export const eventsData = {
               "Time limit: 2.5 hours",
               "Choice of C++, Java, or Python"
             ],
-            image: "../assets/thumb.png"
+            image: thumbnail
           },
           {
             id: 3,
@@ -64,7 +66,7 @@ export const eventsData = {
               "Professional conduct expected",
               "Feedback provided to all participants"
             ],
-            image: "../assets/thumb.png"
+            image: thumbnail
           },
           {
             id: 4,
@@ -83,7 +85,7 @@ export const eventsData = {
               "Respect campus property",
               "First team to finish wins"
             ],
-            image: "../assets/thumb.png"
+            image: thumbnail
           },
           {
             id: 5,
@@ -103,7 +105,7 @@ export const eventsData = {
               "Fair play policy strictly enforced",
               "Points based on kills and placement"
             ],
-            image: "../assets/thumb.png"
+            image: thumbnail
           },
           {
             id: 6,
@@ -122,7 +124,7 @@ export const eventsData = {
               "Pre-registered accounts only",
               "Time limit per match: 5 minutes"
             ],
-            image: "../assets/thumb.png"
+            image: thumbnail
           }
         ]
       },
@@ -146,7 +148,7 @@ export const eventsData = {
               "Time limit: 2.5 hours",
               "Code will be tested after submission"
             ],
-            image: "../assets/thumb.png"
+            image: thumbnail
           },
           {
             id: 8,
@@ -165,7 +167,7 @@ export const eventsData = {
               "Time limit: TBD",
               "Collaboration with AI is the goal"
             ],
-            image: "../assets/thumb.png"
+            image: thumbnail
           },
           {
             id: 9,
@@ -184,7 +186,7 @@ export const eventsData = {
               "Sound system provided",
               "Audience participation encouraged"
             ],
-            image: "../assets/thumb.png"
+            image: thumbnail
           },
           {
             id: 10,
@@ -203,7 +205,7 @@ export const eventsData = {
               "No hacks or cheats",
               "Kill points + placement points"
             ],
-            image: "../assets/thumb.png"
+            image: thumbnail
           },
           {
             id: 11,
@@ -222,7 +224,7 @@ export const eventsData = {
               "No custom skins/cheats",
               "Spike Rush warmup allowed"
             ],
-            image: "../assets/thumb.png"
+            image: thumbnail
           }
         ]
       }
