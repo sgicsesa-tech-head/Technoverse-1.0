@@ -1,0 +1,123 @@
+/* Banner */
+.banner {
+  position: relative;
+  height: 70vh;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+              url('https://via.placeholder.com/1920x1080/141414/E50914?text=Featured+Competition') center/cover;
+  display: flex;
+  align-items: center;
+  padding: 0 50px;
+  margin-top: 0;
+}
+
+.banner-content {
+  max-width: 550px;
+  padding-top: 80px;
+}
+
+.banner-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e5e5e5;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.banner-subtitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+}
+
+.banner-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e5e5e5;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.banner-info {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.banner-info-item {
+  color: #e5e5e5;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.banner-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s;
+}
+
+.btn-primary {
+  background-color: white;
+  color: #000;
+}
+
+.btn-primary:hover {
+  background-color: rgba(255,255,255,0.85);
+  transform: scale(1.05);
+}
+
+.btn-secondary {
+  background-color: rgba(109,109,110,0.7);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(109,109,110,0.5);
+}
+
+.banner-fade {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(180deg, transparent 0%, #141414 100%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .banner {
+    height: 60vh;
+    padding: 0 20px;
+  }
+
+  .banner-subtitle {
+    font-size: 2.5rem;
+  }
+
+  .banner-description {
+    font-size: 1rem;
+  }
+
+  .banner-info {
+    gap: 10px;
+  }
+
+  .banner-info-item {
+    font-size: 0.85rem;
+  }
+}
