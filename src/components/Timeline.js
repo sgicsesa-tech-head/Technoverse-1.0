@@ -31,8 +31,18 @@ function Timeline() {
   };
 
   const parseTime = (timeStr) => {
-    if (timeStr === 'TBD') return null;
-    if (timeStr.includes('Late')) return '14:00'; // Default evening time
+    if (timeStr === 'TBD') return '23:59'; // Put TBD events at the end
+    if (timeStr.includes('Late')) return '20:00'; // Default evening time
+    if (timeStr.includes('onwards')) {
+      // Extract the time before 'onwards'
+      const match = timeStr.match(/(\d+):(\d+)\s*(AM|PM)/);
+      if (!match) return '12:00';
+      let [, hours, minutes, period] = match;
+      hours = parseInt(hours);
+      if (period === 'PM' && hours !== 12) hours += 12;
+      if (period === 'AM' && hours === 12) hours = 0;
+      return `${hours.toString().padStart(2, '0')}:${minutes}`;
+    }
     const match = timeStr.match(/(\d+):(\d+)\s*(AM|PM)/);
     if (!match) return '12:00';
     
@@ -42,6 +52,15 @@ function Timeline() {
     if (period === 'AM' && hours === 12) hours = 0;
     
     return `${hours.toString().padStart(2, '0')}:${minutes}`;
+  };
+
+  // Sort events by time
+  const getSortedEvents = (events) => {
+    return [...events].sort((a, b) => {
+      const timeA = parseTime(a.time);
+      const timeB = parseTime(b.time);
+      return timeA.localeCompare(timeB);
+    });
   };
 
   return (
@@ -66,7 +85,7 @@ function Timeline() {
           </div>
 
           <div className="timeline-track">
-            {(day.events || []).map((event, eventIndex) => {
+            {getSortedEvents(day.events || []).map((event, eventIndex) => {
               return (
                 <div
                   key={event.id}

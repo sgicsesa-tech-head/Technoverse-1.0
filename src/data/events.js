@@ -13,7 +13,7 @@ import rawEventData from './event_data.json';
 // Event thumbnail mapping
 const eventThumbnails = {
   "The Grand Prix of Code": gpc,
-  "Daredevil – The Blind Coding Arena": dbc,
+  "Daredevil - The Blind Coding Arena": dbc,
   "Pixel Fix": pf,
   "Flix Carnival (Cultural Event)": fc,
   "The Squid Hunt (Treasure Hunt)": tsh,
@@ -29,7 +29,7 @@ const eventDetails = {
   "The Grand Prix of Code": {
     day: 1,
     time: "1:00 PM - 3:30 PM",
-    venue: "Web Technologies Lab, Machine Learning Lab, Software Testing Lab",
+    venue: "Web Technologies Lab, Machine Learning Lab, Data Science Lab",
     coordinators: ["Atharv Tambekar", "Nipun Shah"],
     coordinatorPhones: ["9730898106", "8208320893"],
     entryFee: "₹100",
@@ -44,7 +44,7 @@ const eventDetails = {
     entryFee: "Solo: ₹100, Duo: ₹150, Group: ₹500",
     entryType: "Solo/Duo/Group"
   },
-  "Daredevil – The Blind Coding Arena": {
+  "Daredevil - The Blind Coding Arena": {
     day: 2,
     time: "10:30 AM - 1:00 PM",
     venue: "Web Lab, ML Lab, DS Lab",
@@ -56,7 +56,7 @@ const eventDetails = {
   "The Hiring Room": {
     day: 1,
     time: "11:00 AM - 4:00 PM",
-    venue: "HOD Cabin 3rd Floor",
+    venue: "HOD Cabin 'D' Block 3rd Floor",
     coordinators: ["Mrunal Gadavi", "Onkar Jadhavar"],
     coordinatorPhones: ["7058952429", "7972961313"],
     entryFee: "₹100",
@@ -188,15 +188,15 @@ const determineCategory = (eventName) => {
 // Generate a brief description based on event name and theme
 const generateDescription = (eventName, theme) => {
   const descriptions = {
-    "The Grand Prix of Code": "Test your algorithmic progress and data structure knowledge in this intense coding competition inspired by Drive to Survive. Race through searching, sorting, arrays, and linked lists to claim victory!",
-    "Flix Carnival (Cultural Event)": "An evening of culture, creativity, and celebration inspired by Wednesday. Dance, music, drama, and more - showcase your talents in solo, duet, or group performances!",
-    "Daredevil – The Blind Coding Arena": "Code in complete darkness - literally. No screen visibility, just your keyboard and syntax knowledge. The ultimate test of programming muscle memory inspired by Daredevil.",
+    "The Grand Prix of Code": "Test your algorithmic progress and data structure knowledge in this intense coding competition inspired by Drive to Survive. Race through data structures & algorithms to claim victory!",
+    "Flix Carnival (Cultural Event)": "An evening of culture, creativity, and celebration inspired by Wednesday. Dance competition - showcase your talents in solo, duet, or group performances!",
+    "Daredevil - The Blind Coding Arena": "Code in complete darkness - literally. No screen visibility, just your keyboard and syntax knowledge. The ultimate test of programming muscle memory inspired by Daredevil.",
     "The Hiring Room": "Step into a professional setting and experience real-world interview scenarios inspired by Suits. From resume screening to panel interviews - dress sharp, think sharper.",
-    "E-sports (Free Fire)": "10 minutes of pure adrenaline! Fast-paced battle royale action where every decision counts. Can your squad be the last one standing?",
+    "E-sports (Free Fire)": "20 minutes of pure adrenaline! Fast-paced battle royale action where every decision counts. Can your squad be the last one standing?",
     "Pixel Fix": "Unleash your creativity in this ultimate UI/UX design challenge inspired by Abstract. Transform and modernize web interfaces using HTML, CSS, and JavaScript.",
     "The Squid Hunt (Treasure Hunt)": "Navigate through a thrilling campus-wide adventure inspired by Squid Game. Collect cards, hunt for clues, and complete challenges. Survival of the smartest!",
     "The Radiant Spike (Valorant)": "Duo team deathmatch where precise gunplay meets tactical strategy. Coordinate with your partner, execute plays, and dominate the competition!",
-    "E - Sports BGMI": "Drop into the battleground with 80 squads competing for glory. Strategy, skill, and survival - only the best will claim the chicken dinner!"
+    "E - Sports BGMI": "Drop into the battleground with 20 squads competing for glory. Strategy, skill, and survival - only the best will claim the chicken dinner!"
   };
   
   return descriptions[eventName] || `Join us for ${eventName}${theme ? ` - inspired by ${theme}` : ''}. An exciting event you won't want to miss!`;

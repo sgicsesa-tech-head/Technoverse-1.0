@@ -116,6 +116,7 @@
   color: white;
   background: transparent;
   background-color: red;
+  border-color: red;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -126,7 +127,6 @@
 }
 
 .card-action-btn:hover {
-  border-color: white;
   transform: scale(1.1);
 }
 
@@ -140,7 +140,6 @@
 .card-action-btn.play {
   background: white;
   color: black;
-  border-color: white;
 }
 
 .card-action-btn.play:hover {

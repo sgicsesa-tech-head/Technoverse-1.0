@@ -62,11 +62,21 @@ function EventModal({ event, onClose }) {
                   <span className="modal-value">{event.entryFee}</span>
                 </div>
               )}
-              {event.team_specs && (
-                <div className="modal-detail-row">
-                  <span className="modal-label">Team Specs:</span>
-                  <span className="modal-value">{event.team_specs}</span>
-                </div>
+              {event.structure && (
+                <>
+                  {event.structure.total_slots && (
+                    <div className="modal-detail-row">
+                      <span className="modal-label">Total Slots:</span>
+                      <span className="modal-value">{event.structure.total_slots}</span>
+                    </div>
+                  )}
+                  {event.structure.players_per_team && (
+                    <div className="modal-detail-row">
+                      <span className="modal-label">Team Size:</span>
+                      <span className="modal-value">{event.structure.players_per_team} {event.structure.players_per_team === 1 ? 'player' : 'players'}</span>
+                    </div>
+                  )}
+                </>
               )}
               {event.format && (
                 <div className="modal-detail-row">
@@ -127,6 +137,7 @@ function EventModal({ event, onClose }) {
                         <h4 className="episode-title">{cat.type}</h4>
                         {cat.time_limit && <p className="episode-desc">Time Limit: {cat.time_limit}</p>}
                         {cat.fee && <p className="episode-desc">Fee: ₹{cat.fee}</p>}
+                        {cat.max_members && <p className="episode-desc">Max Members: {cat.max_members}</p>}
                       </div>
                     </div>
                   ))}

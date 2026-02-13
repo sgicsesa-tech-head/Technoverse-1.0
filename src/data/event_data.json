@@ -2,10 +2,14 @@
   {
     "event_name": "The Grand Prix of Code",
     "netflix_theme": "Drive to Survive",
+    "structure": {
+      "total_slots": "60 Participants",
+      "players_per_team": 1
+    },
     "rounds": [
-      { "name": "The Qualifying Lap", "focus": "Searching & Sorting", "duration": "30 minutes", "goal": "Fastest 20 qualifiers advance" },
-      { "name": "The Pit Stop", "focus": "Arrays (Static & Dynamic)", "duration": "30 minutes", "goal": "Fastest 10 qualifiers advance" },
-      { "name": "The Final Lap", "focus": "Linked List Logic", "duration": "30 minutes", "goal": "Complete complex 'Boss' problem" }
+      { "name": "The Qualifying Lap", "focus": "Algorithms", "duration": "30 minutes", "goal": "Fastest 20 qualifiers advance" },
+      { "name": "The Pit Stop", "focus": "Operation on non-primitive data structures.", "duration": "30 minutes", "goal": "Fastest 10 qualifiers advance" },
+      { "name": "The Final Lap", "focus": "Non-Primitive + dynamic data structures", "duration": "30 minutes", "goal": "Complete complex 'Boss' problem" }
     ],
     "rules": [
       "Solo participation only",
@@ -18,6 +22,10 @@
   {
     "event_name": "Flix Carnival (Cultural Event)",
     "netflix_theme": "Wednesday",
+    "structure": {
+      "total_slots": "Solo : 15, Duet : 15, Group : 10",
+      "players_per_team": "1 or 2 or 5-8"
+    },
     "categories": [
       { "type": "Solo", "time_limit": "3 min", "fee": 100 },
       { "type": "Duet", "time_limit": "4 min", "fee": 150 },
@@ -27,12 +35,16 @@
       "Minimum 5 and maximum 8 people are allowed in group ",
       "No vulgar or offensive content allowed",
       "Props allowed but must be self-managed",
-      "Judges' decision will be final"
+      "Judge's decision will be final"
     ]
   },
   {
-    "event_name": "Daredevil – The Blind Coding Arena",
+    "event_name": "Daredevil - The Blind Coding Arena",
     "netflix_theme": "Daredevil Movie",
+    "structure": {
+      "total_slots": "60 Participants",
+      "players_per_team": 1
+    },
     "rounds": [
       { "name": "The Awakening", "focus": "MCQ & Output Prediction", "format": "15-20 MCQs", "duration": "30 minutes" },
       { "name": "The Trial by Fire", "focus": "Paper Coding (Logical Thinking & Syntax)", "duration": "45-60 minutes" },
@@ -48,8 +60,12 @@
   {
     "event_name": "The Hiring Room",
     "netflix_theme": "Suits",
+    "structure": {
+      "total_slots": "50 Candidates",
+      "players_per_team": 1
+    },
     "rounds": [
-      { "name": "Round 1", "task": "Resume Screening" },
+      { "name": "Round 1", "task": "ATS Filtering" },
       { "name": "Round 2", "task": "Rapid Fire" },
       { "name": "Round 3", "task": "Group Discussion" },
       { "name": "Round 4", "task": "Finale Interview With Panel" }
@@ -63,7 +79,10 @@
   {
     "event_name": "E-sports (Free Fire)",
     "netflix_theme": "No",
-    "team_specs": "Max 4 members",
+    "structure": {
+      "total_slots": "75 Squads",
+      "players_per_team": 4
+    },
     "rules": [
       "Only mobile devices allowed",
       "Participants must use their own mobile network (personal data)",
@@ -73,6 +92,10 @@
   {
     "event_name": "Pixel Fix",
     "netflix_theme": "Abstract",
+    "structure": {
+      "total_slots": "80 Participants",
+      "players_per_team": "1 or 2"
+    },
     "rounds": [
       { "name": "The Final Heat", "duration": "4 hours", "focus": "UI/UX Modernization & Deployment" }
     ],
@@ -86,6 +109,10 @@
   {
     "event_name": "The Squid Hunt (Treasure Hunt)",
     "netflix_theme": "Squid Game",
+    "structure": {
+      "total_slots": "30 Teams",
+      "players_per_team": 5
+    },
     "rounds": [
       { "name": "Card Collection" },
       { "name": "Clue Hunt" },
@@ -101,6 +128,10 @@
     "event_name": "The Radiant Spike (Valorant)",
     "netflix_theme": "NA",
     "format": "Duo vs. Duo Team Deathmatch",
+    "structure": {
+      "total_slots": "30 Duos",
+      "players_per_team": 2
+    },
     "rounds": [
       { "name": "Qualifying Stage", "format": "Knockout matches" },
       { "name": "Semi-Finals", "focus": "K/D/A and speed" },
@@ -108,7 +139,7 @@
     ],
     "rules": [
       "Duo entry only (exactly 2 participants)",
-      "Personal laptops are compulsory for all participants",
+      "Personal laptops, mouse and headphones are compulsory for all participants",
       "Use of third-party software or macros leads to disqualification",
       "Game must be played on the latest version of Valorant"
     ]
@@ -121,7 +152,7 @@
       "players_per_team": 4
     },
     "rounds": [
-      { "name": "Round 1", "format": "80 teams in 4 groups of 20; Top 5 qualify" },
+      { "name": "Round 1", "format": "80 teams in 4 groups of 20; Top 5 of each match will qualify" },
       { "name": "Grand Finals", "format": "1 match with 20 teams" }
     ],
     "rules": [

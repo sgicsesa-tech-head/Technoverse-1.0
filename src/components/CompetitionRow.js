@@ -17,7 +17,7 @@ function CompetitionRow({ title, competitions, onEventClick }) {
               <h3>{comp.title}</h3>
               <p>{comp.category}</p>
               <div className="card-actions">
-                <button className="card-action-btn">Register <PlayArrowIcon fontSize="small" /></button>
+                <button className="card-action-btn"><PlayArrowIcon fontSize="small" />Register </button>
               </div>
             </div>
           </div>
