@@ -330,7 +330,14 @@
   }
   
   .event-card:hover {
-    transform: translateX(5px);
+    background: #1a1a1a;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .view-details-btn:hover {
+    background: #E50914;
+    color: white;
   }
 }
 
@@ -386,5 +393,16 @@
   
   .event-detail {
     font-size: 0.85rem;
+  }
+
+  .event-card:hover {
+    background: #1a1a1a;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .view-details-btn:hover {
+    background: #E50914;
+    color: white;
   }
 }

@@ -195,7 +195,29 @@
   }
 
   .competition-card:hover {
-    transform: scale(1.2);
+    width: 220px;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .competition-card:hover .poster {
+    display: block;
+  }
+
+  .competition-card:hover .card-banner {
+    display: none;
+  }
+
+  .competition-card:hover .card-info {
+    display: none;
+  }
+
+  .card-action-btn:hover {
+    transform: none;
+  }
+
+  .card-action-btn.play:hover {
+    background: white;
   }
 
   .card-banner {
@@ -241,7 +263,29 @@
   }
   
   .competition-card:hover {
-    transform: scale(1.15);
+    width: 180px;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .competition-card:hover .poster {
+    display: block;
+  }
+
+  .competition-card:hover .card-banner {
+    display: none;
+  }
+
+  .competition-card:hover .card-info {
+    display: none;
+  }
+
+  .card-action-btn:hover {
+    transform: none;
+  }
+
+  .card-action-btn.play:hover {
+    background: white;
   }
   
   .card-banner {

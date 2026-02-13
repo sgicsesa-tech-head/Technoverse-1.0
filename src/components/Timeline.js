@@ -80,7 +80,7 @@ function Timeline() {
           <div className="day-header">
             <h2 className="day-title">Day {day.day}</h2>
             <span className="day-date">
-              {day.day === 1 ? 'February 13, 2026' : 'February 14, 2026'}
+              {day.day === 1 ? 'March 13, 2026' : 'March 14, 2026'}
             </span>
           </div>
 
@@ -132,19 +132,6 @@ function Timeline() {
                           <span className="event-venue">
                             <LocationOnIcon style={{ fontSize: '0.875rem' }} />
                             {event.venue}
-                          </span>
-                        )}
-                      </div>
-
-                      <p className="event-description">{event.description}</p>
-
-                      <div className="event-details">
-                        <span className="event-detail">
-                          <strong>Coordinators:</strong> {event.coordinators.join(', ')}
-                        </span>
-                        {event.capacity && (
-                          <span className="event-detail">
-                            <strong>Capacity:</strong> {event.capacity} participants
                           </span>
                         )}
                       </div>

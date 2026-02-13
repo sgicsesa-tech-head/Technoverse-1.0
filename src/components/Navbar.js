@@ -5,6 +5,7 @@ import logo from '../assets/technoverse_logo.png';
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -15,6 +16,10 @@ function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   const scrollToSection = (sectionId) => {
     if (location.pathname !== '/') {
@@ -34,14 +39,19 @@ function Navbar() {
           <img src={logo} alt="Technoverse" className="logo" />
         </Link>
       </div>
-      <div className="navbar-center">
+      <div className={`navbar-center ${menuOpen ? 'active' : ''}`}>
         <ul className="nav-links">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/timeline">Timeline</Link></li>
+          <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
+          <li><Link to="/timeline" onClick={toggleMenu}>Timeline</Link></li>
         </ul>
       </div>
       <div className="navbar-right">
         <a href="#events" onClick={(e) => { e.preventDefault(); scrollToSection('events'); }} className="nav-btn">Register</a>
+      </div>
+      <div className={`hamburger ${menuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </nav>
   );

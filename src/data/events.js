@@ -65,7 +65,7 @@ const eventDetails = {
   "E-sports (Free Fire)": {
     day: 2,
     time: "10:30 AM - 1:00 PM",
-    venue: "D Block Seminar Hall + 1 Classroom",
+    venue: "D Block Seminar Hall",
     coordinators: ["Rutuja Pinate", "Amol Khot"],
     coordinatorPhones: ["8446176586", "7666028044"],
     entryFee: "₹400 per team",
