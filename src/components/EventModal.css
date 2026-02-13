@@ -203,6 +203,33 @@
 
 .modal-cast-list {
   color: #e5e5e5;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.coordinator-item {
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  border-left: 3px solid #e50914;
+}
+
+.coordinator-name {
+  color: #e5e5e5;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.coordinator-phone {
+  color: #b3b3b3;
+  font-size: 0.9rem;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .modal-episodes {

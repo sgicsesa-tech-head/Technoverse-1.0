@@ -5,6 +5,7 @@ import NetflixIntro from './components/NetflixIntro';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Timeline from './components/Timeline';
+import Footer from './components/Footer';
 
 function App() {
   const [introComplete, setIntroComplete] = useState(false);
@@ -19,6 +20,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/timeline" element={<Timeline />} />
           </Routes>
+          <Footer />
         </Router>
       )}
     </div>

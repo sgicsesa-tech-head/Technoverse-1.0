@@ -77,10 +77,17 @@ function EventModal({ event, onClose }) {
             <div className="modal-section">
               <h3 className="modal-section-title">Cast</h3>
               <div className="modal-cast">
-                <span className="modal-label">Event Coordinators: </span>
-                <span className="modal-cast-list">
-                  {event.coordinators.join(', ')}
-                </span>
+                <span className="modal-label">Event Coordinators:</span>
+                <div className="modal-cast-list">
+                  {event.coordinators.map((coordinator, index) => (
+                    <div key={index} className="coordinator-item">
+                      <div className="coordinator-name">{coordinator}</div>
+                      {event.coordinatorPhones && event.coordinatorPhones[index] && (
+                        <div className="coordinator-phone">📞 {event.coordinatorPhones[index]}</div>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -125,7 +132,7 @@ function EventModal({ event, onClose }) {
 
             {event.rules && event.rules.length > 0 && (
               <div className="modal-section">
-                <h3 className="modal-section-title">Terms & Conditions</h3>
+                <h3 className="modal-section-title">Disclaimer</h3>
                 <ul className="modal-rules">
                   {event.rules.map((rule, index) => (
                     <li key={index}>{rule}</li>
