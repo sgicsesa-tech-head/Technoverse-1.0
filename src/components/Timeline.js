@@ -7,7 +7,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 function Timeline() {
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const days = eventsData.techfest_2026.days;
+  const days = eventsData?.techfest_2026?.days || [];
 
   const handleEventClick = (event) => {
     setSelectedEvent(event);
@@ -51,7 +51,12 @@ function Timeline() {
         <p className="timeline-subtitle">Techfest 2026 - Full Schedule</p>
       </div>
 
-      {days.map((day, dayIndex) => (
+      {days.length === 0 ? (
+        <div style={{ textAlign: 'center', padding: '2rem', color: '#b3b3b3' }}>
+          <p>Loading events...</p>
+        </div>
+      ) : (
+        days.map((day, dayIndex) => (
         <div key={dayIndex} className="day-section">
           <div className="day-header">
             <h2 className="day-title">Day {day.day}</h2>
@@ -61,9 +66,7 @@ function Timeline() {
           </div>
 
           <div className="timeline-track">
-            {day.events.map((event, eventIndex) => {
-              const startTime = parseTime(event.time);
-              
+            {(day.events || []).map((event, eventIndex) => {
               return (
                 <div
                   key={event.id}
@@ -127,11 +130,13 @@ function Timeline() {
                         )}
                       </div>
 
-                      <div className="event-tags">
-                        {event.tags.map((tag, i) => (
-                          <span key={i} className="tag">{tag}</span>
-                        ))}
-                      </div>
+                      {event.tags && event.tags.length > 0 && (
+                        <div className="event-tags">
+                          {event.tags.map((tag, i) => (
+                            <span key={i} className="tag">{tag}</span>
+                          ))}
+                        </div>
+                      )}
 
                       <button className="view-details-btn">
                         View Full Details →
@@ -143,7 +148,7 @@ function Timeline() {
             })}
           </div>
         </div>
-      ))}
+      )))}
 
       {selectedEvent && (
         <EventModal event={selectedEvent} onClose={handleCloseModal} />

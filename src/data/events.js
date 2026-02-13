@@ -115,8 +115,19 @@ const transformEventData = (rawData) => {
   const day2Events = [];
   let idCounter = 1;
 
+  if (!rawData || !Array.isArray(rawData)) {
+    console.error('Invalid event data:', rawData);
+    return { day1Events, day2Events };
+  }
+
   rawData.forEach(event => {
     const details = eventDetails[event.event_name] || {};
+    
+    // Convert comma-separated venues to array
+    let venue = details.venue || "TBD";
+    if (venue !== "TBD" && venue.includes(',')) {
+      venue = venue.split(',').map(v => v.trim());
+    }
     
     const transformedEvent = {
       id: idCounter++,
@@ -124,7 +135,7 @@ const transformEventData = (rawData) => {
       title: event.event_name,
       netflixTheme: event.netflix_theme !== "No" && event.netflix_theme !== "None" && event.netflix_theme !== "NA" ? event.netflix_theme : null,
       time: details.time || "TBD",
-      venue: details.venue || "TBD",
+      venue: venue,
       coordinators: details.coordinators || [],
       coordinatorPhones: details.coordinatorPhones || [],
       entryFee: details.entryFee || "TBD",
@@ -136,7 +147,8 @@ const transformEventData = (rawData) => {
       format: event.format || null,
       structure: event.structure || null,
       description: generateDescription(event.event_name, event.netflix_theme),
-      image: eventThumbnails[event.event_name] || thumbnail
+      image: eventThumbnails[event.event_name] || thumbnail,
+      tags: event.tags || []
     };
 
     // Sort events by day

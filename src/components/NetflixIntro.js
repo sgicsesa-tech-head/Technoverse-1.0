@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import './NetflixIntro.css';
 import introSound from '../assets/introAudio.mp3';
 import logo from '../assets/technoverse_logo.png';
