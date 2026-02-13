@@ -3,6 +3,10 @@ import gpc from '../assets/Thumbnails/gpc.png';
 import dbc from '../assets/Thumbnails/dbc.png';
 import pf from '../assets/Thumbnails/pf.jpeg';
 import fc from '../assets/Thumbnails/fc.png';
+import tsh from '../assets/Thumbnails/tsh.png';
+import bgmi from '../assets/Thumbnails/bgmi.jpeg';
+import ff from '../assets/Thumbnails/ff.png';
+import valorant from '../assets/Thumbnails/valorant.jpg';
 import rawEventData from './event_data.json';
 
 // Event thumbnail mapping
@@ -10,7 +14,11 @@ const eventThumbnails = {
   "The Grand Prix of Code": gpc,
   "Daredevil – The Blind Coding Arena": dbc,
   "Pixel Fix": pf,
-  "Flix Carnival (Cultural Dance)": fc
+  "Flix Carnival (Cultural Dance)": fc,
+  "The Squid Hunt (Treasure Hunt)": tsh,
+  "E - Sports BGMI": bgmi,
+  "E-sports (Free Fire)": ff,
+  "The Radiant Spike (Valorant)": valorant
   // Add more thumbnails as they become available
 };
 
