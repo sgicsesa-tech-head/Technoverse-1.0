@@ -18,19 +18,19 @@ function Footer() {
         <div className="footer-section footer-links">
           <h4>Connect With Us</h4>
           <div className="social-links">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <a href="https://www.instagram.com/csesa_sgi/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <InstagramIcon />
             </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <a href="https://www.youtube.com/@SGICSESA/shorts" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
               <YouTubeIcon />
             </a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <a href="https://github.com/sgicsesa-tech-head" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
               <GitHubIcon />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/company/csesa-sgi/?viewAsMember=true" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <LinkedInIcon />
             </a>
-            <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X">
+            <a href="https://x.com/CsesaSgi" target="_blank" rel="noopener noreferrer" aria-label="X">
               <XIcon />
             </a>
           </div>
