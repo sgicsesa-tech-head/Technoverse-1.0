@@ -22,9 +22,9 @@ function EventModal({ event, onClose }) {
           <div className="modal-hero-content">
             <h1 className="modal-title">{event.title}</h1>
             <div className="modal-meta">
-              {event.tags && event.tags.map((tag, index) => (
-                <span key={index} className="modal-tag">{tag}</span>
-              ))}
+              <span className="modal-tag">{event.category}</span>
+              {event.netflixTheme && <span className="modal-tag">🎬 {event.netflixTheme}</span>}
+              {event.entryType && <span className="modal-tag">{event.entryType}</span>}
             </div>
           </div>
         </div>
@@ -34,9 +34,6 @@ function EventModal({ event, onClose }) {
             <div className="modal-actions">
               <button className="modal-btn modal-btn-play">
                 <span>▶</span> Register Now
-              </button>
-              <button className="modal-btn modal-btn-secondary">
-                <span>+</span> Add to Watchlist
               </button>
             </div>
 
@@ -55,10 +52,22 @@ function EventModal({ event, onClose }) {
                   {Array.isArray(event.venue) ? event.venue.join(', ') : event.venue}
                 </span>
               </div>
-              {event.capacity && (
+              {event.entryFee && (
                 <div className="modal-detail-row">
-                  <span className="modal-label">Capacity:</span>
-                  <span className="modal-value">{event.capacity} participants</span>
+                  <span className="modal-label">Entry Fee:</span>
+                  <span className="modal-value">{event.entryFee}</span>
+                </div>
+              )}
+              {event.team_specs && (
+                <div className="modal-detail-row">
+                  <span className="modal-label">Team Specs:</span>
+                  <span className="modal-value">{event.team_specs}</span>
+                </div>
+              )}
+              {event.format && (
+                <div className="modal-detail-row">
+                  <span className="modal-label">Format:</span>
+                  <span className="modal-value">{event.format}</span>
                 </div>
               )}
             </div>
@@ -83,7 +92,30 @@ function EventModal({ event, onClose }) {
                     <div key={index} className="modal-episode">
                       <div className="episode-number">{index + 1}</div>
                       <div className="episode-info">
-                        <h4 className="episode-title">{round}</h4>
+                        <h4 className="episode-title">{round.name || `Round ${index + 1}`}</h4>
+                        {round.focus && <p className="episode-desc">Focus: {round.focus}</p>}
+                        {round.task && <p className="episode-desc">Task: {round.task}</p>}
+                        {round.format && <p className="episode-desc">Format: {round.format}</p>}
+                        {round.duration && <p className="episode-desc">Duration: {round.duration}</p>}
+                        {round.goal && <p className="episode-desc">Goal: {round.goal}</p>}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {event.categories && event.categories.length > 0 && (
+              <div className="modal-section">
+                <h3 className="modal-section-title">Categories</h3>
+                <div className="modal-episodes">
+                  {event.categories.map((cat, index) => (
+                    <div key={index} className="modal-episode">
+                      <div className="episode-number">{index + 1}</div>
+                      <div className="episode-info">
+                        <h4 className="episode-title">{cat.type}</h4>
+                        {cat.time_limit && <p className="episode-desc">Time Limit: {cat.time_limit}</p>}
+                        {cat.fee && <p className="episode-desc">Fee: ₹{cat.fee}</p>}
                       </div>
                     </div>
                   ))}
@@ -93,7 +125,7 @@ function EventModal({ event, onClose }) {
 
             {event.rules && event.rules.length > 0 && (
               <div className="modal-section">
-                <h3 className="modal-section-title">Rules & Regulations</h3>
+                <h3 className="modal-section-title">Terms & Conditions</h3>
                 <ul className="modal-rules">
                   {event.rules.map((rule, index) => (
                     <li key={index}>{rule}</li>

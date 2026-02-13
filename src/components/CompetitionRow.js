@@ -1,6 +1,5 @@
 import React from 'react';
 import './CompetitionRow.css';
-import thumb from '../assets/thumbnail.png'
 
 function CompetitionRow({ title, competitions, onEventClick }) {
   return (
@@ -11,7 +10,7 @@ function CompetitionRow({ title, competitions, onEventClick }) {
           <div key={comp.id} className="competition-card" onClick={() => onEventClick(comp)}>
             <img src={comp.image} alt={comp.title} className="poster" />
             <div className="card-banner">
-                <img src={thumb} alt={comp.title} />
+                <img src={comp.image} alt={comp.title} />
             </div>
             <div className="card-info">
               <h3>{comp.title}</h3>

@@ -1,0 +1,136 @@
+[
+  {
+    "event_name": "The Grand Prix of Code",
+    "netflix_theme": "Drive to Survive",
+    "rounds": [
+      { "name": "The Qualifying Lap", "focus": "Searching & Sorting", "duration": "30 minutes", "goal": "Fastest 20 qualifiers advance" },
+      { "name": "The Pit Stop", "focus": "Arrays (Static & Dynamic)", "duration": "30 minutes", "goal": "Fastest 10 qualifiers advance" },
+      { "name": "The Final Lap", "focus": "Linked List Logic", "duration": "30 minutes", "goal": "Complete complex 'Boss' problem" }
+    ],
+    "rules": [
+      "Solo participation only",
+      "Allowed languages: C, C++, Java, or Python",
+      "Use of AI, external libraries, or plagiarism results in immediate disqualification (Black Flag)",
+      "Use of inbuilt libraries is prohibited",
+      "Personal laptops are allowed"
+    ]
+  },
+  {
+    "event_name": "Flix Carnival (Cultural Dance)",
+    "netflix_theme": "Wednesday",
+    "categories": [
+      { "type": "Solo", "time_limit": "3 min", "fee": 100 },
+      { "type": "Duet", "time_limit": "4 min", "fee": 150 },
+      { "type": "Group", "time_limit": "6 min", "fee": 400 }
+    ],
+    "rules": [
+      "Songs must be submitted 1 day prior in MP3 format",
+      "No vulgar or offensive content allowed",
+      "Props allowed but must be self-managed",
+      "Judges' decision is final"
+    ]
+  },
+  {
+    "event_name": "Daredevil – The Blind Coding Arena",
+    "netflix_theme": "Daredevil Movie",
+    "rounds": [
+      { "name": "The Awakening", "focus": "MCQ & Output Prediction", "format": "15-20 MCQs", "duration": "30 minutes" },
+      { "name": "The Trial by Fire", "focus": "Paper Coding (Logical Thinking & Syntax)", "duration": "45-60 minutes" },
+      { "name": "Into the Dark", "focus": "Live Blind Coding (Screen constraints)", "duration": "30-45 minutes" }
+    ],
+    "rules": [
+      "Solo participation only",
+      "Allowed languages: C and C++ only",
+      "No personal laptops; must use systems provided by organizers",
+      "Limited compilation attempts in the final round",
+      "AI tools and plagiarism lead to immediate disqualification"
+    ]
+  },
+  {
+    "event_name": "The Hiring Room",
+    "netflix_theme": "Suits",
+    "rounds": [
+      { "name": "Round 1", "task": "Resume Screening" },
+      { "name": "Round 2", "task": "HR Rapid Fire (3-5 mins)" },
+      { "name": "Round 3", "task": "Group Discussion" },
+      { "name": "Round 4", "task": "Finale Panel Interview (Technical + HR)" }
+    ],
+    "rules": [
+      "Formal wear is mandatory",
+      "Participants must report 30 minutes before scheduled time",
+      "Judging criteria includes Communication (20), Confidence (20), and Technical Knowledge (20)"
+    ]
+  },
+  {
+    "event_name": "E-sports (Free Fire)",
+    "netflix_theme": "No",
+    "team_specs": "Max 5 members (4 main + 1 substitute)",
+    "rules": [
+      "Only mobile devices allowed; emulators lead to disqualification",
+      "Participants must use their own mobile network (personal data)",
+      "No match restarts for disconnects or network issues",
+      "Substitutes can only be used before the match starts"
+    ]
+  },
+  {
+    "event_name": "Pixel Fix",
+    "netflix_theme": "Abstract",
+    "rounds": [
+      { "name": "The Final Heat", "duration": "4 hours", "focus": "UI/UX Modernization & Deployment" }
+    ],
+    "rules": [
+      "Max 2 participants per team (must have valid Student ID)",
+      "Built with HTML, CSS, and JS only; frameworks like React/Angular are prohibited",
+      "AI (ChatGPT/Gemini) allowed for debugging/layout only",
+      "Optional libraries like Bootstrap or Tailwind are permitted"
+    ]
+  },
+  {
+    "event_name": "The Squid Hunt (Treasure Hunt)",
+    "netflix_theme": "Squid Game",
+    "rounds": [
+      { "name": "Card Collection", "task": "Selection round based on collecting colored shapes" },
+      { "name": "Clue Hunt", "task": "Find volunteers at specific locations for clues" },
+      { "name": "Squid Game Challenge", "task": "Identify characters and arrange face cutouts" }
+    ],
+    "rules": [
+      "Maximum 5 members per team",
+      "All teams must stay together during the game",
+      "Do not run in restricted areas or damage clues"
+    ]
+  },
+  {
+    "event_name": "The Radiant Spike (Valorant)",
+    "netflix_theme": "NA",
+    "format": "Duo vs. Duo Team Deathmatch",
+    "rounds": [
+      { "name": "Qualifying Stage", "format": "Knockout matches" },
+      { "name": "Semi-Finals", "focus": "K/D/A and speed" },
+      { "name": "Grand Finale", "format": "Best of 3 matches (30 minutes)" }
+    ],
+    "rules": [
+      "Duo entry only (exactly 2 participants)",
+      "Personal laptops highly preferred",
+      "Use of third-party software or macros leads to disqualification",
+      "Game must be played on the latest version of Valorant"
+    ]
+  },
+  {
+    "event_name": "E - Sports BGMI",
+    "netflix_theme": "None",
+    "structure": {
+      "total_slots": "80 Squads",
+      "players_per_team": 4
+    },
+    "rounds": [
+      { "name": "Round 1", "format": "80 teams in 4 groups of 20; Top 5 qualify" },
+      { "name": "Grand Finals", "format": "1 match with 20 teams" }
+    ],
+    "rules": [
+      "Only mobile devices; stable internet is player responsibility",
+      "Room ID shared 10-15 minutes before match; must join within 10 minutes",
+      "Teams must sit in pre-assigned slots",
+      "Complaints must be submitted within 15 minutes of match completion with evidence"
+    ]
+  }
+]
