@@ -30,7 +30,7 @@ const eventDetails = {
     day: 1,
     time: "1:00 PM - 3:30 PM",
     venue: "Web Technologies Lab, Machine Learning Lab, Software Testing Lab",
-    coordinators: ["Atharv Mayur Tambekar", "Nipun Shah"],
+    coordinators: ["Atharv Tambekar", "Nipun Shah"],
     coordinatorPhones: ["9730898106", "8208320893"],
     entryFee: "₹100",
     entryType: "Solo"
@@ -39,16 +39,16 @@ const eventDetails = {
     day: 2,
     time: "1:30 PM onwards",
     venue: "Open Auditorium",
-    coordinators: ["Sharayu Arankar", "Samreen Jun"],
+    coordinators: ["Sharayu Arankar", "Samreen Chaugale"],
     coordinatorPhones: ["8793419327", "7773931377"],
-    entryFee: "Solo: ₹100, Duo: ₹150, Group: ₹400",
+    entryFee: "Solo: ₹100, Duo: ₹150, Group: ₹500",
     entryType: "Solo/Duo/Group"
   },
   "Daredevil – The Blind Coding Arena": {
     day: 2,
     time: "10:30 AM - 1:00 PM",
     venue: "Web Lab, ML Lab, DS Lab",
-    coordinators: ["Nipun Prashant Shah", "Shreya Gurav"],
+    coordinators: ["Nipun Shah", "Shreya Gurav"],
     coordinatorPhones: ["8208320893", "6361790149"],
     entryFee: "₹100",
     entryType: "Solo"
@@ -66,7 +66,7 @@ const eventDetails = {
     day: 2,
     time: "10:30 AM - 1:00 PM",
     venue: "D Block Seminar Hall + 1 Classroom",
-    coordinators: ["Rutuja Madhav Pinate", "Rajveer Chandaliya"],
+    coordinators: ["Rutuja Pinate", "Rajveer Chandaliya"],
     coordinatorPhones: ["8446176586", "9730612415"],
     entryFee: "₹400 per team",
     entryType: "Team (5 members)"
@@ -102,7 +102,7 @@ const eventDetails = {
     day: 1,
     time: "11:00 AM - 4:00 PM",
     venue: "Seminar Hall - C Block",
-    coordinators: ["Rasik", "Sanket Sutar", "Prachi Jadhav"],
+    coordinators: ["Rasik Samudre", "Sanket Sutar", "Prachi Jadhav"],
     coordinatorPhones: ["9021211916", "7219643252", "7038289705"],
     entryFee: "₹200-400 per team",
     entryType: "Squad (4 members)"
