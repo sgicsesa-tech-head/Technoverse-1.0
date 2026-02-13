@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './Timeline.css';
 import { eventsData } from '../data/events';
 import EventModal from './EventModal';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 function Timeline() {
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -86,7 +88,7 @@ function Timeline() {
                       style={{ borderLeftColor: getCategoryColor(event.category) }}
                     >
                       <div className="event-time">
-                        <span className="time-icon">🕐</span>
+                        <AccessTimeIcon className="time-icon" />
                         <span>{event.time}</span>
                       </div>
                       
@@ -100,9 +102,15 @@ function Timeline() {
                           {event.category}
                         </span>
                         {Array.isArray(event.venue) ? (
-                          <span className="event-venue">📍 {event.venue[0]} +{event.venue.length - 1}</span>
+                          <span className="event-venue">
+                            <LocationOnIcon style={{ fontSize: '0.875rem' }} />
+                            {event.venue[0]} +{event.venue.length - 1}
+                          </span>
                         ) : (
-                          <span className="event-venue">📍 {event.venue}</span>
+                          <span className="event-venue">
+                            <LocationOnIcon style={{ fontSize: '0.875rem' }} />
+                            {event.venue}
+                          </span>
                         )}
                       </div>
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import './CompetitionRow.css';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 function CompetitionRow({ title, competitions, onEventClick }) {
   return (
@@ -16,7 +17,7 @@ function CompetitionRow({ title, competitions, onEventClick }) {
               <h3>{comp.title}</h3>
               <p>{comp.category}</p>
               <div className="card-actions">
-                <button className="card-action-btn">Register ▶</button>
+                <button className="card-action-btn">Register <PlayArrowIcon fontSize="small" /></button>
               </div>
             </div>
           </div>

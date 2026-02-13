@@ -150,6 +150,9 @@
   color: #b3b3b3;
   margin-bottom: 10px;
   font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .time-icon {
@@ -187,6 +190,9 @@
   font-size: 0.75rem;
   color: #e5e5e5;
   font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .event-description {

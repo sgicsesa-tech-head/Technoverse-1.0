@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react';
 import './EventModal.css';
+import CloseIcon from '@mui/icons-material/Close';
+import MovieIcon from '@mui/icons-material/Movie';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PhoneIcon from '@mui/icons-material/Phone';
 
 function EventModal({ event, onClose }) {
   useEffect(() => {
@@ -15,7 +19,7 @@ function EventModal({ event, onClose }) {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose}>✕</button>
+        <button className="modal-close" onClick={onClose}><CloseIcon /></button>
         
         <div className="modal-hero" style={{ backgroundImage: `url(${event.image})` }}>
           <div className="modal-hero-gradient"></div>
@@ -23,7 +27,7 @@ function EventModal({ event, onClose }) {
             <h1 className="modal-title">{event.title}</h1>
             <div className="modal-meta">
               <span className="modal-tag">{event.category}</span>
-              {event.netflixTheme && <span className="modal-tag">🎬 {event.netflixTheme}</span>}
+              {event.netflixTheme && <span className="modal-tag"><MovieIcon fontSize="small" /> {event.netflixTheme}</span>}
               {event.entryType && <span className="modal-tag">{event.entryType}</span>}
             </div>
           </div>
@@ -33,7 +37,7 @@ function EventModal({ event, onClose }) {
           <div className="modal-info">
             <div className="modal-actions">
               <button className="modal-btn modal-btn-play">
-                <span>▶</span> Register Now
+                <PlayArrowIcon /> Register Now
               </button>
             </div>
 
@@ -83,7 +87,7 @@ function EventModal({ event, onClose }) {
                     <div key={index} className="coordinator-item">
                       <div className="coordinator-name">{coordinator}</div>
                       {event.coordinatorPhones && event.coordinatorPhones[index] && (
-                        <div className="coordinator-phone">📞 {event.coordinatorPhones[index]}</div>
+                        <div className="coordinator-phone"><PhoneIcon fontSize="small" /> {event.coordinatorPhones[index]}</div>
                       )}
                     </div>
                   ))}
