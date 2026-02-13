@@ -15,7 +15,7 @@ const eventThumbnails = {
   "The Grand Prix of Code": gpc,
   "Daredevil – The Blind Coding Arena": dbc,
   "Pixel Fix": pf,
-  "Flix Carnival (Cultural Dance)": fc,
+  "Flix Carnival (Cultural Event)": fc,
   "The Squid Hunt (Treasure Hunt)": tsh,
   "The Hiring Room": is,
   "E - Sports BGMI": bgmi,
@@ -35,7 +35,7 @@ const eventDetails = {
     entryFee: "₹100",
     entryType: "Solo"
   },
-  "Flix Carnival (Cultural Dance)": {
+  "Flix Carnival (Cultural Event)": {
     day: 2,
     time: "1:30 PM onwards",
     venue: "Open Auditorium",
@@ -66,8 +66,8 @@ const eventDetails = {
     day: 2,
     time: "10:30 AM - 1:00 PM",
     venue: "D Block Seminar Hall + 1 Classroom",
-    coordinators: ["Rutuja Pinate", "Rajveer Chandaliya"],
-    coordinatorPhones: ["8446176586", "9730612415"],
+    coordinators: ["Rutuja Pinate", "Amol Khot"],
+    coordinatorPhones: ["8446176586", "7666028044"],
     entryFee: "₹400 per team",
     entryType: "Team (5 members)"
   },
@@ -104,7 +104,7 @@ const eventDetails = {
     venue: "Seminar Hall - C Block",
     coordinators: ["Rasik Samudre", "Sanket Sutar", "Prachi Jadhav"],
     coordinatorPhones: ["9021211916", "7219643252", "7038289705"],
-    entryFee: "₹200-400 per team",
+    entryFee: "₹400 per team",
     entryType: "Squad (4 members)"
   }
 };
@@ -176,8 +176,8 @@ const determineCategory = (eventName) => {
 // Generate a brief description based on event name and theme
 const generateDescription = (eventName, theme) => {
   const descriptions = {
-    "The Grand Prix of Code": "Test your algorithmic prowess and data structure knowledge in this intense coding competition inspired by Drive to Survive. Race through searching, sorting, arrays, and linked lists to claim victory!",
-    "Flix Carnival (Cultural Dance)": "An evening of culture, creativity, and celebration inspired by Wednesday. Dance, music, drama, and more - showcase your talents in solo, duet, or group performances!",
+    "The Grand Prix of Code": "Test your algorithmic progress and data structure knowledge in this intense coding competition inspired by Drive to Survive. Race through searching, sorting, arrays, and linked lists to claim victory!",
+    "Flix Carnival (Cultural Event)": "An evening of culture, creativity, and celebration inspired by Wednesday. Dance, music, drama, and more - showcase your talents in solo, duet, or group performances!",
     "Daredevil – The Blind Coding Arena": "Code in complete darkness - literally. No screen visibility, just your keyboard and syntax knowledge. The ultimate test of programming muscle memory inspired by Daredevil.",
     "The Hiring Room": "Step into a professional setting and experience real-world interview scenarios inspired by Suits. From resume screening to panel interviews - dress sharp, think sharper.",
     "E-sports (Free Fire)": "10 minutes of pure adrenaline! Fast-paced battle royale action where every decision counts. Can your squad be the last one standing?",

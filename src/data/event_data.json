@@ -16,18 +16,18 @@
     ]
   },
   {
-    "event_name": "Flix Carnival (Cultural Dance)",
+    "event_name": "Flix Carnival (Cultural Event)",
     "netflix_theme": "Wednesday",
     "categories": [
       { "type": "Solo", "time_limit": "3 min", "fee": 100 },
       { "type": "Duet", "time_limit": "4 min", "fee": 150 },
-      { "type": "Group", "time_limit": "6 min", "fee": 400 }
+      { "type": "Group", "time_limit": "5 min", "fee": 500 , "max_members": 8}
     ],
     "rules": [
-      "Songs must be submitted 1 day prior in MP3 format",
+      "Minimum 5 and maximum 8 people are allowed in group ",
       "No vulgar or offensive content allowed",
       "Props allowed but must be self-managed",
-      "Judges' decision is final"
+      "Judges' decision will be final"
     ]
   },
   {
@@ -41,8 +41,7 @@
     "rules": [
       "Solo participation only",
       "Allowed languages: C and C++ only",
-      "No personal laptops; must use systems provided by organizers",
-      "Limited compilation attempts in the final round",
+      "Personal laptops are not allowed. Participants must use the systems provided by the organizers",
       "AI tools and plagiarism lead to immediate disqualification"
     ]
   },
@@ -51,25 +50,24 @@
     "netflix_theme": "Suits",
     "rounds": [
       { "name": "Round 1", "task": "Resume Screening" },
-      { "name": "Round 2", "task": "HR Rapid Fire (3-5 mins)" },
+      { "name": "Round 2", "task": "Rapid Fire" },
       { "name": "Round 3", "task": "Group Discussion" },
-      { "name": "Round 4", "task": "Finale Panel Interview (Technical + HR)" }
+      { "name": "Round 4", "task": "Finale Interview With Panel" }
     ],
     "rules": [
-      "Formal wear is mandatory",
-      "Participants must report 30 minutes before scheduled time",
-      "Judging criteria includes Communication (20), Confidence (20), and Technical Knowledge (20)"
+      "Formal attire is mandatory for all participants",
+      "Participants must upload an ATS-compatible resume during registration",
+      "The decision of the judges will be final"
     ]
   },
   {
     "event_name": "E-sports (Free Fire)",
     "netflix_theme": "No",
-    "team_specs": "Max 5 members (4 main + 1 substitute)",
+    "team_specs": "Max 4 members",
     "rules": [
-      "Only mobile devices allowed; emulators lead to disqualification",
+      "Only mobile devices allowed",
       "Participants must use their own mobile network (personal data)",
-      "No match restarts for disconnects or network issues",
-      "Substitutes can only be used before the match starts"
+      "If you disconnect or face network issues, the match will not be restarted"
     ]
   },
   {
@@ -79,8 +77,8 @@
       { "name": "The Final Heat", "duration": "4 hours", "focus": "UI/UX Modernization & Deployment" }
     ],
     "rules": [
-      "Max 2 participants per team (must have valid Student ID)",
-      "Built with HTML, CSS, and JS only; frameworks like React/Angular are prohibited",
+      "Max 2 participants per team",
+      "The website must be developed using HTML, CSS, and JavaScript only. The use of frameworks such as React or Angular is strictly prohibited",
       "AI (ChatGPT/Gemini) allowed for debugging/layout only",
       "Optional libraries like Bootstrap or Tailwind are permitted"
     ]
@@ -89,9 +87,9 @@
     "event_name": "The Squid Hunt (Treasure Hunt)",
     "netflix_theme": "Squid Game",
     "rounds": [
-      { "name": "Card Collection", "task": "Selection round based on collecting colored shapes" },
-      { "name": "Clue Hunt", "task": "Find volunteers at specific locations for clues" },
-      { "name": "Squid Game Challenge", "task": "Identify characters and arrange face cutouts" }
+      { "name": "Card Collection" },
+      { "name": "Clue Hunt" },
+      { "name": "Squid Game Challenge" }
     ],
     "rules": [
       "Maximum 5 members per team",
@@ -110,7 +108,7 @@
     ],
     "rules": [
       "Duo entry only (exactly 2 participants)",
-      "Personal laptops highly preferred",
+      "Personal laptops are compulsory for all participants",
       "Use of third-party software or macros leads to disqualification",
       "Game must be played on the latest version of Valorant"
     ]
