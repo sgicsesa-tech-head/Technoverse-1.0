@@ -39,7 +39,7 @@ const eventDetails = {
     day: 2,
     time: "1:30 PM onwards",
     venue: "Open Auditorium",
-    coordinators: ["Sharayu Arankar", "Samreen Chaugale"],
+    coordinators: ["Sharayu Arankar", "Samreen Chaugule"],
     coordinatorPhones: ["8793419327", "7773931377"],
     entryFee: "Solo: ₹100, Duo: ₹150, Group: ₹500",
     entryType: "Solo/Duo/Group"
