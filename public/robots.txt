@@ -1,3 +1,11 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+# Sitemap
+Sitemap: https://technoverse-1-0.vercel.app/sitemap.xml
+
+# Crawl-delay for bots
+Crawl-delay: 1

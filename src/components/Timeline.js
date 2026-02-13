@@ -22,9 +22,9 @@ function Timeline() {
       case 'Technical':
         return '#E50914';
       case 'Non-Technical':
-        return '#00D9FF';
+        return '#5f126c';
       case 'E-Sports':
-        return '#FFD700';
+        return '#2563eb';
       default:
         return '#b3b3b3';
     }

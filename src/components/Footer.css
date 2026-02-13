@@ -86,6 +86,12 @@
   font-size: 24px;
 }
 
+.mail-link {
+  color: #b3b3b3;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
 .footer-bottom {
   text-align: center;
   padding-top: 30px;
@@ -127,7 +133,8 @@
   
   .social-links {
     gap: 15px;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
   }
   
   .social-links a {

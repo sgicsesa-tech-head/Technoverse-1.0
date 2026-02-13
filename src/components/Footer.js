@@ -37,12 +37,14 @@ function Footer() {
         </div>
         <div className="footer-section footer-contact">
           <h4>Contact</h4>
-          <p>Computer Science & Engineering Students Association</p>
+          <p>Email: <a className='mail-link' href="mailto:sgi.csesa@sginstitute.in">sgi.csesa@sginstitute.in</a></p>
+          <p>Computer Science & Engineering Department, 'D' Block 3rd Floor</p>
           <p>Sanjay Ghodawat Institute</p>
           <p>Atigre, Maharashtra</p>
         </div>
       </div>
       <div className="footer-bottom">
+        <p>Developed by Atharv Tambekar and Shivani Mali and the CSESA</p>
         <p>&copy; 2026 CSESA-SGI. All rights reserved. | Technoverse 1.0</p>
       </div>
     </footer>
