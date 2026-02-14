@@ -29,7 +29,7 @@
 }
 
 .netflix-intro.animating {
-  animation: fadeOut 1s ease-in-out 5.5s forwards;
+  animation: fadeOut 3s ease-in-out 2.5s forwards;
 }
 
 .intro-background {
@@ -108,7 +108,7 @@
     filter: drop-shadow(0 0 10px #e50914);
   }
   100% {
-    filter: drop-shadow(0 0 60px #e50914) drop-shadow(0 0 100px #ff0a1f);
+    filter: drop-shadow(0 0 30px #e50914) drop-shadow(0 0 50px #ff0a1f);
   }
 }
 

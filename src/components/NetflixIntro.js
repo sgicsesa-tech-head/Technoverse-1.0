@@ -27,7 +27,7 @@ function NetflixIntro({ onComplete }) {
     setTimeout(() => {
       setShowIntro(false);
       onComplete();
-    }, 1500); // 1.5s animation duration
+    }, 3500); // 3.5s animation duration
   };
 
   if (!showIntro) return null;

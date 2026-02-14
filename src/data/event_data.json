@@ -20,11 +20,11 @@
     ]
   },
   {
-    "event_name": "Flix Carnival (Cultural Event)",
+    "event_name": "Flix Carnival (Dance Event)",
     "netflix_theme": "Wednesday",
     "structure": {
       "total_slots": "Solo : 15, Duet : 15, Group : 10",
-      "players_per_team": "1 or 2 or 5-8"
+      "players_per_team": "1 or 2 or 5-8 Contestants"
     },
     "categories": [
       { "type": "Solo", "time_limit": "3 min", "fee": 100 },
@@ -97,7 +97,9 @@
       "players_per_team": "1 or 2"
     },
     "rounds": [
-      { "name": "The Final Heat", "duration": "4 hours", "focus": "UI/UX Modernization & Deployment" }
+      { "name": "Problem Statement", "duration": "15 Min", "focus": "Problem statement analysis" },
+      { "name": "Developement", "duration": "3 Hours", "focus": "Code implementation" },
+      { "name": "Presentation", "duration": "30 Min", "focus": "Present your website" }
     ],
     "rules": [
       "Max 2 participants per team",
@@ -152,7 +154,7 @@
       "players_per_team": 4
     },
     "rounds": [
-      { "name": "Round 1", "format": "80 teams in 4 groups of 20; Top 5 of each match will qualify" },
+      { "name": "Qualifiers", "format": "80 teams in 4 groups of 20; Top 5 of each match will qualify" },
       { "name": "Grand Finals", "format": "1 match with 20 teams" }
     ],
     "rules": [

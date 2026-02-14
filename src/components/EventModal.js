@@ -73,7 +73,7 @@ function EventModal({ event, onClose }) {
                   {event.structure.players_per_team && (
                     <div className="modal-detail-row">
                       <span className="modal-label">Team Size:</span>
-                      <span className="modal-value">{event.structure.players_per_team} {event.structure.players_per_team === 1 ? 'player' : 'players'}</span>
+                      <span className="modal-value">{event.structure.players_per_team}</span>
                     </div>
                   )}
                 </>

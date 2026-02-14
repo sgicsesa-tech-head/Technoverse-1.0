@@ -15,7 +15,7 @@ const eventThumbnails = {
   "The Grand Prix of Code": gpc,
   "Daredevil - The Blind Coding Arena": dbc,
   "Pixel Fix": pf,
-  "Flix Carnival (Cultural Event)": fc,
+  "Flix Carnival (Dance Event)": fc,
   "The Squid Hunt (Treasure Hunt)": tsh,
   "The Hiring Room": is,
   "E - Sports BGMI": bgmi,
@@ -35,7 +35,7 @@ const eventDetails = {
     entryFee: "₹100",
     entryType: "Solo"
   },
-  "Flix Carnival (Cultural Event)": {
+  "Flix Carnival (Dance Event)": {
     day: 2,
     time: "1:30 PM onwards",
     venue: "Open Auditorium",
@@ -102,8 +102,8 @@ const eventDetails = {
     day: 1,
     time: "11:00 AM - 4:00 PM",
     venue: "Seminar Hall - C Block",
-    coordinators: ["Rasik Samudre", "Sanket Sutar", "Prachi Jadhav"],
-    coordinatorPhones: ["9021211916", "7219643252", "7038289705"],
+    coordinators: ["Rasik Samudre", "Sanket Sutar"],
+    coordinatorPhones: ["9021211916", "7219643252"],
     entryFee: "₹400 per team",
     entryType: "Squad (4 members)"
   }
@@ -189,7 +189,7 @@ const determineCategory = (eventName) => {
 const generateDescription = (eventName, theme) => {
   const descriptions = {
     "The Grand Prix of Code": "Test your algorithmic progress and data structure knowledge in this intense coding competition inspired by Drive to Survive. Race through data structures & algorithms to claim victory!",
-    "Flix Carnival (Cultural Event)": "An evening of culture, creativity, and celebration inspired by Wednesday. Dance competition - showcase your talents in solo, duet, or group performances!",
+    "Flix Carnival (Dance Event)": "An evening of culture, creativity, and celebration inspired by Wednesday. Dance competition - showcase your talents in solo, duet, or group performances!",
     "Daredevil - The Blind Coding Arena": "Code in complete darkness - literally. No screen visibility, just your keyboard and syntax knowledge. The ultimate test of programming muscle memory inspired by Daredevil.",
     "The Hiring Room": "Step into a professional setting and experience real-world interview scenarios inspired by Suits. From resume screening to panel interviews - dress sharp, think sharper.",
     "E-sports (Free Fire)": "20 minutes of pure adrenaline! Fast-paced battle royale action where every decision counts. Can your squad be the last one standing?",
