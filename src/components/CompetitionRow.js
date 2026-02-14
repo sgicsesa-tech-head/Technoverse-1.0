@@ -1,8 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './CompetitionRow.css';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 function CompetitionRow({ title, competitions, onEventClick }) {
+  const navigate = useNavigate();
+
+  const handleRegisterClick = (e, comp) => {
+    e.stopPropagation();
+    navigate('/register', { state: { event: comp } });
+  };
+
   return (
     <div className="row">
       <h2 className="row-title">{title}</h2>
@@ -17,7 +25,12 @@ function CompetitionRow({ title, competitions, onEventClick }) {
               <h3>{comp.title}</h3>
               <p>{comp.category}</p>
               <div className="card-actions">
-                <button className="card-action-btn"><PlayArrowIcon fontSize="small" />Register </button>
+                <button 
+                  className="card-action-btn"
+                  onClick={(e) => handleRegisterClick(e, comp)}
+                >
+                  <PlayArrowIcon fontSize="small" />Register
+                </button>
               </div>
             </div>
           </div>

@@ -5,6 +5,7 @@ import NetflixIntro from './components/NetflixIntro';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Timeline from './components/Timeline';
+import RegistrationForm from './components/RegistrationForm';
 import Footer from './components/Footer';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/timeline" element={<Timeline />} />
+            <Route path="/register" element={<RegistrationForm />} />
           </Routes>
           <Footer />
         </Router>

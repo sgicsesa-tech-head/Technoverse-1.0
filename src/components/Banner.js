@@ -20,7 +20,7 @@ function Banner({ onRegister }) {
           <span className="banner-info-item"><LocationOnIcon fontSize="small" /> SGI Campus</span>
         </div>
         <div className="banner-buttons">
-          <button className="btn btn-primary" onClick={onRegister}>
+          <button className="btn" onClick={onRegister}>
             <PlayArrowIcon /> Register Now
           </button>
         </div>

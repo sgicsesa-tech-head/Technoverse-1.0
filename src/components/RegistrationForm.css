@@ -1,0 +1,404 @@
+.registration-container {
+  min-height: 100vh;
+  margin-top: 15vh;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+  padding: 40px 20px;
+  color: #e5e5e5;
+}
+
+.registration-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.registration-top {
+  display: flex;
+  align-items: center;
+  /* justify-content: flex-start; */
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid #333;
+  color: #e5e5e5;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 30px;
+  transition: all 0.3s;
+  position: absolute;
+}
+
+.back-button:hover {
+  background: #222;
+  border-color: #e50914;
+  transform: translateX(-5px);
+}
+
+.registration-header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.registration-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #e50914;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.event-badge {
+  display: inline-block;
+  background: linear-gradient(90deg, #e50914 0%, #b20710 100%);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3);
+}
+
+.registration-form {
+  background: #181818;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.form-section {
+  margin-bottom: 40px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #333;
+}
+
+.form-section:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #e50914;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #b3b3b3;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px 15px;
+  background: #0f0f0f;
+  border: 1px solid #333;
+  border-radius: 5px;
+  color: #e5e5e5;
+  font-size: 1rem;
+  transition: all 0.3s;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #e50914;
+  box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.1);
+}
+
+.form-group input.error {
+  border-color: #ff4444;
+}
+
+.form-group input.locked-field {
+  background: #2a2a2a;
+  color: #888;
+  cursor: not-allowed;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-error {
+  display: block;
+  color: #ff4444;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+.field-hint {
+  display: block;
+  color: #666;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+/* Team Member Section */
+.team-member-section {
+  background: #0f0f0f;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 25px;
+  margin-bottom: 20px;
+}
+
+.member-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #e5e5e5;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #333;
+}
+
+/* Payment Section */
+.payment-section {
+  background: linear-gradient(135deg, #1a0a0a 0%, #0f0f0f 100%);
+  border-radius: 8px;
+  padding: 30px;
+  border: 1px solid #333;
+}
+
+.payment-info {
+  margin-bottom: 25px;
+}
+
+.payment-instruction {
+  font-size: 1rem;
+  color: #b3b3b3;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.payment-instruction strong {
+  color: #e50914;
+  font-size: 1.2rem;
+}
+
+.qr-code-container {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.qr-code-placeholder {
+  background: #fff;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  min-width: 280px;
+}
+
+.qr-code-placeholder p {
+  color: #333;
+  font-weight: 600;
+  margin-top: 15px;
+  font-size: 1.1rem;
+}
+
+.qr-note {
+  color: #666 !important;
+  font-size: 0.9rem !important;
+  font-weight: 400 !important;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid #333;
+}
+
+.btn-primary,
+.btn-secondary {
+  flex: 1;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #e50914 0%, #b20710 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(229, 9, 20, 0.5);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #e5e5e5;
+  border: 2px solid #333;
+}
+
+.btn-secondary:hover {
+  background: #222;
+  border-color: #555;
+}
+
+/* Success Message */
+.success-message {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
+
+.success-message h2 {
+  font-size: 2.5rem;
+  color: #4caf50;
+  margin: 20px 0;
+}
+
+.success-message p {
+  font-size: 1.2rem;
+  color: #b3b3b3;
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+.success-message strong {
+  color: #e50914;
+}
+
+.redirect-text {
+  margin-top: 30px;
+  color: #666;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .registration-container {
+    padding: 20px 10px;
+  }
+
+  .registration-wrapper {
+    padding: 0 10px;
+  }
+
+  .registration-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .event-badge {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+
+  .registration-form {
+    padding: 25px 20px;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .team-member-section {
+    padding: 20px 15px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+  }
+
+  .qr-code-placeholder {
+    min-width: auto;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .success-message h2 {
+    font-size: 1.8rem;
+  }
+
+  .success-message p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .registration-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .registration-top {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .event-badge {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
+
+  .registration-form {
+    padding: 20px 15px;
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 10px 12px;
+    font-size: 0.95rem;
+  }
+
+  .back-button {
+    position: static;
+    align-self: flex-start;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+}

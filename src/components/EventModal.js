@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './EventModal.css';
 import CloseIcon from '@mui/icons-material/Close';
 import MovieIcon from '@mui/icons-material/Movie';
@@ -6,6 +7,8 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PhoneIcon from '@mui/icons-material/Phone';
 
 function EventModal({ event, onClose }) {
+  const navigate = useNavigate();
+
   useEffect(() => {
     // Prevent background scrolling when modal is open
     document.body.style.overflow = 'hidden';
@@ -13,6 +16,11 @@ function EventModal({ event, onClose }) {
       document.body.style.overflow = 'unset';
     };
   }, []);
+
+  const handleRegisterClick = () => {
+    onClose();
+    navigate('/register', { state: { event } });
+  };
 
   if (!event) return null;
 
@@ -36,7 +44,7 @@ function EventModal({ event, onClose }) {
         <div className="modal-body">
           <div className="modal-info">
             <div className="modal-actions">
-              <button className="modal-btn modal-btn-play">
+              <button className="modal-btn modal-btn-play" onClick={handleRegisterClick}>
                 <PlayArrowIcon /> Register Now
               </button>
             </div>

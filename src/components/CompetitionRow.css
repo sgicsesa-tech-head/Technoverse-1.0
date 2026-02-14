@@ -21,7 +21,7 @@
   justify-content: flex-start;
   gap: 15px;
   overflow-x: auto;
-  overflow-y: visible;
+  overflow-y: hidden;
   padding: 20px 0;
   scroll-behavior: smooth;
   height: 250px;

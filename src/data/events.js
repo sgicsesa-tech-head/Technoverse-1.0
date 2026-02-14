@@ -3,7 +3,7 @@ import gpc from '../assets/Thumbnails/gpc.png';
 import dbc from '../assets/Thumbnails/dbc.png';
 import pf from '../assets/Thumbnails/pf.jpeg';
 import fc from '../assets/Thumbnails/fc.png';
-import tsh from '../assets/Thumbnails/tsh.png';
+import tsh from '../assets/Thumbnails/sh.jpeg';
 import is from '../assets/Thumbnails/is.jpeg';
 import bgmi from '../assets/Thumbnails/bgmi.jpeg';
 import ff from '../assets/Thumbnails/ff.png';
