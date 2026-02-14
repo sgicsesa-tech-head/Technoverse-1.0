@@ -12,22 +12,47 @@ function EventModal({ event, onClose }) {
   useEffect(() => {
     // Prevent background scrolling when modal is open
     document.body.style.overflow = 'hidden';
+    
+    // Push a new history state when modal opens
+    window.history.pushState({ modal: true }, '');
+    
+    // Handle back button/gesture
+    const handlePopState = (e) => {
+      onClose();
+    };
+    
+    window.addEventListener('popstate', handlePopState);
+    
     return () => {
       document.body.style.overflow = 'unset';
+      window.removeEventListener('popstate', handlePopState);
     };
-  }, []);
+  }, [onClose]);
 
   const handleRegisterClick = () => {
+    // Close modal and navigate
     onClose();
-    navigate('/register', { state: { event } });
+    // Use setTimeout to ensure modal closes before navigation
+    setTimeout(() => {
+      navigate('/register', { state: { event } });
+    }, 0);
+  };
+  
+  const handleClose = () => {
+    // Go back in history to remove the modal state
+    if (window.history.state?.modal) {
+      window.history.back();
+    } else {
+      onClose();
+    }
   };
 
   if (!event) return null;
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
+    <div className="modal-overlay" onClick={handleClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose}><CloseIcon /></button>
+        <button className="modal-close" onClick={handleClose}><CloseIcon /></button>
         
         <div className="modal-hero" style={{ backgroundImage: `url(${event.image})` }}>
           <div className="modal-hero-gradient"></div>

@@ -7,24 +7,29 @@ import Home from './components/Home';
 import Timeline from './components/Timeline';
 import RegistrationForm from './components/RegistrationForm';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
+  // Set to true to skip intro during development
   const [introComplete, setIntroComplete] = useState(false);
 
   return (
     <div className="App">
-      {!introComplete && <NetflixIntro onComplete={() => setIntroComplete(true)} />}
-      {introComplete && (
-        <Router>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/timeline" element={<Timeline />} />
-            <Route path="/register" element={<RegistrationForm />} />
-          </Routes>
-          <Footer />
-        </Router>
-      )}
+      <Router>
+        <ScrollToTop />
+        {!introComplete && <NetflixIntro onComplete={() => setIntroComplete(true)} />}
+        {introComplete && (
+          <>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/timeline" element={<Timeline />} />
+              <Route path="/register" element={<RegistrationForm />} />
+            </Routes>
+            <Footer />
+          </>
+        )}
+      </Router>
     </div>
   );
 }
