@@ -2,7 +2,7 @@ import thumbnail from '../assets/thumbnail.png';
 import gpc from '../assets/Thumbnails/gpc.png';
 import dbc from '../assets/Thumbnails/dbc.png';
 import pf from '../assets/Thumbnails/pf.jpeg';
-import fc from '../assets/Thumbnails/fc.png';
+import fc from '../assets/Thumbnails/fc.jpeg';
 import tsh from '../assets/Thumbnails/sh.jpeg';
 import is from '../assets/Thumbnails/is.jpeg';
 import bgmi from '../assets/Thumbnails/bgmi.jpeg';

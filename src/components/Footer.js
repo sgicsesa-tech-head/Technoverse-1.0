@@ -5,6 +5,8 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import XIcon from '@mui/icons-material/X';
+import SGI from '../assets/sgi.png';
+import CSESA from '../assets/csesa.svg';
 
 function Footer() {
   return (
@@ -41,6 +43,13 @@ function Footer() {
           <p>Computer Science & Engineering Department, 'D' Block 3rd Floor</p>
           <p>Sanjay Ghodawat Institute</p>
           <p>Atigre, Maharashtra</p>
+        </div>
+        <div className="footer-section footer-organizers">
+          <h4>Organizers</h4>
+          <div className='social-links'>
+            <img src={CSESA} alt="CSESA" className="organizer-logo" />
+            <img src={SGI} alt="SGI" className="organizer-logo" />
+          </div>
         </div>
       </div>
       <div className="footer-bottom">
