@@ -111,7 +111,7 @@ const generateEmailHTML = (formData) => {
         }
         .success-icon {
           font-size: 60px;
-          color: #4caf50;
+          color: #000000;
           text-align: center;
           margin: 20px 0;
         }

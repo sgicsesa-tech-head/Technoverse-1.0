@@ -53,7 +53,7 @@ function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>Developed by Atharv Tambekar and Shivani Mali and the CSESA</p>
+        <p>Developed by Atharv Tambekar and the CSESA</p>
         <p>&copy; 2026 CSESA-SGI. All rights reserved. | Technoverse 1.0</p>
       </div>
     </footer>
