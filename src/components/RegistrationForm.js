@@ -143,7 +143,11 @@ function RegistrationForm() {
       
       try {
         // Send registration data to backend
-        const response = await fetch('http://localhost:5000/api/register', {
+        const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+        // console.log('Environment variable:', process.env.REACT_APP_API_URL);
+        // console.log('Using API URL:', apiUrl);
+        
+        const response = await fetch(`${apiUrl}/api/register`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
