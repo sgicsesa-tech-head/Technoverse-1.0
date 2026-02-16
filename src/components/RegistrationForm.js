@@ -27,6 +27,7 @@ function RegistrationForm() {
   const [maxTeamSize, setMaxTeamSize] = useState(1);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!event) {
@@ -134,15 +135,39 @@ function RegistrationForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (validateForm()) {
-      // Here you would typically send the data to a backend
-      console.log('Form submitted:', formData);
+      setLoading(true);
       
-      // Show success message
-      setSubmitted(true);
+      try {
+        // Send registration data to backend
+        const response = await fetch('http://localhost:5000/api/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          // Show success message
+          setSubmitted(true);
+          console.log('Registration successful:', data);
+        } else {
+          // Show error message
+          alert(data.message || 'Registration failed. Please try again.');
+          console.error('Registration error:', data);
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        alert('Failed to submit registration. Please check your connection and try again.');
+      } finally {
+        setLoading(false);
+      }
       
     //   Redirect after 3 seconds
     //   setTimeout(() => {
@@ -378,11 +403,11 @@ function RegistrationForm() {
           </div>
 
           <div className="form-actions">
-            <button type="button" className="btn-secondary" onClick={() => navigate(-1)}>
+            <button type="button" className="btn-secondary" onClick={() => navigate(-1)} disabled={loading}>
               Cancel
             </button>
-            <button type="submit" className="btn-primary">
-              Complete Registration
+            <button type="submit" className="btn-primary" disabled={loading}>
+              {loading ? 'Submitting...' : 'Complete Registration'}
             </button>
           </div>
         </form>
