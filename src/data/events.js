@@ -1,4 +1,3 @@
-import thumbnail from '../assets/thumbnail.png';
 import gpc from '../assets/Thumbnails/gpc.png';
 import dbc from '../assets/Thumbnails/dbc.png';
 import pf from '../assets/Thumbnails/pf.jpeg';
@@ -147,7 +146,7 @@ const transformEventData = (rawData) => {
       format: event.format || null,
       structure: event.structure || null,
       description: generateDescription(event.event_name, event.netflix_theme),
-      image: eventThumbnails[event.event_name] || thumbnail,
+      image: eventThumbnails[event.event_name] || null,
       tags: event.tags || []
     };
 
