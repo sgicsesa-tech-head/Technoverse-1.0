@@ -65,7 +65,7 @@
       "players_per_team": 1
     },
     "rounds": [
-      { "name": "Round 1", "task": "ATS Filtering" },
+      { "name": "Round 1", "task": "ATS Filtering & Aptitude Test (both scores will be added and a cut-off will be generated)" },
       { "name": "Round 2", "task": "Rapid Fire" },
       { "name": "Round 3", "task": "Group Discussion" },
       { "name": "Round 4", "task": "Finale Interview With Panel" }

@@ -15,7 +15,7 @@ function Banner({ onRegister }) {
           Technoverse is designed as a Holistic Engagement Model. By integrating technical rigor with cultural and recreational events, we ensure maximum student participation while maintaining the high academic standards of the CSESA.
         </p>
         <div className="banner-info">
-          <span className="banner-info-item"><CalendarMonthIcon fontSize="small" /> 13/02/2026 to 14/02/2026</span>
+          <span className="banner-info-item"><CalendarMonthIcon fontSize="small" /> 13/03/2026 to 14/03/2026</span>
           <span className="banner-info-item"><AccessTimeIcon fontSize="small" /> 10:15 AM - 5:00 PM</span>
           <span className="banner-info-item"><LocationOnIcon fontSize="small" /> SGI Campus</span>
         </div>
