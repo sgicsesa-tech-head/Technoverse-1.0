@@ -76,6 +76,19 @@
     ]
   },
   {
+    "event_name": "E-sports (Free Fire)",
+    "netflix_theme": "No",
+    "structure": {
+      "total_slots": "75 Squads",
+      "players_per_team": 4
+    },
+    "rules": [
+      "Only mobile devices allowed",
+      "Participants must use their own mobile network (personal data)",
+      "If you disconnect or face network issues, the match will not be restarted"
+    ]
+  },
+  {
     "event_name": "The Squid Hunt (Treasure Hunt)",
     "netflix_theme": "Squid Game",
     "structure": {
@@ -91,6 +104,44 @@
       "Maximum 5 members per team",
       "All teams must stay together during the game",
       "Do not run in restricted areas or damage clues"
+    ]
+  },
+  {
+    "event_name": "E - Sports BGMI",
+    "netflix_theme": "None",
+    "structure": {
+      "total_slots": "80 Squads",
+      "players_per_team": 4
+    },
+    "rounds": [
+      { "name": "Qualifiers", "format": "80 teams in 4 groups of 20; Top 5 of each match will qualify" },
+      { "name": "Grand Finals", "format": "1 match with 20 teams" }
+    ],
+    "rules": [
+      "Only mobile devices; stable internet is player responsibility",
+      "Room ID shared 10-15 minutes before match; must join within 10 minutes",
+      "Teams must sit in pre-assigned slots",
+      "Complaints must be submitted within 15 minutes of match completion with evidence"
+    ]
+  },
+  {
+    "event_name": "Ideaverse",
+    "netflix_theme": "Shark Tank",
+    "structure": {
+      "total_slots": "100 Teams",
+      "players_per_team": "2-4"
+    },
+    "rounds": [
+      { "name": "Round 1: Preliminary Idea Judging", "focus": "PPT Presentation", "task": "Teams present their innovative ideas through PPT presentations (5-7 slides)" },
+      { "name": "Round 2: Shark Hunt Grand Finale", "focus": "Startup Pitch", "task": "Shortlisted teams pitch their ideas in a professional, startup-inspired environment" }
+    ],
+    "rules": [
+      "Open to all departments and all years - interdisciplinary teams encouraged",
+      "Team size: 2-4 members with one team leader required",
+      "PPT presentation (max 5-7 slides) is mandatory",
+      "Optional submissions: Prototype/Model, Poster, Demo video, Wireframe/UI",
+      "Teams must submit basic idea title during registration",
+      "Ideas must align with one of the five themes: Sustainability & Green Innovation, AI for Everyday Life, Health & Digital Wellness, Future of Work & Entrepreneurship, or Smart India — Local Problem Solving"
     ]
   }
 ]

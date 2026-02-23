@@ -37,12 +37,12 @@ function Home() {
           competitions={events.nonTechnical}
           onEventClick={handleEventClick}
         />
-        {/* <CompetitionRow 
+        <CompetitionRow 
           id='esports'
           title="E-Sports Competitions" 
           competitions={events.esports}
           onEventClick={handleEventClick}
-        /> */}
+        />
       </div>
       {selectedEvent && (
         <EventModal event={selectedEvent} onClose={handleCloseModal} />
