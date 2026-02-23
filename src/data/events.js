@@ -4,9 +4,9 @@ import pf from '../assets/Thumbnails/pf.jpeg';
 import fc from '../assets/Thumbnails/fc.jpeg';
 import tsh from '../assets/Thumbnails/sh.jpeg';
 import is from '../assets/Thumbnails/is.jpeg';
-import bgmi from '../assets/Thumbnails/bgmi.jpeg';
-import ff from '../assets/Thumbnails/ff.png';
-import valorant from '../assets/Thumbnails/valorant.jpg';
+// import bgmi from '../assets/Thumbnails/bgmi.jpeg';
+// import ff from '../assets/Thumbnails/ff.png';
+// import valorant from '../assets/Thumbnails/valorant.jpg';
 import rawEventData from './event_data.json';
 
 // Event thumbnail mapping
@@ -17,17 +17,17 @@ const eventThumbnails = {
   "Flix Carnival (Dance Event)": fc,
   "The Squid Hunt (Treasure Hunt)": tsh,
   "The Hiring Room": is,
-  "E - Sports BGMI": bgmi,
-  "E-sports (Free Fire)": ff,
-  "The Radiant Spike (Valorant)": valorant
+  // "E - Sports BGMI": bgmi,
+  // "E-sports (Free Fire)": ff,
+  // "The Radiant Spike (Valorant)": valorant
   // Add more thumbnails as they become available
 };
 
 // Event venue and timing mapping
 const eventDetails = {
   "The Grand Prix of Code": {
-    day: 1,
-    time: "1:00 PM - 3:30 PM",
+    day: 2,
+    time: "2:30 PM - 4:30 PM",
     venue: "Web Technologies Lab, Machine Learning Lab, Data Science Lab",
     coordinators: ["Atharv Tambekar", "Nipun Shah"],
     coordinatorPhones: ["9730898106", "8208320893"],
@@ -45,7 +45,7 @@ const eventDetails = {
   },
   "Daredevil - The Blind Coding Arena": {
     day: 2,
-    time: "10:30 AM - 1:00 PM",
+    time: "10:30 AM - 2:00 PM",
     venue: "Web Lab, ML Lab, DS Lab",
     coordinators: ["Nipun Shah", "Shreya Gurav"],
     coordinatorPhones: ["8208320893", "6361790149"],
@@ -53,7 +53,7 @@ const eventDetails = {
     entryType: "Solo"
   },
   "The Hiring Room": {
-    day: 1,
+    day: 2,
     time: "11:00 AM - 4:00 PM",
     venue: "HOD Cabin 'D' Block 3rd Floor",
     coordinators: ["Mrunal Gadavi", "Onkar Jadhavar"],
@@ -61,15 +61,15 @@ const eventDetails = {
     entryFee: "₹100",
     entryType: "Solo"
   },
-  "E-sports (Free Fire)": {
-    day: 2,
-    time: "10:30 AM - 1:00 PM",
-    venue: "D Block Seminar Hall",
-    coordinators: ["Rutuja Pinate", "Amol Khot"],
-    coordinatorPhones: ["8446176586", "7666028044"],
-    entryFee: "₹400 per team",
-    entryType: "Team (5 members)"
-  },
+  // "E-sports (Free Fire)": {
+  //   day: 2,
+  //   time: "10:30 AM - 1:00 PM",
+  //   venue: "D Block Seminar Hall",
+  //   coordinators: ["Rutuja Pinate", "Amol Khot"],
+  //   coordinatorPhones: ["8446176586", "7666028044"],
+  //   entryFee: "₹400 per team",
+  //   entryType: "Team (5 members)"
+  // },
   "Pixel Fix": {
     day: 1,
     time: "11:00 AM - 4:00 PM",
@@ -88,24 +88,24 @@ const eventDetails = {
     entryFee: "₹400 per team",
     entryType: "Team (max 5 members)"
   },
-  "The Radiant Spike (Valorant)": {
-    day: 2,
-    time: "10:30 AM - 1:30 PM",
-    venue: "PL Lab",
-    coordinators: ["Atharv Tambekar", "Rasik Samudre"],
-    coordinatorPhones: ["9730898106", "9021211916"],
-    entryFee: "₹200 per team",
-    entryType: "Duo"
-  },
-  "E - Sports BGMI": {
-    day: 1,
-    time: "11:00 AM - 4:00 PM",
-    venue: "Seminar Hall - C Block",
-    coordinators: ["Rasik Samudre", "Sanket Sutar"],
-    coordinatorPhones: ["9021211916", "7219643252"],
-    entryFee: "₹400 per team",
-    entryType: "Squad (4 members)"
-  }
+  // "The Radiant Spike (Valorant)": {
+  //   day: 2,
+  //   time: "10:30 AM - 1:30 PM",
+  //   venue: "PL Lab",
+  //   coordinators: ["Atharv Tambekar", "Rasik Samudre"],
+  //   coordinatorPhones: ["9730898106", "9021211916"],
+  //   entryFee: "₹200 per team",
+  //   entryType: "Duo"
+  // },
+  // "E - Sports BGMI": {
+  //   day: 1,
+  //   time: "11:00 AM - 4:00 PM",
+  //   venue: "Seminar Hall - C Block",
+  //   coordinators: ["Rasik Samudre", "Sanket Sutar"],
+  //   coordinatorPhones: ["9021211916", "7219643252"],
+  //   entryFee: "₹400 per team",
+  //   entryType: "Squad (4 members)"
+  // }
 };
 
 // Transform the imported event data to match the application structure
@@ -167,11 +167,11 @@ const determineCategory = (eventName) => {
   const nameLower = eventName.toLowerCase();
   
   // E-Sports detection
-  if (nameLower.includes('e-sport') || nameLower.includes('esport') || 
-      nameLower.includes('bgmi') || nameLower.includes('free fire') || 
-      nameLower.includes('valorant') || nameLower.includes('radiant spike')) {
-    return "E-Sports";
-  }
+  // if (nameLower.includes('e-sport') || nameLower.includes('esport') || 
+  //     nameLower.includes('bgmi') || nameLower.includes('free fire') || 
+  //     nameLower.includes('valorant') || nameLower.includes('radiant spike')) {
+  //   return "E-Sports";
+  // }
   
   // Technical events detection
   if (nameLower.includes('code') || nameLower.includes('coding') || 
@@ -191,11 +191,11 @@ const generateDescription = (eventName, theme) => {
     "Flix Carnival (Dance Event)": "An evening of culture, creativity, and celebration inspired by Wednesday. Dance competition - showcase your talents in solo, duet, or group performances!",
     "Daredevil - The Blind Coding Arena": "Code in complete darkness - literally. No screen visibility, just your keyboard and syntax knowledge. The ultimate test of programming muscle memory inspired by Daredevil.",
     "The Hiring Room": "Step into a professional setting and experience real-world interview scenarios inspired by Suits. From resume screening to panel interviews - dress sharp, think sharper.",
-    "E-sports (Free Fire)": "20 minutes of pure adrenaline! Fast-paced battle royale action where every decision counts. Can your squad be the last one standing?",
+    // "E-sports (Free Fire)": "20 minutes of pure adrenaline! Fast-paced battle royale action where every decision counts. Can your squad be the last one standing?",
     "Pixel Fix": "Unleash your creativity in this ultimate UI/UX design challenge inspired by Abstract. Transform and modernize web interfaces using HTML, CSS, and JavaScript.",
     "The Squid Hunt (Treasure Hunt)": "Navigate through a thrilling campus-wide adventure inspired by Squid Game. Collect cards, hunt for clues, and complete challenges. Survival of the smartest!",
-    "The Radiant Spike (Valorant)": "Duo team deathmatch where precise gunplay meets tactical strategy. Coordinate with your partner, execute plays, and dominate the competition!",
-    "E - Sports BGMI": "Drop into the battleground with 20 squads competing for glory. Strategy, skill, and survival - only the best will claim the chicken dinner!"
+    // "The Radiant Spike (Valorant)": "Duo team deathmatch where precise gunplay meets tactical strategy. Coordinate with your partner, execute plays, and dominate the competition!",
+    // "E - Sports BGMI": "Drop into the battleground with 20 squads competing for glory. Strategy, skill, and survival - only the best will claim the chicken dinner!"
   };
   
   return descriptions[eventName] || `Join us for ${eventName}${theme ? ` - inspired by ${theme}` : ''}. An exciting event you won't want to miss!`;
@@ -230,6 +230,6 @@ export const getEventsByCategory = () => {
   return {
     technical: allEvents.filter(e => e.category === "Technical"),
     nonTechnical: allEvents.filter(e => e.category === "Non-Technical"),
-    esports: allEvents.filter(e => e.category === "E-Sports")
+    // esports: allEvents.filter(e => e.category === "E-Sports")
   };
 };

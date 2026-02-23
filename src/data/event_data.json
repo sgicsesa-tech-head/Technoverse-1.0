@@ -3,7 +3,7 @@
     "event_name": "The Grand Prix of Code",
     "netflix_theme": "Drive to Survive",
     "structure": {
-      "total_slots": "60 Participants",
+      "total_slots": "100 Participants",
       "players_per_team": 1
     },
     "rounds": [
@@ -13,42 +13,22 @@
     ],
     "rules": [
       "Solo participation only",
-      "Allowed languages: C, C++, Java, or Python",
+      "Allowed languages: C++, Java, or Python",
       "Use of AI, external libraries, or plagiarism results in immediate disqualification (Black Flag)",
       "Use of inbuilt libraries is prohibited",
       "Personal laptops are allowed"
     ]
   },
   {
-    "event_name": "Flix Carnival (Dance Event)",
-    "netflix_theme": "Wednesday",
-    "structure": {
-      "total_slots": "Solo : 15, Duet : 15, Group : 10",
-      "players_per_team": "1 or 2 or 5-8 Contestants"
-    },
-    "categories": [
-      { "type": "Solo", "time_limit": "3 min", "fee": 100 },
-      { "type": "Duet", "time_limit": "4 min", "fee": 150 },
-      { "type": "Group", "time_limit": "5 min", "fee": 500 , "max_members": 8}
-    ],
-    "rules": [
-      "Minimum 5 and maximum 8 people are allowed in group ",
-      "No vulgar or offensive content allowed",
-      "Props allowed but must be self-managed",
-      "Judge's decision will be final"
-    ]
-  },
-  {
     "event_name": "Daredevil - The Blind Coding Arena",
     "netflix_theme": "Daredevil Movie",
     "structure": {
-      "total_slots": "60 Participants",
+      "total_slots": "100 Participants",
       "players_per_team": 1
     },
     "rounds": [
       { "name": "The Awakening", "focus": "MCQ & Output Prediction", "format": "15-20 MCQs", "duration": "30 minutes" },
-      { "name": "The Trial by Fire", "focus": "Paper Coding (Logical Thinking & Syntax)", "duration": "45-60 minutes" },
-      { "name": "Into the Dark", "focus": "Live Blind Coding (Screen constraints)", "duration": "30-45 minutes" }
+      { "name": "The Trial by Fire", "focus": "Paper Coding (Logical Thinking & Syntax)", "duration": "45-60 minutes" }
     ],
     "rules": [
       "Solo participation only",
@@ -74,19 +54,6 @@
       "Formal attire is mandatory for all participants",
       "Participants must upload an ATS-compatible resume during registration",
       "The decision of the judges will be final"
-    ]
-  },
-  {
-    "event_name": "E-sports (Free Fire)",
-    "netflix_theme": "No",
-    "structure": {
-      "total_slots": "75 Squads",
-      "players_per_team": 4
-    },
-    "rules": [
-      "Only mobile devices allowed",
-      "Participants must use their own mobile network (personal data)",
-      "If you disconnect or face network issues, the match will not be restarted"
     ]
   },
   {
@@ -124,44 +91,6 @@
       "Maximum 5 members per team",
       "All teams must stay together during the game",
       "Do not run in restricted areas or damage clues"
-    ]
-  },
-  {
-    "event_name": "The Radiant Spike (Valorant)",
-    "netflix_theme": "NA",
-    "format": "Duo vs. Duo Team Deathmatch",
-    "structure": {
-      "total_slots": "30 Duos",
-      "players_per_team": 2
-    },
-    "rounds": [
-      { "name": "Qualifying Stage", "format": "Knockout matches" },
-      { "name": "Semi-Finals", "focus": "K/D/A and speed" },
-      { "name": "Grand Finale", "format": "Best of 3 matches (30 minutes)" }
-    ],
-    "rules": [
-      "Duo entry only (exactly 2 participants)",
-      "Personal laptops, mouse and headphones are compulsory for all participants",
-      "Use of third-party software or macros leads to disqualification",
-      "Game must be played on the latest version of Valorant"
-    ]
-  },
-  {
-    "event_name": "E - Sports BGMI",
-    "netflix_theme": "None",
-    "structure": {
-      "total_slots": "80 Squads",
-      "players_per_team": 4
-    },
-    "rounds": [
-      { "name": "Qualifiers", "format": "80 teams in 4 groups of 20; Top 5 of each match will qualify" },
-      { "name": "Grand Finals", "format": "1 match with 20 teams" }
-    ],
-    "rules": [
-      "Only mobile devices; stable internet is player responsibility",
-      "Room ID shared 10-15 minutes before match; must join within 10 minutes",
-      "Teams must sit in pre-assigned slots",
-      "Complaints must be submitted within 15 minutes of match completion with evidence"
     ]
   }
 ]
