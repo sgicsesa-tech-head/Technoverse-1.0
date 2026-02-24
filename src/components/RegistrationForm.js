@@ -28,6 +28,8 @@ function RegistrationForm() {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const [screenshotFile, setScreenshotFile] = useState(null);
+  const [screenshotPreview, setScreenshotPreview] = useState(null);
 
   useEffect(() => {
     if (!event) {
@@ -89,6 +91,42 @@ function RegistrationForm() {
     }
   };
 
+  const handleScreenshotChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Validate file type
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'application/pdf'];
+      if (!allowedTypes.includes(file.type)) {
+        setErrors(prev => ({ ...prev, screenshot: 'Only JPEG, PNG, GIF, or PDF files are allowed' }));
+        return;
+      }
+      
+      // Validate file size (5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        setErrors(prev => ({ ...prev, screenshot: 'File size must be less than 5MB' }));
+        return;
+      }
+      
+      setScreenshotFile(file);
+      
+      // Create preview for images
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setScreenshotPreview(reader.result);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        setScreenshotPreview(null);
+      }
+      
+      // Clear error
+      if (errors.screenshot) {
+        setErrors(prev => ({ ...prev, screenshot: '' }));
+      }
+    }
+  };
+
   const validateForm = () => {
     const newErrors = {};
 
@@ -131,6 +169,11 @@ function RegistrationForm() {
       newErrors.transactionId = 'Transaction ID is required';
     }
 
+    // Validate screenshot upload
+    if (!screenshotFile) {
+      newErrors.screenshot = 'Transaction screenshot is required';
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -142,6 +185,28 @@ function RegistrationForm() {
       setLoading(true);
       
       try {
+        // Create FormData for file upload
+        const formDataToSend = new FormData();
+        
+        // Append all form fields
+        formDataToSend.append('candidateName', formData.candidateName);
+        formDataToSend.append('candidatePhone', formData.candidatePhone);
+        formDataToSend.append('candidateEmail', formData.candidateEmail);
+        formDataToSend.append('competitionName', formData.competitionName);
+        formDataToSend.append('transactionId', formData.transactionId);
+        
+        // Append team data if it's a team event
+        if (isTeamEvent && formData.teamMembers.length > 0) {
+          formDataToSend.append('teamName', formData.teamName);
+          formDataToSend.append('teamMemberCount', formData.teamMemberCount);
+          formDataToSend.append('teamMembers', JSON.stringify(formData.teamMembers));
+        }
+        
+        // Append screenshot file
+        if (screenshotFile) {
+          formDataToSend.append('transactionScreenshot', screenshotFile);
+        }
+        
         // Send registration data to backend
         const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
         // console.log('Environment variable:', process.env.REACT_APP_API_URL);
@@ -149,10 +214,8 @@ function RegistrationForm() {
         
         const response = await fetch(`${apiUrl}/api/register`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData)
+          body: formDataToSend
+          // Don't set Content-Type header - browser will set it automatically with boundary
         });
 
         const data = await response.json();
@@ -375,10 +438,15 @@ function RegistrationForm() {
 
             <div className="payment-info">
               <p className="payment-instruction">
-                Entry Fee: <strong>{event.entryFee || '₹100'}</strong>
+                Entry Fee: <strong>₹100 per person</strong>
               </p>
+              {isTeamEvent && formData.teamMemberCount && (
+                <p className="payment-instruction">
+                  Total Amount: <strong>₹{100 * parseInt(formData.teamMemberCount)}</strong> ({formData.teamMemberCount} members × ₹100)
+                </p>
+              )}
               <p className="payment-instruction">
-                Scan the QR code below to make the payment and enter the transaction ID:
+                Scan the QR code below to make the payment and enter the transaction details:
               </p>
             </div>
 
@@ -403,6 +471,32 @@ function RegistrationForm() {
               />
               {errors.transactionId && <span className="form-error">{errors.transactionId}</span>}
               <small className="field-hint">Enter the 12-digit UPI transaction ID from your payment app</small>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="transactionScreenshot">Transaction Screenshot *</label>
+              <input
+                type="file"
+                id="transactionScreenshot"
+                name="transactionScreenshot"
+                accept="image/jpeg,image/jpg,image/png,image/gif,application/pdf"
+                onChange={handleScreenshotChange}
+                className={errors.screenshot ? 'error' : ''}
+              />
+              {errors.screenshot && <span className="form-error">{errors.screenshot}</span>}
+              <small className="field-hint">Upload a screenshot of your payment confirmation (JPEG, PNG, GIF, or PDF, max 5MB)</small>
+              
+              {screenshotPreview && (
+                <div className="screenshot-preview">
+                  <img src={screenshotPreview} alt="Transaction screenshot preview" />
+                </div>
+              )}
+              
+              {screenshotFile && !screenshotPreview && (
+                <div className="file-info">
+                  <p>✓ File selected: {screenshotFile.name}</p>
+                </div>
+              )}
             </div>
           </div>
 

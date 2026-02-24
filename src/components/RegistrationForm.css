@@ -226,6 +226,38 @@
   font-weight: 400 !important;
 }
 
+/* Screenshot Preview */
+.screenshot-preview {
+  margin-top: 15px;
+  border: 2px solid #333;
+  border-radius: 8px;
+  padding: 10px;
+  background: #0f0f0f;
+}
+
+.screenshot-preview img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 5px;
+  display: block;
+  margin: 0 auto;
+}
+
+.file-info {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background: #0f0f0f;
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+
+.file-info p {
+  color: #4caf50;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
 /* Form Actions */
 .form-actions {
   display: flex;

@@ -2,15 +2,53 @@ const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Create uploads directory if it doesn't exist
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir);
+}
+
+// Configure multer for file uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, uploadsDir);
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, 'transaction-' + uniqueSuffix + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+  fileFilter: function (req, file, cb) {
+    const allowedTypes = /jpeg|jpg|png|gif|pdf/;
+    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = allowedTypes.test(file.mimetype);
+    
+    if (mimetype && extname) {
+      return cb(null, true);
+    } else {
+      cb(new Error('Only images (JPEG, PNG, GIF) and PDF files are allowed'));
+    }
+  }
+});
+
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+// Serve uploaded files
+app.use('/uploads', express.static(uploadsDir));
 
 // Configure nodemailer transporter
 const transporter = nodemailer.createTransport({
@@ -33,6 +71,11 @@ transporter.verify((error, success) => {
 // Helper function to generate email HTML
 const generateEmailHTML = (formData) => {
   const isTeamEvent = formData.teamMembers && formData.teamMembers.length > 0;
+  
+  // Calculate total fee (₹100 per person)
+  const totalMembers = isTeamEvent ? parseInt(formData.teamMemberCount || 1) : 1;
+  const feePerPerson = 100;
+  const totalFee = totalMembers * feePerPerson;
   
   let teamMembersHTML = '';
   if (isTeamEvent) {
@@ -64,27 +107,48 @@ const generateEmailHTML = (formData) => {
         body {
           font-family: 'Arial', sans-serif;
           line-height: 1.6;
-          color: #333;
+          color: #ffffff;
+          background-color: #000000;
           max-width: 600px;
           margin: 0 auto;
           padding: 20px;
         }
         .header {
-          background: linear-gradient(135deg, #e50914 0%, #b20710 100%);
+          background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
           color: white;
           padding: 30px;
           text-align: center;
           border-radius: 10px 10px 0 0;
+          border-bottom: 3px solid #e50914;
         }
         .header h1 {
           margin: 0;
-          font-size: 28px;
+          font-size: 32px;
+          color: #e50914;
+          font-weight: bold;
+          letter-spacing: 3px;
+        }
+        .header p {
+          color: #ffffff;
         }
         .content {
-          background: #ffffff;
+          background: #0f0f0f;
           padding: 30px;
-          border: 1px solid #ddd;
+          border: 1px solid #333;
           border-top: none;
+          color: #ffffff;
+        }
+        .content h2 {
+          color: #ffffff;
+        }
+        .content h3 {
+          color: #e50914;
+        }
+        .content h4 {
+          color: #ffffff;
+        }
+        .content p {
+          color: #ffffff;
         }
         .event-badge {
           background: #e50914;
@@ -96,37 +160,57 @@ const generateEmailHTML = (formData) => {
           font-weight: bold;
         }
         .info-box {
-          background: #f8f9fa;
+          background: #1a1a1a;
           padding: 15px;
           border-left: 4px solid #e50914;
           margin: 20px 0;
+          color: #ffffff;
+        }
+        .info-box p {
+          color: #ffffff;
         }
         .footer {
-          background: #f8f9fa;
+          background: #0a0a0a;
           padding: 20px;
           text-align: center;
           border-radius: 0 0 10px 10px;
           font-size: 14px;
-          color: #666;
+          color: #cccccc;
+          border-top: 1px solid #333;
+        }
+        .footer p {
+          color: #cccccc;
         }
         .success-icon {
           font-size: 60px;
-          color: #000000;
+          color: #4caf50;
           text-align: center;
           margin: 20px 0;
+        }
+        ul {
+          color: #ffffff;
+        }
+        ol {
+          color: #ffffff;
+        }
+        li {
+          color: #ffffff;
         }
       </style>
     </head>
     <body>
       <div class="header">
-        <div class="success-icon">✓</div>
-        <h1>Registration Successful!</h1>
+        <h1>TECHNOVERSE </h1>
+        <p style="margin: 10px 0 0 0; font-size: 16px; letter-spacing: 2px;">CSESA-SGI</p>
       </div>
       
       <div class="content">
+        <div class="success-icon" style="color: #4caf50;">✓</div>
+        <h2 style="color: #ffffff; text-align: center; margin-top: 0;">Registration Successful!</h2>
+        
         <p>Dear <strong>${formData.candidateName}</strong>,</p>
         
-        <p>Thank you for registering for Technoverse 1.0! We're excited to have you participate in:</p>
+        <p>Thank you for registering! We're excited to have you participate in:</p>
         
         <div class="event-badge">${formData.competitionName}</div>
         
@@ -138,6 +222,11 @@ const generateEmailHTML = (formData) => {
           <p><strong>Phone:</strong> ${formData.candidatePhone}</p>
           <p><strong>Competition:</strong> ${formData.competitionName}</p>
           <p><strong>Transaction ID:</strong> ${formData.transactionId}</p>
+          <p style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #e50914;">
+            <strong>Fee Per Person:</strong> ₹${feePerPerson}<br>
+            <strong>Total Members:</strong> ${totalMembers}<br>
+            <strong>Total Amount Paid:</strong> ₹${totalFee}
+          </p>
         </div>
         
         ${teamMembersHTML}
@@ -157,7 +246,7 @@ const generateEmailHTML = (formData) => {
       </div>
       
       <div class="footer">
-        <p><strong>Technoverse 1.0</strong></p>
+        <p><strong>Technoverse </strong></p>
         <p>CSESA-SGI</p>
         <p>This is an automated email. Please do not reply to this message.</p>
       </div>
@@ -167,9 +256,18 @@ const generateEmailHTML = (formData) => {
 };
 
 // Registration endpoint
-app.post('/api/register', async (req, res) => {
+app.post('/api/register', upload.single('transactionScreenshot'), async (req, res) => {
   try {
     const formData = req.body;
+    
+    // Parse teamMembers if it's a string (from multipart/form-data)
+    if (typeof formData.teamMembers === 'string') {
+      try {
+        formData.teamMembers = JSON.parse(formData.teamMembers);
+      } catch (e) {
+        formData.teamMembers = [];
+      }
+    }
     
     // Validate required fields
     if (!formData.candidateName || !formData.candidateEmail || !formData.candidatePhone) {
@@ -179,11 +277,20 @@ app.post('/api/register', async (req, res) => {
       });
     }
 
+    // Add screenshot file info to formData if uploaded
+    if (req.file) {
+      formData.transactionScreenshot = {
+        filename: req.file.filename,
+        path: req.file.path,
+        size: req.file.size
+      };
+    }
+
     // Email options
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: formData.candidateEmail,
-      subject: `Registration Confirmed - ${formData.competitionName} | Technoverse 1.0`,
+      subject: `Registration Confirmed - ${formData.competitionName} | Technoverse `,
       html: generateEmailHTML(formData)
     };
 
@@ -196,7 +303,7 @@ app.post('/api/register', async (req, res) => {
         const memberMailOptions = {
           from: process.env.EMAIL_USER,
           to: member.email,
-          subject: `Team Registration Confirmed - ${formData.competitionName} | Technoverse 1.0`,
+          subject: `Team Registration Confirmed - ${formData.competitionName} | Technoverse `,
           html: `
             <!DOCTYPE html>
             <html>
@@ -205,23 +312,42 @@ app.post('/api/register', async (req, res) => {
                 body {
                   font-family: 'Arial', sans-serif;
                   line-height: 1.6;
-                  color: #333;
+                  color: #ffffff;
+                  background-color: #000000;
                   max-width: 600px;
                   margin: 0 auto;
                   padding: 20px;
                 }
                 .header {
-                  background: linear-gradient(135deg, #e50914 0%, #b20710 100%);
+                  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
                   color: white;
                   padding: 30px;
                   text-align: center;
                   border-radius: 10px 10px 0 0;
+                  border-bottom: 3px solid #e50914;
+                }
+                .header h1 {
+                  margin: 0;
+                  font-size: 32px;
+                  color: #e50914;
+                  font-weight: bold;
+                  letter-spacing: 3px;
+                }
+                .header p {
+                  color: #ffffff;
                 }
                 .content {
-                  background: #ffffff;
+                  background: #0f0f0f;
                   padding: 30px;
-                  border: 1px solid #ddd;
+                  border: 1px solid #333;
                   border-top: none;
+                  color: #ffffff;
+                }
+                .content h2 {
+                  color: #ffffff;
+                }
+                .content p {
+                  color: #ffffff;
                 }
                 .event-badge {
                   background: #e50914;
@@ -233,20 +359,26 @@ app.post('/api/register', async (req, res) => {
                   font-weight: bold;
                 }
                 .footer {
-                  background: #f8f9fa;
+                  background: #0a0a0a;
                   padding: 20px;
                   text-align: center;
                   border-radius: 0 0 10px 10px;
                   font-size: 14px;
-                  color: #666;
+                  color: #cccccc;
+                  border-top: 1px solid #333;
+                }
+                .footer p {
+                  color: #cccccc;
                 }
               </style>
             </head>
             <body>
               <div class="header">
-                <h1>Team Registration Confirmed!</h1>
+                <h1>TECHNOVERSE </h1>
+                <p style="margin: 10px 0 0 0; font-size: 16px; letter-spacing: 2px;">CSESA-SGI</p>
               </div>
               <div class="content">
+                <h2 style="color: #ffffff; text-align: center;">Team Registration Confirmed!</h2>
                 <p>Dear <strong>${member.name}</strong>,</p>
                 <p>You have been registered as a team member for:</p>
                 <div class="event-badge">${formData.competitionName}</div>
@@ -255,7 +387,7 @@ app.post('/api/register', async (req, res) => {
                 <p>Further details will be shared soon. Good luck!</p>
               </div>
               <div class="footer">
-                <p><strong>Technoverse 1.0</strong></p>
+                <p><strong>Technoverse </strong></p>
                 <p>CSESA-SGI</p>
               </div>
             </body>
@@ -273,6 +405,7 @@ app.post('/api/register', async (req, res) => {
       email: formData.candidateEmail,
       competition: formData.competitionName,
       isTeam: formData.teamMembers && formData.teamMembers.length > 0,
+      screenshot: req.file ? req.file.filename : 'No screenshot uploaded',
       timestamp: new Date().toISOString()
     });
 
@@ -283,7 +416,8 @@ app.post('/api/register', async (req, res) => {
       data: {
         candidateName: formData.candidateName,
         competitionName: formData.competitionName,
-        transactionId: formData.transactionId
+        transactionId: formData.transactionId,
+        screenshotUploaded: !!req.file
       }
     });
 

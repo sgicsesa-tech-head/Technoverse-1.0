@@ -80,7 +80,7 @@ function Timeline() {
           <div className="day-header">
             <h2 className="day-title">Day {day.day}</h2>
             <span className="day-date">
-              {day.day === 1 ? 'March 13, 2026' : 'March 14, 2026'}
+              {day.day === 1 ? 'March 2, 2026' : 'March 3, 2026'}
             </span>
           </div>
 
