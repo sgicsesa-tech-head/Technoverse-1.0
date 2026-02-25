@@ -56,6 +56,7 @@ function RegistrationForm() {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const [screenshotUploaded, setScreenshotUploaded] = useState(false);
 
   // Google Form URL for screenshot upload
   const googleFormUrl = process.env.REACT_APP_GOOGLE_FORM_URL || '';
@@ -186,6 +187,11 @@ function RegistrationForm() {
       newErrors.transactionId = 'Transaction ID must be exactly 12 characters (letters and digits only)';
     }
 
+    // Validate screenshot uploaded checkbox
+    if (!screenshotUploaded) {
+      newErrors.screenshotUploaded = 'Please upload your payment screenshot before submitting';
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -229,6 +235,7 @@ function RegistrationForm() {
         if (response.ok && data.success) {
           // Show success message
           setSubmitted(true);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
           console.log('Registration successful:', data);
         } else {
           // Show error message
@@ -546,6 +553,23 @@ function RegistrationForm() {
                   Screenshot upload will be available soon. Please keep your payment screenshot safe.
                 </p>
               )}
+            </div>
+
+            <div className={`screenshot-checkbox-group ${errors.screenshotUploaded ? 'has-error' : ''}`}>
+              <label className="checkbox-label">
+                <input
+                  type="checkbox"
+                  checked={screenshotUploaded}
+                  onChange={(e) => {
+                    setScreenshotUploaded(e.target.checked);
+                    if (errors.screenshotUploaded) {
+                      setErrors(prev => ({ ...prev, screenshotUploaded: '' }));
+                    }
+                  }}
+                />
+                <span className="checkbox-text">I have uploaded my payment screenshot</span>
+              </label>
+              {errors.screenshotUploaded && <span className="form-error">{errors.screenshotUploaded}</span>}
             </div>
           </div>
 
