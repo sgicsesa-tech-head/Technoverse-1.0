@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Banner from './Banner';
+import Highlights from './Highlights';
 import CompetitionRow from './CompetitionRow';
 import EventModal from './EventModal';
 import { getEventsByCategory } from '../data/events';
@@ -44,6 +45,7 @@ function Home() {
           onEventClick={handleEventClick}
         />
       </div>
+      <Highlights />
       {selectedEvent && (
         <EventModal event={selectedEvent} onClose={handleCloseModal} />
       )}

@@ -12,6 +12,7 @@
       { "name": "The Final Lap", "focus": "Non-Primitive + dynamic data structures", "duration": "30 minutes", "goal": "Complete complex 'Boss' problem" }
     ],
     "rules": [
+      "College ID is compulsory, without it you won't be allowed on campus",
       "Solo participation only",
       "Allowed languages: C++, Java, or Python",
       "Use of AI, external libraries, or plagiarism results in immediate disqualification (Black Flag)",
@@ -31,6 +32,7 @@
       { "name": "The Trial by Fire", "focus": "Paper Coding (Logical Thinking & Syntax)", "duration": "45-60 minutes" }
     ],
     "rules": [
+      "College ID is compulsory, without it you won't be allowed on campus",
       "Solo participation only",
       "Allowed languages: C and C++ only",
       "Personal laptops are not allowed. Participants must use the systems provided by the organizers",
@@ -51,6 +53,7 @@
       { "name": "Round 4", "task": "Finale Interview With Panel" }
     ],
     "rules": [
+      "College ID is compulsory, without it you won't be allowed on campus",
       "Formal attire is mandatory for all participants",
       "Participants must upload an ATS-compatible resume during registration",
       "The decision of the judges will be final"
@@ -69,6 +72,7 @@
       { "name": "Presentation", "duration": "30 Min", "focus": "Present your website" }
     ],
     "rules": [
+      "College ID is compulsory, without it you won't be allowed on campus",
       "Max 2 participants per team",
       "The website must be developed using HTML, CSS, and JavaScript only. The use of frameworks such as React or Angular is strictly prohibited",
       "AI (ChatGPT/Gemini) allowed for debugging/layout only",
@@ -83,7 +87,9 @@
       "players_per_team": 4
     },
     "rules": [
+      "College ID is compulsory, without it you won't be allowed on campus",
       "Only mobile devices allowed",
+      "All participants should be present offline at the venue during the match",
       "Participants must use their own mobile network (personal data)",
       "If you disconnect or face network issues, the match will not be restarted"
     ]
@@ -101,6 +107,7 @@
       { "name": "Squid Game Challenge" }
     ],
     "rules": [
+      "College ID is compulsory, without it you won't be allowed on campus",
       "Maximum 5 members per team",
       "All teams must stay together during the game",
       "Do not run in restricted areas or damage clues"
@@ -118,7 +125,9 @@
       { "name": "Grand Finals", "format": "1 match with 20 teams" }
     ],
     "rules": [
+      "College ID is compulsory, without it you won't be allowed on campus",
       "Only mobile devices; stable internet is player responsibility",
+      "All participants should be present offline at the venue during the match",
       "Room ID shared 10-15 minutes before match; must join within 10 minutes",
       "Teams must sit in pre-assigned slots",
       "Complaints must be submitted within 15 minutes of match completion with evidence"
@@ -136,6 +145,7 @@
       { "name": "Round 2: Shark Hunt Grand Finale", "focus": "Startup Pitch", "task": "Shortlisted teams pitch their ideas in a professional, startup-inspired environment" }
     ],
     "rules": [
+      "College ID is compulsory, without it you won't be allowed on campus",
       "Open to all departments and all years - interdisciplinary teams encouraged",
       "Team size: 2-4 members with one team leader required",
       "PPT presentation (max 5-7 slides) is mandatory",

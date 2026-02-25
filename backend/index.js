@@ -68,12 +68,14 @@ const generateEmailHTML = (formData) => {
       <ol style="line-height: 1.8;">
         <li><strong>${formData.candidateName}</strong> (Team Leader)<br>
             Email: ${formData.candidateEmail}<br>
-            Phone: ${formData.candidatePhone}
+            Phone: ${formData.candidatePhone}<br>
+            College: ${formData.candidateCollege || ''}
         </li>
         ${formData.teamMembers.map((member, index) => `
           <li><strong>${member.name}</strong><br>
               Email: ${member.email}<br>
-              Phone: ${member.phone}
+              Phone: ${member.phone}<br>
+              College: ${member.college || ''}
           </li>
         `).join('')}
       </ol>
@@ -201,6 +203,7 @@ const generateEmailHTML = (formData) => {
           <p><strong>Participant Name:</strong> ${formData.candidateName}</p>
           <p><strong>Email:</strong> ${formData.candidateEmail}</p>
           <p><strong>Phone:</strong> ${formData.candidatePhone}</p>
+          <p><strong>College:</strong> ${formData.candidateCollege || ''}</p>
           <p><strong>Competition:</strong> ${formData.competitionName}</p>
           <p><strong>Transaction ID:</strong> ${formData.transactionId}</p>
           <p style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #e50914;">
@@ -216,6 +219,7 @@ const generateEmailHTML = (formData) => {
         <ul style="line-height: 1.8;">
           <li>Your registration is now confirmed</li>
           <li>Please save this email for your records</li>
+          <li>Make sure to bring your ID proof and college ID</li>
           <li>Checkout the rule book of your participated event</li>
           <li>Make sure to arrive 15 minutes before the event starts</li>
           ${whatsappLink ? `<li>Join the official WhatsApp group for <strong>${formData.competitionName}</strong>: <a href="${whatsappLink}" style="color: #25D366; font-weight: bold; text-decoration: none;">📱 Join WhatsApp Group</a></li>` : ''}
@@ -248,7 +252,7 @@ app.post('/api/register', async (req, res) => {
     const formData = req.body;
     
     // Validate required fields
-    if (!formData.candidateName || !formData.candidateEmail || !formData.candidatePhone) {
+    if (!formData.candidateName || !formData.candidateEmail || !formData.candidatePhone || !formData.candidateCollege) {
       return res.status(400).json({
         success: false,
         message: 'Missing required fields'
@@ -260,6 +264,7 @@ app.post('/api/register', async (req, res) => {
       candidateName: formData.candidateName,
       candidateEmail: formData.candidateEmail,
       candidatePhone: formData.candidatePhone,
+      candidateCollege: formData.candidateCollege || '',
       competitionName: formData.competitionName,
       transactionId: formData.transactionId,
       isTeamEvent: !!(formData.teamMembers && formData.teamMembers.length > 0),
@@ -378,6 +383,7 @@ app.post('/api/register', async (req, res) => {
                 <div class="event-badge">${formData.competitionName}</div>
                 <p><strong>Team Name:</strong> ${formData.teamName}</p>
                 <p><strong>Team Leader:</strong> ${formData.candidateName}</p>
+                <p><strong>College:</strong> ${member.college || ''}</p>
                 <p>Further details will be shared soon. Good luck!</p>
               </div>
               <div class="footer">

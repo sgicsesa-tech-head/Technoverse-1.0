@@ -39,7 +39,14 @@ function Footer() {
         </div>
         <div className="footer-section footer-contact">
           <h4>Contact</h4>
-          <p>Email: <a className='mail-link' href="mailto:sgi.csesa@sginstitute.in">sgi.csesa@sginstitute.in</a></p>
+          <p>Email:</p>
+              <span>
+             <a className='mail-link' href="mailto:sgi.csesa@sginstitute.in">sgi.csesa@sginstitute.in</a>
+             </span>
+              <p>or</p>
+             <span>
+            <a className='mail-link' href="mailto:technoverse.csesa@gmail.com">technoverse.csesa@gmail.com</a>
+            </span>
           <p>Computer Science & Engineering Department, 'D' Block 3rd Floor</p>
           <p>Sanjay Ghodawat Institute</p>
           <p>Atigre, Maharashtra</p>

@@ -43,6 +43,7 @@ function RegistrationForm() {
     candidateName: '',
     candidatePhone: '',
     candidateEmail: '',
+    candidateCollege: '',
     competitionName: event?.title || '',
     teamName: '',
     teamMemberCount: '1',
@@ -76,7 +77,7 @@ function RegistrationForm() {
       // Default to the fixed team size
       const members = [];
       for (let i = 0; i < playersPerTeam - 1; i++) {
-        members.push({ name: '', phone: '', email: '' });
+        members.push({ name: '', phone: '', email: '', college: '' });
       }
       setFormData(prev => ({ ...prev, teamMembers: members, teamMemberCount: String(playersPerTeam) }));
     } else if (playersPerTeam && typeof playersPerTeam === 'string') {
@@ -91,7 +92,7 @@ function RegistrationForm() {
         // Default to minimum team size
         const members = [];
         for (let i = 0; i < min - 1; i++) {
-          members.push({ name: '', phone: '', email: '' });
+          members.push({ name: '', phone: '', email: '', college: '' });
         }
         setFormData(prev => ({ ...prev, teamMembers: members, teamMemberCount: String(min) }));
       } else if (match && match.length === 1) {
@@ -102,7 +103,7 @@ function RegistrationForm() {
           setMaxTeamSize(size);
           const members = [];
           for (let i = 0; i < size - 1; i++) {
-            members.push({ name: '', phone: '', email: '' });
+          members.push({ name: '', phone: '', email: '', college: '' });
           }
           setFormData(prev => ({ ...prev, teamMembers: members, teamMemberCount: String(size) }));
         }
@@ -148,6 +149,7 @@ function RegistrationForm() {
 
     // Validate main candidate
     if (!formData.candidateName.trim()) newErrors.candidateName = 'Name is required';
+    if (!formData.candidateCollege || !formData.candidateCollege.trim()) newErrors.candidateCollege = 'College name is required';
     if (!formData.candidatePhone.trim()) {
       newErrors.candidatePhone = 'Phone number is required';
     } else if (!/^\d{10}$/.test(formData.candidatePhone.trim())) {
@@ -176,6 +178,9 @@ function RegistrationForm() {
           newErrors[`member${index}_email`] = `Member ${index + 2} email is required`;
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(member.email.trim())) {
           newErrors[`member${index}_email`] = `Invalid email format`;
+        }
+        if (!member.college || !member.college.trim()) {
+          newErrors[`member${index}_college`] = `Member ${index + 2} college is required`;
         }
       });
     }
@@ -208,6 +213,7 @@ function RegistrationForm() {
           candidateName: formData.candidateName,
           candidatePhone: formData.candidatePhone,
           candidateEmail: formData.candidateEmail,
+          candidateCollege: formData.candidateCollege,
           competitionName: formData.competitionName,
           transactionId: formData.transactionId,
         };
@@ -372,6 +378,20 @@ function RegistrationForm() {
             </div>
 
             <div className="form-group">
+              <label htmlFor="candidateCollege">College Name *</label>
+              <input
+                type="text"
+                id="candidateCollege"
+                name="candidateCollege"
+                value={formData.candidateCollege}
+                onChange={handleInputChange}
+                placeholder="Enter your college name"
+                className={errors.candidateCollege ? 'error' : ''}
+              />
+              {errors.candidateCollege && <span className="form-error">{errors.candidateCollege}</span>}
+            </div>
+
+            <div className="form-group">
               <label htmlFor="competitionName">Competition Name</label>
               <input
                 type="text"
@@ -467,6 +487,18 @@ function RegistrationForm() {
                       />
                       {errors[`member${index}_email`] && <span className="form-error">{errors[`member${index}_email`]}</span>}
                     </div>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor={`member${index}College`}>College Name *</label>
+                    <input
+                      type="text"
+                      id={`member${index}College`}
+                      value={member.college}
+                      onChange={(e) => handleTeamMemberChange(index, 'college', e.target.value)}
+                      placeholder="Enter member's college name"
+                      className={errors[`member${index}_college`] ? 'error' : ''}
+                    />
+                    {errors[`member${index}_college`] && <span className="form-error">{errors[`member${index}_college`]}</span>}
                   </div>
                 </div>
               ))}
