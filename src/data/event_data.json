@@ -41,7 +41,7 @@
     "event_name": "The Hiring Room",
     "netflix_theme": "Suits",
     "structure": {
-      "total_slots": "50 Candidates",
+      "total_slots": "60 Candidates",
       "players_per_team": 1
     },
     "rounds": [

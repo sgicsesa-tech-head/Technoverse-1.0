@@ -58,8 +58,8 @@ const eventDetails = {
     day: 2,
     time: "11:00 AM - 4:00 PM",
     venue: "HOD Cabin 'D' Block 3rd Floor",
-    coordinators: ["Rajveer Chandaliya", "Onkar Jadhavar"],
-    coordinatorPhones: ["9730612415", "7972961313"],
+    coordinators: ["Siddhi Salunkhe", "Onkar Jadhavar"],
+    coordinatorPhones: ["9423174366", "7972961313"],
     entryFee: "₹100",
     entryType: "Solo"
   },
@@ -69,8 +69,8 @@ const eventDetails = {
    venue: "D Block Seminar Hall",
    coordinators: ["Rutuja Pinate", "Amol Khot"],
    coordinatorPhones: ["8446176586", "7666028044"],
-   entryFee: "₹400 per team",
-   entryType: "Team (5 members)"
+   entryFee: "₹100 per person",
+   entryType: "Team (4 members)"
  },
   "Pixel Fix": {
     day: 1,
@@ -87,7 +87,7 @@ const eventDetails = {
     venue: "Campus-wide",
     coordinators: ["Anushka Murchite", "Rohan Patil"],
     coordinatorPhones: ["8956394594", "7666040924"],
-    entryFee: "₹400 per team",
+    entryFee: "₹100 per person",
     entryType: "Team (max 5 members)"
   },
   "E - Sports BGMI": {
@@ -96,8 +96,8 @@ const eventDetails = {
     venue: "Seminar Hall - D Block",
     coordinators: ["Rasik Samudre", "Sanket Sutar"],
     coordinatorPhones: ["9021211916", "7219643252"],
-    entryFee: "₹400 per team",
-    entryType: "Squad (4 members)"
+    entryFee: "₹100 per person",
+    entryType: "Team (4 members)"
   },
   "Ideaverse": {
     day: 1,
