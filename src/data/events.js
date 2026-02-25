@@ -75,7 +75,7 @@ const eventDetails = {
   "Pixel Fix": {
     day: 1,
     time: "11:00 AM - 4:00 PM",
-    venue: "CC Lab",
+    venue: "CC Lab - C Block 3rd Floor",
     coordinators: ["Amol Khot", "Shreya Gurav"],
     coordinatorPhones: ["7666028044", "6361790149"],
     entryFee: "₹100 per person",
@@ -93,7 +93,7 @@ const eventDetails = {
   "E - Sports BGMI": {
     day: 1,
     time: "11:00 AM - 4:00 PM",
-    venue: "Seminar Hall - C Block",
+    venue: "Seminar Hall - D Block",
     coordinators: ["Rasik Samudre", "Sanket Sutar"],
     coordinatorPhones: ["9021211916", "7219643252"],
     entryFee: "₹400 per team",
@@ -103,8 +103,8 @@ const eventDetails = {
     day: 1,
     time: "10:30 AM - 4:00 PM",
     venue: "TBD",
-    coordinators: ["Shivani Mali", "Nipun Shah"],
-    coordinatorPhones: ["7057200420", "8208320893"],
+    coordinators: ["Asmita Desai", "Janhavi Gavali"],
+    coordinatorPhones: ["8767457336", "9325552559"],
     entryFee: "₹100 per person",
     entryType: "Team (2-4 members)"
   }
