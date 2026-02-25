@@ -36,9 +36,22 @@ transporter.verify((error, success) => {
   }
 });
 
+// WhatsApp group links for each event
+const whatsappGroupLinks = {
+  'The Squid Hunt (Treasure Hunt)': 'https://chat.whatsapp.com/HcinjdJrOnOHxjK1dvABio',
+  'The Hiring Room': 'https://chat.whatsapp.com/JzAhAIUmS7uJ8IdhXnYYpD',
+  'Ideaverse': 'https://chat.whatsapp.com/FHQPYr7Tb3aKZ6JWXd0qHy',
+  'E-sports (Free Fire)': 'https://chat.whatsapp.com/BlOktIulfg2EZJTEZyxmAv',
+  'E - Sports BGMI': 'https://chat.whatsapp.com/HkOMtXNJVaxJO78bAI8mTH',
+  'Pixel Fix': 'https://chat.whatsapp.com/HrIjNeVxgB1HrSq58ZURYY',
+  'Daredevil - The Blind Coding Arena': 'https://chat.whatsapp.com/G02ARVtpJE5ELG3om2maNg',
+  'The Grand Prix of Code': 'https://chat.whatsapp.com/FnBZuXzfzWHDgZUXwFQuJm',
+};
+
 // Helper function to generate email HTML
 const generateEmailHTML = (formData) => {
   const isTeamEvent = formData.teamMembers && formData.teamMembers.length > 0;
+  const whatsappLink = whatsappGroupLinks[formData.competitionName] || null;
   
   // Calculate total fee (₹100 per person)
   const totalMembers = isTeamEvent ? parseInt(formData.teamMemberCount || 1) : 1;
@@ -203,10 +216,16 @@ const generateEmailHTML = (formData) => {
         <ul style="line-height: 1.8;">
           <li>Your registration is now confirmed</li>
           <li>Please save this email for your records</li>
-          <li>Checkout the rule book of your participate event : </li>
+          <li>Checkout the rule book of your participated event</li>
           <li>Make sure to arrive 15 minutes before the event starts</li>
-          <li>Join our official WhatsApp group for updates and communication (link will be shared soon)</li> 
+          ${whatsappLink ? `<li>Join the official WhatsApp group for <strong>${formData.competitionName}</strong>: <a href="${whatsappLink}" style="color: #25D366; font-weight: bold; text-decoration: none;">📱 Join WhatsApp Group</a></li>` : ''}
         </ul>
+        
+        ${whatsappLink ? `
+        <div style="text-align: center; margin: 25px 0;">
+          <a href="${whatsappLink}" style="background-color: #25D366; color: white; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block;">📱 Join WhatsApp Group</a>
+        </div>
+        ` : ''}
         
         <div class="info-box">
           <p><strong>Important:</strong> If you have any questions or need to make changes to your registration, please contact us immediately.</p>

@@ -58,8 +58,8 @@ const eventDetails = {
     day: 2,
     time: "11:00 AM - 4:00 PM",
     venue: "HOD Cabin 'D' Block 3rd Floor",
-    coordinators: ["Mrunal Gadavi", "Onkar Jadhavar"],
-    coordinatorPhones: ["7058952429", "7972961313"],
+    coordinators: ["Rajveer Chandaliya", "Onkar Jadhavar"],
+    coordinatorPhones: ["9730612415", "7972961313"],
     entryFee: "₹100",
     entryType: "Solo"
   },
@@ -85,8 +85,8 @@ const eventDetails = {
     day: 1,
     time: "11:00 AM - 4:00 PM",
     venue: "Campus-wide",
-    coordinators: ["Shreya Tambekar", "Rohan Patil"],
-    coordinatorPhones: ["7499193352", "7666040924"],
+    coordinators: ["Anushka Murchite", "Rohan Patil"],
+    coordinatorPhones: ["8956394594", "7666040924"],
     entryFee: "₹400 per team",
     entryType: "Team (max 5 members)"
   },
@@ -130,11 +130,13 @@ const transformEventData = (rawData) => {
       venue = venue.split(',').map(v => v.trim());
     }
     
+    const day = details.day || 1;
     const transformedEvent = {
       id: idCounter++,
       category: determineCategory(event.event_name),
       title: event.event_name,
       netflixTheme: event.netflix_theme !== "No" && event.netflix_theme !== "None" && event.netflix_theme !== "NA" ? event.netflix_theme : null,
+      date: day === 1 ? 'March 2, 2026' : 'March 3, 2026',
       time: details.time || "TBD",
       venue: venue,
       coordinators: details.coordinators || [],
@@ -153,7 +155,6 @@ const transformEventData = (rawData) => {
     };
 
     // Sort events by day
-    const day = details.day || 1;
     if (day === 1) {
       day1Events.push(transformedEvent);
     } else {

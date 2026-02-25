@@ -8,35 +8,62 @@ const initializeFirebase = () => {
     // Check if Firebase is already initialized
     if (admin.apps.length > 0) {
       console.log('Firebase already initialized');
-      return admin.firestore();
+      db = admin.firestore();
+      return db;
     }
 
-    // For production: use service account JSON
+    let serviceAccount = null;
+
+    // Option 1: Full service account JSON as env var (for Vercel/production)
     if (process.env.FIREBASE_SERVICE_ACCOUNT) {
-      const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
-      admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount),
-        storageBucket: process.env.FIREBASE_STORAGE_BUCKET
-      });
-    } 
-    // For development: use service account file
-    else if (process.env.GOOGLE_APPLICATION_CREDENTIALS) {
-      const serviceAccount = require(process.env.GOOGLE_APPLICATION_CREDENTIALS);
-      admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount),
-        storageBucket: process.env.FIREBASE_STORAGE_BUCKET
-      });
-    } 
-    else {
-      console.error('Firebase credentials not found. Please set FIREBASE_SERVICE_ACCOUNT or GOOGLE_APPLICATION_CREDENTIALS');
+      try {
+        serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+        console.log('Using FIREBASE_SERVICE_ACCOUNT env var');
+      } catch (parseError) {
+        console.error('Failed to parse FIREBASE_SERVICE_ACCOUNT JSON:', parseError.message);
+      }
+    }
+
+    // Option 2: Individual env vars (alternative for Vercel if JSON parsing fails)
+    if (!serviceAccount && process.env.FIREBASE_PROJECT_ID && process.env.FIREBASE_PRIVATE_KEY && process.env.FIREBASE_CLIENT_EMAIL) {
+      serviceAccount = {
+        type: 'service_account',
+        project_id: process.env.FIREBASE_PROJECT_ID,
+        private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID || '',
+        private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+        client_email: process.env.FIREBASE_CLIENT_EMAIL,
+        client_id: process.env.FIREBASE_CLIENT_ID || '',
+        auth_uri: 'https://accounts.google.com/o/oauth2/auth',
+        token_uri: 'https://oauth2.googleapis.com/token',
+      };
+      console.log('Using individual FIREBASE_ env vars');
+    }
+
+    // Option 3: Service account file (for local development)
+    if (!serviceAccount && process.env.GOOGLE_APPLICATION_CREDENTIALS) {
+      try {
+        serviceAccount = require(process.env.GOOGLE_APPLICATION_CREDENTIALS);
+        console.log('Using GOOGLE_APPLICATION_CREDENTIALS file');
+      } catch (fileError) {
+        console.error('Failed to load service account file:', fileError.message);
+      }
+    }
+
+    if (!serviceAccount) {
+      console.error('Firebase credentials not found. Set one of: FIREBASE_SERVICE_ACCOUNT (JSON string), FIREBASE_PROJECT_ID + FIREBASE_PRIVATE_KEY + FIREBASE_CLIENT_EMAIL, or GOOGLE_APPLICATION_CREDENTIALS (file path)');
       return null;
     }
 
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+      storageBucket: process.env.FIREBASE_STORAGE_BUCKET
+    });
+
     db = admin.firestore();
-    console.log('Firebase initialized successfully');
+    console.log('Firebase initialized successfully with project:', serviceAccount.project_id);
     return db;
   } catch (error) {
-    console.error('Error initializing Firebase:', error);
+    console.error('Error initializing Firebase:', error.message);
     return null;
   }
 };

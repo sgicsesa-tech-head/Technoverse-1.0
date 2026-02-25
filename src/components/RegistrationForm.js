@@ -22,6 +22,18 @@ const qrCodeMap = {
   500: qr500,
 };
 
+// WhatsApp group links for each event
+const whatsappGroupLinks = {
+  'The Squid Hunt (Treasure Hunt)': 'https://chat.whatsapp.com/HcinjdJrOnOHxjK1dvABio',
+  'The Hiring Room': 'https://chat.whatsapp.com/JzAhAIUmS7uJ8IdhXnYYpD',
+  'Ideaverse': 'https://chat.whatsapp.com/FHQPYr7Tb3aKZ6JWXd0qHy',
+  'E-sports (Free Fire)': 'https://chat.whatsapp.com/BlOktIulfg2EZJTEZyxmAv',
+  'E - Sports BGMI': 'https://chat.whatsapp.com/HkOMtXNJVaxJO78bAI8mTH',
+  'Pixel Fix': 'https://chat.whatsapp.com/HrIjNeVxgB1HrSq58ZURYY',
+  'Daredevil - The Blind Coding Arena': 'https://chat.whatsapp.com/G02ARVtpJE5ELG3om2maNg',
+  'The Grand Prix of Code': 'https://chat.whatsapp.com/FnBZuXzfzWHDgZUXwFQuJm',
+};
+
 function RegistrationForm() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -39,6 +51,7 @@ function RegistrationForm() {
   });
 
   const [isTeamEvent, setIsTeamEvent] = useState(false);
+  const [minTeamSize, setMinTeamSize] = useState(1);
   const [maxTeamSize, setMaxTeamSize] = useState(1);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
@@ -57,15 +70,41 @@ function RegistrationForm() {
     const playersPerTeam = event.structure?.players_per_team;
     if (playersPerTeam && typeof playersPerTeam === 'number' && playersPerTeam > 1) {
       setIsTeamEvent(true);
+      setMinTeamSize(playersPerTeam);
       setMaxTeamSize(playersPerTeam);
-      // Default to 1 member (just the candidate), user can increase
-      setFormData(prev => ({ ...prev, teamMembers: [], teamMemberCount: '1' }));
+      // Default to the fixed team size
+      const members = [];
+      for (let i = 0; i < playersPerTeam - 1; i++) {
+        members.push({ name: '', phone: '', email: '' });
+      }
+      setFormData(prev => ({ ...prev, teamMembers: members, teamMemberCount: String(playersPerTeam) }));
     } else if (playersPerTeam && typeof playersPerTeam === 'string') {
-      // Handle cases like "1 or 2" or "5-8 Contestants"
+      // Handle cases like "2-4" or "3-5"
       const match = playersPerTeam.match(/\d+/g);
       if (match && match.length > 1) {
+        const min = parseInt(match[0]);
+        const max = parseInt(match[match.length - 1]);
         setIsTeamEvent(true);
-        setMaxTeamSize(parseInt(match[match.length - 1]));
+        setMinTeamSize(min);
+        setMaxTeamSize(max);
+        // Default to minimum team size
+        const members = [];
+        for (let i = 0; i < min - 1; i++) {
+          members.push({ name: '', phone: '', email: '' });
+        }
+        setFormData(prev => ({ ...prev, teamMembers: members, teamMemberCount: String(min) }));
+      } else if (match && match.length === 1) {
+        const size = parseInt(match[0]);
+        if (size > 1) {
+          setIsTeamEvent(true);
+          setMinTeamSize(size);
+          setMaxTeamSize(size);
+          const members = [];
+          for (let i = 0; i < size - 1; i++) {
+            members.push({ name: '', phone: '', email: '' });
+          }
+          setFormData(prev => ({ ...prev, teamMembers: members, teamMemberCount: String(size) }));
+        }
       }
     }
   }, [event, navigate]);
@@ -140,11 +179,11 @@ function RegistrationForm() {
       });
     }
 
-    // Validate transaction ID (12-digit numeric UPI reference)
+    // Validate transaction ID (12-character alphanumeric UPI reference)
     if (!formData.transactionId.trim()) {
       newErrors.transactionId = 'Transaction ID is required';
-    } else if (!/^\d{12}$/.test(formData.transactionId.trim())) {
-      newErrors.transactionId = 'Transaction ID must be exactly 12 digits';
+    } else if (!/^[a-zA-Z0-9]{12}$/.test(formData.transactionId.trim())) {
+      newErrors.transactionId = 'Transaction ID must be exactly 12 characters (letters and digits only)';
     }
 
     setErrors(newErrors);
@@ -226,6 +265,19 @@ function RegistrationForm() {
           <h2>Registration Successful!</h2>
           <p>Thank you for registering for <strong>{event.title}</strong></p>
           <p>You will receive a confirmation email shortly, check in spam folder if not found.</p>
+          {whatsappGroupLinks[event.title] && (
+            <div className="whatsapp-group-section">
+              <p className="whatsapp-text">📱 Join the official WhatsApp group for updates:</p>
+              <a
+                href={whatsappGroupLinks[event.title]}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-whatsapp-join"
+              >
+                Join WhatsApp Group
+              </a>
+            </div>
+          )}
           {googleFormUrl && (
             <div className="screenshot-upload-section">
               <p className="upload-reminder-text">
@@ -354,9 +406,12 @@ function RegistrationForm() {
                   value={formData.teamMemberCount}
                   onChange={handleTeamMemberCountChange}
                 >
-                  {[...Array(maxTeamSize)].map((_, i) => (
-                    <option key={i + 1} value={i + 1}>{i + 1} Member{i > 0 ? 's' : ''}</option>
-                  ))}
+                  {[...Array(maxTeamSize - minTeamSize + 1)].map((_, i) => {
+                    const count = minTeamSize + i;
+                    return (
+                      <option key={count} value={count}>{count} Member{count > 1 ? 's' : ''}</option>
+                    );
+                  })}
                 </select>
               </div>
 
@@ -463,10 +518,11 @@ function RegistrationForm() {
                 value={formData.transactionId}
                 onChange={handleInputChange}
                 placeholder="Enter your transaction ID"
+                maxLength="12"
                 className={errors.transactionId ? 'error' : ''}
               />
               {errors.transactionId && <span className="form-error">{errors.transactionId}</span>}
-              <small className="field-hint">Enter the 12-digit UPI transaction ID from your payment app</small>
+              <small className="field-hint">Enter the 12-character UPI transaction ID from your payment app</small>
             </div>
 
             <div className="form-group">

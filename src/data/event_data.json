@@ -93,7 +93,7 @@
     "netflix_theme": "Squid Game",
     "structure": {
       "total_slots": "30 Teams",
-      "players_per_team": 5
+      "players_per_team": "3-5"
     },
     "rounds": [
       { "name": "Card Collection" },

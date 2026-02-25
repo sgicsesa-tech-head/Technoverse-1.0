@@ -80,6 +80,10 @@ function EventModal({ event, onClose }) {
                 <span className="modal-value">{event.category}</span>
               </div>
               <div className="modal-detail-row">
+                <span className="modal-label">Date:</span>
+                <span className="modal-value">{event.date}</span>
+              </div>
+              <div className="modal-detail-row">
                 <span className="modal-label">Time:</span>
                 <span className="modal-value">{event.time}</span>
               </div>
