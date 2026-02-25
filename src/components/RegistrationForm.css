@@ -204,6 +204,32 @@
   margin: 30px 0;
 }
 
+.qr-code-box {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  max-width: 320px;
+}
+
+.qr-code-image {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+}
+
+.qr-amount {
+  color: #e50914;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
 .qr-code-placeholder {
   background: #fff;
   border-radius: 10px;

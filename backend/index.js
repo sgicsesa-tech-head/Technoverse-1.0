@@ -379,8 +379,8 @@ app.post('/api/register', async (req, res) => {
       name: formData.candidateName,
       email: formData.candidateEmail,
       competition: formData.competitionName,
-      isTeam: formData.teamMembers && formData.teamMembers.length > 0,
-      firestoreId: firestoreResult.id,
+      isTeam: !!(formData.teamMembers && formData.teamMembers.length > 0),
+      firestoreId: firestoreResult?.id || 'N/A',
       timestamp: new Date().toISOString()
     });
 
@@ -392,7 +392,7 @@ app.post('/api/register', async (req, res) => {
         candidateName: formData.candidateName,
         competitionName: formData.competitionName,
         transactionId: formData.transactionId,
-        firestoreId: firestoreResult.id
+        firestoreId: firestoreResult?.id || null
       }
     });
 

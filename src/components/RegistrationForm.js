@@ -7,6 +7,21 @@ import PaymentIcon from '@mui/icons-material/Payment';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
+// UPI QR code images for different amounts
+import qr100 from '../assets/UPI/100.jpeg';
+import qr200 from '../assets/UPI/200.jpeg';
+import qr300 from '../assets/UPI/300.jpeg';
+import qr400 from '../assets/UPI/400.jpeg';
+import qr500 from '../assets/UPI/500.jpeg';
+
+const qrCodeMap = {
+  100: qr100,
+  200: qr200,
+  300: qr300,
+  400: qr400,
+  500: qr500,
+};
+
 function RegistrationForm() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -18,7 +33,7 @@ function RegistrationForm() {
     candidateEmail: '',
     competitionName: event?.title || '',
     teamName: '',
-    teamMemberCount: '2',
+    teamMemberCount: '1',
     teamMembers: [],
     transactionId: ''
   });
@@ -43,12 +58,8 @@ function RegistrationForm() {
     if (playersPerTeam && typeof playersPerTeam === 'number' && playersPerTeam > 1) {
       setIsTeamEvent(true);
       setMaxTeamSize(playersPerTeam);
-      // Initialize team members array
-      const members = [];
-      for (let i = 0; i < playersPerTeam - 1; i++) {
-        members.push({ name: '', phone: '', email: '' });
-      }
-      setFormData(prev => ({ ...prev, teamMembers: members, teamMemberCount: String(playersPerTeam) }));
+      // Default to 1 member (just the candidate), user can increase
+      setFormData(prev => ({ ...prev, teamMembers: [], teamMemberCount: '1' }));
     } else if (playersPerTeam && typeof playersPerTeam === 'string') {
       // Handle cases like "1 or 2" or "5-8 Contestants"
       const match = playersPerTeam.match(/\d+/g);
@@ -129,9 +140,11 @@ function RegistrationForm() {
       });
     }
 
-    // Validate transaction ID
+    // Validate transaction ID (12-digit numeric UPI reference)
     if (!formData.transactionId.trim()) {
       newErrors.transactionId = 'Transaction ID is required';
+    } else if (!/^\d{12}$/.test(formData.transactionId.trim())) {
+      newErrors.transactionId = 'Transaction ID must be exactly 12 digits';
     }
 
     setErrors(newErrors);
@@ -418,13 +431,28 @@ function RegistrationForm() {
               </p>
             </div>
 
-            <div className="qr-code-container">
-              <div className="qr-code-placeholder">
-                <PaymentIcon style={{ fontSize: 80, color: '#666' }} />
-                <p>UPI QR Code</p>
-                <p className="qr-note">(Add your UPI QR code image here)</p>
-              </div>
-            </div>
+            {(() => {
+              const totalAmount = 100 * (parseInt(formData.teamMemberCount) || 1);
+              const qrImage = qrCodeMap[totalAmount];
+              return (
+                <div className="qr-code-container">
+                  {qrImage ? (
+                    <div className="qr-code-box">
+                      <img src={qrImage} alt={`UPI QR Code for ₹${totalAmount}`} className="qr-code-image" />
+                      <p className="qr-amount">Pay ₹{totalAmount}</p>
+                    </div>
+                  ) : (
+                    <div className="qr-code-box">
+                      <div className="qr-code-placeholder">
+                        <PaymentIcon style={{ fontSize: 80, color: '#666' }} />
+                        <p>No QR code available for ₹{totalAmount}</p>
+                        <p className="qr-note">Please contact the organizers for payment</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
 
             <div className="form-group">
               <label htmlFor="transactionId">Transaction ID / UPI Reference Number *</label>
