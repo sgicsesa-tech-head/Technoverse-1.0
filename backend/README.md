@@ -1,21 +1,26 @@
 # Technoverse Backend Server
 
-This is the backend server for Technoverse 1.0 event registration system. It handles registration submissions and sends automated confirmation emails.
+This is the backend server for Technoverse 1.0 event registration system. It handles registration submissions, stores data in Firebase Firestore, uploads transaction screenshots to Google Drive, and sends automated confirmation emails.
 
 ## Features
 
 - ✅ RESTful API for event registration
+- ✅ Firebase Firestore for data persistence
+- ✅ Google Drive for transaction screenshot uploads
 - ✅ Automated email confirmation to registered participants
 - ✅ Team registration support with emails to all team members
 - ✅ Beautiful HTML email templates
 - ✅ CORS enabled for frontend integration
 - ✅ Error handling and validation
+- ✅ Production ready for Vercel deployment
 
 ## Prerequisites
 
 - Node.js (v14 or higher)
 - npm or yarn
 - A Gmail account (or other email provider for sending emails)
+- Firebase project with Firestore enabled
+- Google Drive API enabled
 
 ## Installation
 
@@ -221,10 +226,12 @@ If port 5000 is already in use:
 
 ## Future Enhancements
 
-- [ ] Add database integration (MongoDB/PostgreSQL)
+- [x] Add database integration (Firebase Firestore)
+- [x] Add file storage (Google Drive)
+- [x] Create admin endpoint (GET /api/registrations)
 - [ ] Implement rate limiting
-- [ ] Add registration data persistence
-- [ ] Create admin dashboard
+- [ ] Add authentication for admin endpoints
+- [ ] Create admin dashboard UI
 - [ ] Add payment verification
 - [ ] Implement email templates with attachments (QR codes, tickets)
 - [ ] Add webhook notifications

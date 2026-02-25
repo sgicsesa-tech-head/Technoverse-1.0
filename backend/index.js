@@ -2,53 +2,21 @@ const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
 require('dotenv').config();
+
+// Import Firebase service
+const { initializeFirebase, saveRegistration, getAllRegistrations } = require('./services/firebaseService');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Create uploads directory if it doesn't exist
-const uploadsDir = path.join(__dirname, 'uploads');
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir);
-}
-
-// Configure multer for file uploads
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, uploadsDir);
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, 'transaction-' + uniqueSuffix + path.extname(file.originalname));
-  }
-});
-
-const upload = multer({
-  storage: storage,
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
-  fileFilter: function (req, file, cb) {
-    const allowedTypes = /jpeg|jpg|png|gif|pdf/;
-    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
-    const mimetype = allowedTypes.test(file.mimetype);
-    
-    if (mimetype && extname) {
-      return cb(null, true);
-    } else {
-      cb(new Error('Only images (JPEG, PNG, GIF) and PDF files are allowed'));
-    }
-  }
-});
+// Initialize Firebase on startup
+initializeFirebase();
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// Serve uploaded files
-app.use('/uploads', express.static(uploadsDir));
 
 // Configure nodemailer transporter
 const transporter = nodemailer.createTransport({
@@ -256,18 +224,9 @@ const generateEmailHTML = (formData) => {
 };
 
 // Registration endpoint
-app.post('/api/register', upload.single('transactionScreenshot'), async (req, res) => {
+app.post('/api/register', async (req, res) => {
   try {
     const formData = req.body;
-    
-    // Parse teamMembers if it's a string (from multipart/form-data)
-    if (typeof formData.teamMembers === 'string') {
-      try {
-        formData.teamMembers = JSON.parse(formData.teamMembers);
-      } catch (e) {
-        formData.teamMembers = [];
-      }
-    }
     
     // Validate required fields
     if (!formData.candidateName || !formData.candidateEmail || !formData.candidatePhone) {
@@ -277,13 +236,29 @@ app.post('/api/register', upload.single('transactionScreenshot'), async (req, re
       });
     }
 
-    // Add screenshot file info to formData if uploaded
-    if (req.file) {
-      formData.transactionScreenshot = {
-        filename: req.file.filename,
-        path: req.file.path,
-        size: req.file.size
-      };
+    // Prepare data for Firestore
+    const registrationData = {
+      candidateName: formData.candidateName,
+      candidateEmail: formData.candidateEmail,
+      candidatePhone: formData.candidatePhone,
+      competitionName: formData.competitionName,
+      transactionId: formData.transactionId,
+      isTeamEvent: !!(formData.teamMembers && formData.teamMembers.length > 0),
+      teamName: formData.teamName || '',
+      teamMemberCount: parseInt(formData.teamMemberCount) || 1,
+      teamMembers: formData.teamMembers || [],
+      registrationDate: new Date().toISOString(),
+      status: 'pending' // Can be: pending, approved, rejected
+    };
+
+    // Save to Firestore
+    const firestoreResult = await saveRegistration(registrationData);
+    
+    if (firestoreResult.success) {
+      console.log('Registration saved to Firestore with ID:', firestoreResult.id);
+      registrationData.firestoreId = firestoreResult.id;
+    } else {
+      console.error('Failed to save to Firestore:', firestoreResult.error);
     }
 
     // Email options
@@ -399,13 +374,13 @@ app.post('/api/register', upload.single('transactionScreenshot'), async (req, re
       }
     }
 
-    // Log registration data (in production, you'd save this to a database)
+    // Log registration data
     console.log('New registration:', {
       name: formData.candidateName,
       email: formData.candidateEmail,
       competition: formData.competitionName,
       isTeam: formData.teamMembers && formData.teamMembers.length > 0,
-      screenshot: req.file ? req.file.filename : 'No screenshot uploaded',
+      firestoreId: firestoreResult.id,
       timestamp: new Date().toISOString()
     });
 
@@ -417,7 +392,7 @@ app.post('/api/register', upload.single('transactionScreenshot'), async (req, re
         candidateName: formData.candidateName,
         competitionName: formData.competitionName,
         transactionId: formData.transactionId,
-        screenshotUploaded: !!req.file
+        firestoreId: firestoreResult.id
       }
     });
 
@@ -438,6 +413,34 @@ app.get('/api/health', (req, res) => {
     message: 'Server is running',
     timestamp: new Date().toISOString()
   });
+});
+
+// Get all registrations endpoint (admin only - add authentication in production)
+app.get('/api/registrations', async (req, res) => {
+  try {
+    const result = await getAllRegistrations();
+    
+    if (result.success) {
+      res.status(200).json({
+        success: true,
+        count: result.data.length,
+        data: result.data
+      });
+    } else {
+      res.status(500).json({
+        success: false,
+        message: 'Failed to fetch registrations',
+        error: result.error
+      });
+    }
+  } catch (error) {
+    console.error('Error fetching registrations:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch registrations',
+      error: error.message
+    });
+  }
 });
 
 // Start server

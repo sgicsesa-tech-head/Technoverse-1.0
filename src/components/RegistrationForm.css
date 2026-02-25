@@ -244,6 +244,67 @@
   margin: 0 auto;
 }
 
+/* Google Form Upload */
+.google-form-upload {
+  background: #0f0f0f;
+  border: 1px dashed #555;
+  border-radius: 8px;
+  padding: 25px;
+  text-align: center;
+}
+
+.upload-instruction {
+  color: #b3b3b3;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.upload-instruction strong {
+  color: #e50914;
+}
+
+.btn-upload-screenshot {
+  display: inline-block;
+  background: linear-gradient(90deg, #e50914 0%, #b20710 100%);
+  color: white;
+  padding: 14px 35px;
+  border-radius: 25px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3);
+  margin-top: 10px;
+}
+
+.btn-upload-screenshot:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(229, 9, 20, 0.5);
+}
+
+.upload-hint {
+  color: #666;
+  font-size: 0.8rem;
+  margin-top: 12px;
+  font-style: italic;
+}
+
+.upload-reminder-text {
+  color: #e50914;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.screenshot-upload-section {
+  margin-top: 15px;
+  text-align: center;
+}
+
 .file-info {
   margin-top: 10px;
   padding: 10px 15px;

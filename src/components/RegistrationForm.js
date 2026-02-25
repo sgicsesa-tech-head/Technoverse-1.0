@@ -28,8 +28,9 @@ function RegistrationForm() {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const [screenshotFile, setScreenshotFile] = useState(null);
-  const [screenshotPreview, setScreenshotPreview] = useState(null);
+
+  // Google Form URL for screenshot upload
+  const googleFormUrl = process.env.REACT_APP_GOOGLE_FORM_URL || '';
 
   useEffect(() => {
     if (!event) {
@@ -91,42 +92,6 @@ function RegistrationForm() {
     }
   };
 
-  const handleScreenshotChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      // Validate file type
-      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'application/pdf'];
-      if (!allowedTypes.includes(file.type)) {
-        setErrors(prev => ({ ...prev, screenshot: 'Only JPEG, PNG, GIF, or PDF files are allowed' }));
-        return;
-      }
-      
-      // Validate file size (5MB)
-      if (file.size > 5 * 1024 * 1024) {
-        setErrors(prev => ({ ...prev, screenshot: 'File size must be less than 5MB' }));
-        return;
-      }
-      
-      setScreenshotFile(file);
-      
-      // Create preview for images
-      if (file.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setScreenshotPreview(reader.result);
-        };
-        reader.readAsDataURL(file);
-      } else {
-        setScreenshotPreview(null);
-      }
-      
-      // Clear error
-      if (errors.screenshot) {
-        setErrors(prev => ({ ...prev, screenshot: '' }));
-      }
-    }
-  };
-
   const validateForm = () => {
     const newErrors = {};
 
@@ -169,11 +134,6 @@ function RegistrationForm() {
       newErrors.transactionId = 'Transaction ID is required';
     }
 
-    // Validate screenshot upload
-    if (!screenshotFile) {
-      newErrors.screenshot = 'Transaction screenshot is required';
-    }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -185,37 +145,31 @@ function RegistrationForm() {
       setLoading(true);
       
       try {
-        // Create FormData for file upload
-        const formDataToSend = new FormData();
-        
-        // Append all form fields
-        formDataToSend.append('candidateName', formData.candidateName);
-        formDataToSend.append('candidatePhone', formData.candidatePhone);
-        formDataToSend.append('candidateEmail', formData.candidateEmail);
-        formDataToSend.append('competitionName', formData.competitionName);
-        formDataToSend.append('transactionId', formData.transactionId);
-        
-        // Append team data if it's a team event
+        // Send registration data as JSON
+        const registrationPayload = {
+          candidateName: formData.candidateName,
+          candidatePhone: formData.candidatePhone,
+          candidateEmail: formData.candidateEmail,
+          competitionName: formData.competitionName,
+          transactionId: formData.transactionId,
+        };
+
+        // Add team data if it's a team event
         if (isTeamEvent && formData.teamMembers.length > 0) {
-          formDataToSend.append('teamName', formData.teamName);
-          formDataToSend.append('teamMemberCount', formData.teamMemberCount);
-          formDataToSend.append('teamMembers', JSON.stringify(formData.teamMembers));
-        }
-        
-        // Append screenshot file
-        if (screenshotFile) {
-          formDataToSend.append('transactionScreenshot', screenshotFile);
+          registrationPayload.teamName = formData.teamName;
+          registrationPayload.teamMemberCount = formData.teamMemberCount;
+          registrationPayload.teamMembers = formData.teamMembers;
         }
         
         // Send registration data to backend
         const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-        // console.log('Environment variable:', process.env.REACT_APP_API_URL);
-        // console.log('Using API URL:', apiUrl);
         
         const response = await fetch(`${apiUrl}/api/register`, {
           method: 'POST',
-          body: formDataToSend
-          // Don't set Content-Type header - browser will set it automatically with boundary
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(registrationPayload)
         });
 
         const data = await response.json();
@@ -259,6 +213,20 @@ function RegistrationForm() {
           <h2>Registration Successful!</h2>
           <p>Thank you for registering for <strong>{event.title}</strong></p>
           <p>You will receive a confirmation email shortly, check in spam folder if not found.</p>
+          {googleFormUrl && (
+            <div className="screenshot-upload-section">
+              <p className="upload-reminder-text">
+                ⚠️ Don't forget to upload your payment screenshot!
+              </p>
+              <button
+                className="btn-upload-screenshot"
+                onClick={() => window.location.href = googleFormUrl}
+              >
+                📤 Upload Screenshot Now
+              </button>
+              <p className="upload-hint">You'll be taken to the upload form. Use your browser's back button to return here.</p>
+            </div>
+          )}
           {/* <p className="redirect-text">Redirecting to home...</p> */}
         </div>
       </div>
@@ -474,28 +442,25 @@ function RegistrationForm() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="transactionScreenshot">Transaction Screenshot *</label>
-              <input
-                type="file"
-                id="transactionScreenshot"
-                name="transactionScreenshot"
-                accept="image/jpeg,image/jpg,image/png,image/gif,application/pdf"
-                onChange={handleScreenshotChange}
-                className={errors.screenshot ? 'error' : ''}
-              />
-              {errors.screenshot && <span className="form-error">{errors.screenshot}</span>}
-              <small className="field-hint">Upload a screenshot of your payment confirmation (JPEG, PNG, GIF, or PDF, max 5MB)</small>
-              
-              {screenshotPreview && (
-                <div className="screenshot-preview">
-                  <img src={screenshotPreview} alt="Transaction screenshot preview" />
+              <label>Transaction Screenshot *</label>
+              {googleFormUrl ? (
+                <div className="google-form-upload">
+                  <p className="upload-instruction">
+                    After filling this form, upload your payment screenshot. Make sure to mention your <strong>Transaction ID</strong> and <strong>Name</strong>.
+                  </p>
+                  <button
+                    type="button"
+                    className="btn-upload-screenshot"
+                    onClick={() => window.location.href = googleFormUrl}
+                  >
+                    📤 Upload Screenshot
+                  </button>
+                  <p className="upload-hint">Opens in the same tab. Use your browser's back button to return.</p>
                 </div>
-              )}
-              
-              {screenshotFile && !screenshotPreview && (
-                <div className="file-info">
-                  <p>✓ File selected: {screenshotFile.name}</p>
-                </div>
+              ) : (
+                <p className="upload-instruction">
+                  Screenshot upload will be available soon. Please keep your payment screenshot safe.
+                </p>
               )}
             </div>
           </div>
