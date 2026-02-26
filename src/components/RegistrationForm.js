@@ -7,6 +7,9 @@ import PaymentIcon from '@mui/icons-material/Payment';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
+// Ideaverse PPT template
+import ideaverseTemplate from '../assets/Ideaverse_Template_ppt.pptx';
+
 // UPI QR code images for different amounts
 import qr100 from '../assets/UPI/100.jpeg';
 import qr200 from '../assets/UPI/200.jpeg';
@@ -58,6 +61,8 @@ function RegistrationForm() {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [screenshotUploaded, setScreenshotUploaded] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [agreeChecked, setAgreeChecked] = useState(false);
 
   // Google Form URL for screenshot upload
   const googleFormUrl = process.env.REACT_APP_GOOGLE_FORM_URL || '';
@@ -201,70 +206,60 @@ function RegistrationForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (validateForm()) {
-      setLoading(true);
-      
-      try {
-        // Send registration data as JSON
-        const registrationPayload = {
-          candidateName: formData.candidateName,
-          candidatePhone: formData.candidatePhone,
-          candidateEmail: formData.candidateEmail,
-          candidateCollege: formData.candidateCollege,
-          competitionName: formData.competitionName,
-          transactionId: formData.transactionId,
-        };
-
-        // Add team data if it's a team event
-        if (isTeamEvent && formData.teamMembers.length > 0) {
-          registrationPayload.teamName = formData.teamName;
-          registrationPayload.teamMemberCount = formData.teamMemberCount;
-          registrationPayload.teamMembers = formData.teamMembers;
-        }
-        
-        // Send registration data to backend
-        const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-        
-        const response = await fetch(`${apiUrl}/api/register`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(registrationPayload)
-        });
-
-        const data = await response.json();
-
-        if (response.ok && data.success) {
-          // Show success message
-          setSubmitted(true);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          console.log('Registration successful:', data);
-        } else {
-          // Show error message
-          alert(data.message || 'Registration failed. Please try again.');
-          console.error('Registration error:', data);
-        }
-      } catch (error) {
-        console.error('Error submitting form:', error);
-        alert('Failed to submit registration. Please check your connection and try again.');
-      } finally {
-        setLoading(false);
-      }
-      
-    //   Redirect after 3 seconds
-    //   setTimeout(() => {
-    //     navigate('/');
-    //   }, 3000);
+      // Open confirmation modal with rules before final submit
+      setShowConfirmModal(true);
     } else {
-      // Scroll to first error
       const firstError = document.querySelector('.form-error');
       if (firstError) {
         firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
+    }
+  };
+
+  const submitRegistration = async () => {
+    setShowConfirmModal(false);
+    setLoading(true);
+    try {
+      const registrationPayload = {
+        candidateName: formData.candidateName,
+        candidatePhone: formData.candidatePhone,
+        candidateEmail: formData.candidateEmail,
+        candidateCollege: formData.candidateCollege,
+        competitionName: formData.competitionName,
+        transactionId: formData.transactionId,
+      };
+
+      if (isTeamEvent && formData.teamMembers.length > 0) {
+        registrationPayload.teamName = formData.teamName;
+        registrationPayload.teamMemberCount = formData.teamMemberCount;
+        registrationPayload.teamMembers = formData.teamMembers;
+      }
+
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+      const response = await fetch(`${apiUrl}/api/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(registrationPayload),
+      });
+
+      const data = await response.json();
+      if (response.ok && data.success) {
+        setSubmitted(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        alert(data.message || 'Registration failed. Please try again.');
+        console.error('Registration error:', data);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Failed to submit registration. Please check your connection and try again.');
+    } finally {
+      setLoading(false);
+      setAgreeChecked(false);
     }
   };
 
@@ -401,6 +396,12 @@ function RegistrationForm() {
                 disabled
                 className="locked-field"
               />
+              {event.title === 'Ideaverse' && (
+                <div className="ideaverse-download">
+                  <label>Presentation Template</label>
+                  <a href={ideaverseTemplate} download className="btn-download-ppt">Download Ideaverse PPT</a>
+                </div>
+              )}
             </div>
           </div>
 
@@ -614,6 +615,39 @@ function RegistrationForm() {
             </button>
           </div>
         </form>
+
+        {showConfirmModal && (
+          <div className="rf-confirm-overlay">
+            <div className="rf-confirm-box" role="dialog" aria-modal="true" aria-labelledby="rfModalTitle">
+              <h3 id="rfModalTitle">Please read and agree to the following rules</h3>
+              <div className="rf-confirm-content">
+                <ul>
+                  <li>Arrive 15 minutes before the event start time.</li>
+                  <li>Carry a valid college ID during the event.</li>
+                  <li>Maintain discipline and respect for all participants.</li>
+                  <li>Your belongings are at your own risk.</li>
+                  <li>Follow all instructions given by event organizers.</li>
+                  <li>Decision of judges is final and binding.</li>
+                  <li>Food & Mobile is not allowed in computer labs.</li>
+                  <li>Any form of cheating or malpractice will lead to disqualification.</li>
+                  <li>Organizers reserve the right to change rules and schedules.</li>
+                </ul>
+              </div>
+
+              <label className="rf-confirm-checkbox">
+                <input type="checkbox" checked={agreeChecked} onChange={(e) => setAgreeChecked(e.target.checked)} />
+                <span>I agree to the rules and want to continue</span>
+              </label>
+
+              <div className="rf-confirm-actions">
+                <button type="button" className="rf-btn-secondary" onClick={() => { setShowConfirmModal(false); setAgreeChecked(false); }} disabled={loading}>Cancel</button>
+                <button type="button" className="rf-btn-primary" onClick={submitRegistration} disabled={!agreeChecked || loading}>
+                  {loading ? 'Submitting...' : 'Confirm Submit'}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
