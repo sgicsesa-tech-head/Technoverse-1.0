@@ -285,14 +285,42 @@ app.post('/api/register', async (req, res) => {
     // Save to Firestore
     const firestoreResult = await saveRegistration(registrationData);
     
-    if (firestoreResult.success) {
-      console.log('Registration saved to Firestore with ID:', firestoreResult.id);
-      registrationData.firestoreId = firestoreResult.id;
-    } else {
+    if (!firestoreResult.success) {
       console.error('Failed to save to Firestore:', firestoreResult.error);
+      return res.status(500).json({
+        success: false,
+        message: 'Registration failed. Please try again.'
+      });
     }
 
-    // Email options
+    console.log('Registration saved to Firestore with ID:', firestoreResult.id);
+    registrationData.firestoreId = firestoreResult.id;
+
+    // Log registration data
+    console.log('New registration:', {
+      name: formData.candidateName,
+      email: formData.candidateEmail,
+      competition: formData.competitionName,
+      isTeam: !!(formData.teamMembers && formData.teamMembers.length > 0),
+      firestoreId: firestoreResult.id,
+      timestamp: new Date().toISOString()
+    });
+
+    // Registration is successful — respond immediately
+    res.status(200).json({
+      success: true,
+      message: 'Registration successful!',
+      data: {
+        candidateName: formData.candidateName,
+        competitionName: formData.competitionName,
+        transactionId: formData.transactionId,
+        firestoreId: firestoreResult.id
+      }
+    });
+
+    // ---- Fire-and-forget: send emails AFTER response ----
+
+    // Send confirmation email to main candidate
     const mailOptions = {
       from: `"Technoverse - CSESA SGI" <${process.env.EMAIL_USER}>`,
       replyTo: process.env.EMAIL_USER,
@@ -302,19 +330,16 @@ app.post('/api/register', async (req, res) => {
       html: generateEmailHTML(formData)
     };
 
-    // Send email with detailed error logging
     try {
       const info = await transporter.sendMail(mailOptions);
       console.log('Confirmation email sent:', info.messageId, info.response);
     } catch (err) {
-      console.error('Failed to send confirmation email:', err);
+      console.error('Failed to send confirmation email (registration still saved):', err.message || err);
       if (err.response) console.error('SMTP response:', err.response);
-      if (err.responseCode) console.error('SMTP response code:', err.responseCode);
-      // rethrow so caller receives error response
-      throw err;
+      // Email failure does NOT affect registration
     }
 
-    // If it's a team event, send emails to all team members with delay to avoid rate limiting
+    // If it's a team event, send emails to all team members
     if (formData.teamMembers && formData.teamMembers.length > 0) {
       const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
       for (const member of formData.teamMembers) {
@@ -427,28 +452,6 @@ app.post('/api/register', async (req, res) => {
         }
       }
     }
-
-    // Log registration data
-    console.log('New registration:', {
-      name: formData.candidateName,
-      email: formData.candidateEmail,
-      competition: formData.competitionName,
-      isTeam: !!(formData.teamMembers && formData.teamMembers.length > 0),
-      firestoreId: firestoreResult?.id || 'N/A',
-      timestamp: new Date().toISOString()
-    });
-
-    // Send success response
-    res.status(200).json({
-      success: true,
-      message: 'Registration successful! Confirmation email sent.',
-      data: {
-        candidateName: formData.candidateName,
-        competitionName: formData.competitionName,
-        transactionId: formData.transactionId,
-        firestoreId: firestoreResult?.id || null
-      }
-    });
 
   } catch (error) {
     console.error('Error processing registration:', error);
