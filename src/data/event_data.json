@@ -87,6 +87,10 @@
       "total_slots": "60 Squads",
       "players_per_team": 4
     },
+    "rounds": [
+      { "name": "Qualifiers", "format": "Online match on 1st of March will decide finalists for offline event" },
+      { "name": "Grand Finals", "format": "Qualified Team will compete in a final offline match" }
+    ],
     "rules": [
       "College ID is compulsory, without it you won't be allowed on campus",
       "Only mobile devices allowed",
