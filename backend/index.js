@@ -18,13 +18,20 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Configure nodemailer transporter
+// Configure nodemailer transporter with explicit secure SMTP and logging
 const transporter = nodemailer.createTransport({
-  service: 'gmail', // or use 'smtp' with custom settings
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true, // use TLS
   auth: {
-    user: process.env.EMAIL_USER, // Your email address
-    pass: process.env.EMAIL_PASS  // Your email password or app-specific password
-  }
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  },
+  pool: true, // use pooled connections to avoid rate limits
+  maxConnections: 5,
+  maxMessages: 100,
+  logger: true,
+  debug: process.env.EMAIL_DEBUG === 'true'
 });
 
 // Verify transporter configuration
@@ -295,8 +302,17 @@ app.post('/api/register', async (req, res) => {
       html: generateEmailHTML(formData)
     };
 
-    // Send email
-    await transporter.sendMail(mailOptions);
+    // Send email with detailed error logging
+    try {
+      const info = await transporter.sendMail(mailOptions);
+      console.log('Confirmation email sent:', info.messageId, info.response);
+    } catch (err) {
+      console.error('Failed to send confirmation email:', err);
+      if (err.response) console.error('SMTP response:', err.response);
+      if (err.responseCode) console.error('SMTP response code:', err.responseCode);
+      // rethrow so caller receives error response
+      throw err;
+    }
 
     // If it's a team event, send emails to all team members with delay to avoid rate limiting
     if (formData.teamMembers && formData.teamMembers.length > 0) {
@@ -401,7 +417,14 @@ app.post('/api/register', async (req, res) => {
           `
         };
         
-        await transporter.sendMail(memberMailOptions);
+        try {
+          const mInfo = await transporter.sendMail(memberMailOptions);
+          console.log('Team member email sent to', member.email, mInfo.messageId);
+        } catch (err) {
+          console.error('Failed to send team member email to', member.email, err.message || err);
+          if (err.response) console.error('SMTP response:', err.response);
+          // continue sending to remaining members
+        }
       }
     }
 
@@ -471,6 +494,66 @@ app.get('/api/registrations', async (req, res) => {
       message: 'Failed to fetch registrations',
       error: error.message
     });
+  }
+});
+
+// Test email endpoint - use this to reproduce and capture SMTP response details
+app.post('/api/test-email', async (req, res) => {
+  const to = req.body.to;
+  if (!to) return res.status(400).json({ success: false, message: 'Missing `to` in request body' });
+
+  const testMail = {
+    from: `"Technoverse - CSESA SGI" <${process.env.EMAIL_USER}>`,
+    to,
+    subject: 'Technoverse - Test Email',
+    text: 'This is a test email from Technoverse backend. If you receive this, SMTP is working.',
+    html: '<p>This is a <strong>test</strong> email from Technoverse backend.</p>'
+  };
+
+  try {
+    const info = await transporter.sendMail(testMail);
+    console.log('Test email sent:', info);
+    res.status(200).json({ success: true, info });
+  } catch (err) {
+    console.error('Test email failed:', err);
+    res.status(500).json({ success: false, message: err.message, response: err.response || null });
+  }
+});
+
+// Templated test endpoint: send the same automated registration email HTML
+app.post('/api/test-email-template', async (req, res) => {
+  const to = req.body.to;
+  const formData = req.body.formData;
+  const useTemplate = req.body.useTemplate === true || req.body.useTemplate === 'true';
+
+  if (!to) return res.status(400).json({ success: false, message: 'Missing `to` in request body' });
+
+  if (useTemplate && !formData) {
+    return res.status(400).json({ success: false, message: 'Missing `formData` for template email' });
+  }
+
+  const mail = useTemplate ? {
+    from: `"Technoverse - CSESA SGI" <${process.env.EMAIL_USER}>`,
+    replyTo: process.env.EMAIL_USER,
+    to,
+    subject: `Registration Confirmed - ${formData.competitionName || 'Event'} | Technoverse`,
+    text: `Dear ${formData.candidateName || 'Participant'},\n\nYour registration for ${formData.competitionName || 'the event'} at Technoverse has been confirmed.\nTransaction ID: ${formData.transactionId || ''}\n\nRegards,\nTeam Technoverse - CSESA SGI`,
+    html: generateEmailHTML(formData)
+  } : {
+    from: `"Technoverse - CSESA SGI" <${process.env.EMAIL_USER}>`,
+    to,
+    subject: 'Technoverse - Test Email',
+    text: 'This is a test email from Technoverse backend. If you receive this, SMTP is working.',
+    html: '<p>This is a <strong>test</strong> email from Technoverse backend.</p>'
+  };
+
+  try {
+    const info = await transporter.sendMail(mail);
+    console.log('Template test email sent:', info);
+    res.status(200).json({ success: true, info });
+  } catch (err) {
+    console.error('Template test email failed:', err);
+    res.status(500).json({ success: false, message: err.message, response: err.response || null });
   }
 });
 
