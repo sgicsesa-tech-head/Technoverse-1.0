@@ -287,22 +287,28 @@ app.post('/api/register', async (req, res) => {
 
     // Email options
     const mailOptions = {
-      from: process.env.EMAIL_USER,
+      from: `"Technoverse - CSESA SGI" <${process.env.EMAIL_USER}>`,
+      replyTo: process.env.EMAIL_USER,
       to: formData.candidateEmail,
-      subject: `Registration Confirmed - ${formData.competitionName} | Technoverse `,
+      subject: `Registration Confirmed - ${formData.competitionName} | Technoverse`,
+      text: `Dear ${formData.candidateName},\n\nYour registration for ${formData.competitionName} at Technoverse has been confirmed.\nTransaction ID: ${formData.transactionId}\n\nPlease bring your ID proof and college ID. Arrive 15 minutes before the event starts.\n\nRegards,\nTeam Technoverse - CSESA SGI`,
       html: generateEmailHTML(formData)
     };
 
     // Send email
     await transporter.sendMail(mailOptions);
 
-    // If it's a team event, optionally send emails to all team members
+    // If it's a team event, send emails to all team members with delay to avoid rate limiting
     if (formData.teamMembers && formData.teamMembers.length > 0) {
+      const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
       for (const member of formData.teamMembers) {
+        await delay(1000); // 1-second delay between emails to avoid Gmail rate limits
         const memberMailOptions = {
-          from: process.env.EMAIL_USER,
+          from: `"Technoverse - CSESA SGI" <${process.env.EMAIL_USER}>`,
+          replyTo: process.env.EMAIL_USER,
           to: member.email,
-          subject: `Team Registration Confirmed - ${formData.competitionName} | Technoverse `,
+          subject: `Team Registration Confirmed - ${formData.competitionName} | Technoverse`,
+          text: `Dear ${member.name},\n\nYou have been registered as a team member for ${formData.competitionName} at Technoverse.\nTeam Name: ${formData.teamName}\nTeam Leader: ${formData.candidateName}\n\nFurther details will be shared soon. Good luck!\n\nRegards,\nTeam Technoverse - CSESA SGI`,
           html: `
             <!DOCTYPE html>
             <html>
