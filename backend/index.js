@@ -45,14 +45,14 @@ transporter.verify((error, success) => {
 
 // WhatsApp group links for each event
 const whatsappGroupLinks = {
-  'The Squid Hunt (Treasure Hunt)': 'https://chat.whatsapp.com/HcinjdJrOnOHxjK1dvABio',
-  'The Hiring Room': 'https://chat.whatsapp.com/JzAhAIUmS7uJ8IdhXnYYpD',
-  'Ideaverse': 'https://chat.whatsapp.com/FHQPYr7Tb3aKZ6JWXd0qHy',
-  'E-sports (Free Fire)': 'https://chat.whatsapp.com/BlOktIulfg2EZJTEZyxmAv',
-  'E - Sports BGMI': 'https://chat.whatsapp.com/HkOMtXNJVaxJO78bAI8mTH',
-  'Pixel Fix': 'https://chat.whatsapp.com/HrIjNeVxgB1HrSq58ZURYY',
-  'Daredevil - The Blind Coding Arena': 'https://chat.whatsapp.com/G02ARVtpJE5ELG3om2maNg',
-  'The Grand Prix of Code': 'https://chat.whatsapp.com/FnBZuXzfzWHDgZUXwFQuJm',
+  'The Squid Hunt (Treasure Hunt)': 'https://chat.whatsapp.com/HcinjdJrOnOHxjK1dvABio?mode=gi_t',
+  'Ideaverse': 'https://chat.whatsapp.com/K2inGIoPhpnBAUiOhqH5Nk?mode=hqctswa',
+  'E - Sports BGMI': 'https://chat.whatsapp.com/BhAb8BY8skz1PDqLmYq6Pg?mode=hqctswa',
+  'E-sports (Free Fire)': 'https://chat.whatsapp.com/F5B9Xf1pDTEKRiLZ4qYVIn?mode=gi_t',
+  'Daredevil - The Blind Coding Arena': 'https://chat.whatsapp.com/L0j49wIXHVfBhxFmsIroAj?mode=gi_t',
+  'The Grand Prix of Code': 'https://chat.whatsapp.com/GsUKFzRIOV1ATz3ecZDigk?mode=gi_t',
+  'The Hiring Room': 'https://chat.whatsapp.com/Jxcfx8bgLTx6LZPRx5XCAL?mode=gi_t',
+  'Pixelfix': 'https://chat.whatsapp.com/Gp6qTk0HIahI6e7Oie6KTq?mode=gi_t',
 };
 
 // Helper function to generate email HTML
