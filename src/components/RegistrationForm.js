@@ -10,19 +10,58 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 // Ideaverse PPT template
 import ideaverseTemplate from '../assets/Ideaverse_Template_ppt.pptx';
 
-// UPI QR code images for different amounts
-import qr100 from '../assets/UPI/100.jpeg';
-import qr200 from '../assets/UPI/200.jpeg';
-import qr300 from '../assets/UPI/300.jpeg';
-import qr400 from '../assets/UPI/400.jpeg';
-import qr500 from '../assets/UPI/500.jpeg';
+// UPI QR code images for different amounts (4 variants each)
+import qr100  from '../assets/UPI/100.jpeg';
+import qr100a from '../assets/UPI/100a.jpeg';
+import qr100r from '../assets/UPI/100r.jpeg';
+import qr100s from '../assets/UPI/100s.jpeg';
+import qr200  from '../assets/UPI/200.jpeg';
+import qr200a from '../assets/UPI/200a.jpeg';
+import qr200r from '../assets/UPI/200r.jpeg';
+import qr200s from '../assets/UPI/200s.jpeg';
+import qr300  from '../assets/UPI/300.jpeg';
+import qr300a from '../assets/UPI/300a.jpeg';
+import qr300r from '../assets/UPI/300r.jpeg';
+import qr300s from '../assets/UPI/300s.jpeg';
+import qr400  from '../assets/UPI/400.jpeg';
+import qr400a from '../assets/UPI/400a.jpeg';
+import qr400r from '../assets/UPI/400r.jpeg';
+import qr400s from '../assets/UPI/400s.jpeg';
+import qr500  from '../assets/UPI/500.jpeg';
+import qr500a from '../assets/UPI/500a.jpeg';
+import qr500s from '../assets/UPI/500s.jpeg';
 
+// Each entry is an array of { img, label } so all 4 QRs show in a 2×2 grid
 const qrCodeMap = {
-  100: qr100,
-  200: qr200,
-  300: qr300,
-  400: qr400,
-  500: qr500,
+  100: [
+    { img: qr100,  label: 'QR 1' },
+    { img: qr100a, label: 'QR 2' },
+    { img: qr100r, label: 'QR 3' },
+    { img: qr100s, label: 'QR 4' },
+  ],
+  200: [
+    { img: qr200,  label: 'QR 1' },
+    { img: qr200a, label: 'QR 2' },
+    { img: qr200r, label: 'QR 3' },
+    { img: qr200s, label: 'QR 4' },
+  ],
+  300: [
+    { img: qr300,  label: 'QR 1' },
+    { img: qr300a, label: 'QR 2' },
+    { img: qr300r, label: 'QR 3' },
+    { img: qr300s, label: 'QR 4' },
+  ],
+  400: [
+    { img: qr400,  label: 'QR 1' },
+    { img: qr400a, label: 'QR 2' },
+    { img: qr400r, label: 'QR 3' },
+    { img: qr400s, label: 'QR 4' },
+  ],
+  500: [
+    { img: qr500,  label: 'QR 1' },
+    { img: qr500a, label: 'QR 2' },
+    { img: qr500s, label: 'QR 3' },
+  ],
 };
 
 // WhatsApp group links for each event
@@ -528,21 +567,24 @@ function RegistrationForm() {
 
             {(() => {
               const totalAmount = 100 * (parseInt(formData.teamMemberCount) || 1);
-              const qrImage = qrCodeMap[totalAmount];
+              const qrList = qrCodeMap[totalAmount];
               return (
                 <div className="qr-code-container">
-                  {qrImage ? (
-                    <div className="qr-code-box">
-                      <img src={qrImage} alt={`UPI QR Code for ₹${totalAmount}`} className="qr-code-image" />
-                      <p className="qr-amount">Pay ₹{totalAmount}</p>
+                  <p className="qr-amount-header">Pay ₹{totalAmount} — use only one of any QR given below</p>
+                  {qrList ? (
+                    <div className="qr-grid">
+                      {qrList.map(({ img, label }) => (
+                        <div className="qr-code-box" key={label}>
+                          <img src={img} alt={`UPI QR Code for ₹${totalAmount} – ${label}`} className="qr-code-image" />
+                          <p className="qr-app-label">{label}</p>
+                        </div>
+                      ))}
                     </div>
                   ) : (
-                    <div className="qr-code-box">
-                      <div className="qr-code-placeholder">
-                        <PaymentIcon style={{ fontSize: 80, color: '#666' }} />
-                        <p>No QR code available for ₹{totalAmount}</p>
-                        <p className="qr-note">Please contact the organizers for payment</p>
-                      </div>
+                    <div className="qr-code-placeholder">
+                      <PaymentIcon style={{ fontSize: 80, color: '#666' }} />
+                      <p>No QR code available for ₹{totalAmount}</p>
+                      <p className="qr-note">Please contact the organizers for payment</p>
                     </div>
                   )}
                 </div>

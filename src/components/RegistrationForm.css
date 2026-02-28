@@ -199,23 +199,36 @@
 }
 
 .qr-code-container {
-  display: flex;
-  justify-content: center;
   margin: 30px 0;
+}
+
+.qr-amount-header {
+  text-align: center;
+  color: #e50914;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.qr-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .qr-code-box {
   background: #fff;
   border-radius: 10px;
-  padding: 20px;
+  padding: 14px;
   text-align: center;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-  max-width: 320px;
 }
 
 .qr-code-image {
   width: 100%;
-  max-width: 280px;
+  max-width: 200px;
   height: auto;
   border-radius: 8px;
   display: block;
@@ -227,6 +240,14 @@
   font-size: 1.3rem;
   font-weight: 700;
   margin-top: 12px;
+  margin-bottom: 0;
+}
+
+.qr-app-label {
+  color: #333;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 8px;
   margin-bottom: 0;
 }
 
