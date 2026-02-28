@@ -616,8 +616,9 @@ function RegistrationForm() {
                   </p>
                   <button
                     type="button"
+                    target="_blank"
                     className="btn-upload-screenshot"
-                    onClick={() => window.location.href = googleFormUrl}
+                    onClick={() => window.open(googleFormUrl, '_blank')}
                   >
                     📤 Upload Screenshot
                   </button>
