@@ -126,10 +126,11 @@
       "players_per_team": 4
     },
     "rounds": [
-      { "name": "Qualifiers", "format": "80 teams in 4 groups of 20; Top 5 of each match will qualify" },
+      { "name": "Qualifiers", "format": "40 teams in 2 groups of 20; Top 10 of each group will qualify" },
       { "name": "Grand Finals", "format": "1 match with 20 teams" }
     ],
     "rules": [
+      "Point based system table format for qualification and final match",
       "College ID is compulsory, without it you won't be allowed on campus",
       "Only mobile devices; stable internet is player responsibility",
       "All participants should be present offline at the venue during the match",
