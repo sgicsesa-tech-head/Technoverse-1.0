@@ -304,6 +304,34 @@ function RegistrationForm() {
 
   if (!event) return null;
 
+  // ── Capacity-full gate ────────────────────────────────────────────────────
+  const FULL_EVENTS = ['E-sports (Free Fire)'];
+  if (FULL_EVENTS.includes(event.title)) {
+    return (
+      <div className="registration-container">
+        <div className="success-message" style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: 80 }}>🎮</div>
+          <h2 style={{ color: '#e50914', marginTop: '16px' }}>Registrations Closed</h2>
+          <p style={{ fontSize: '1.2rem', fontWeight: 600 }}>
+            <strong>{event.title}</strong> is now <span style={{ color: '#e50914' }}>FULL</span>.
+          </p>
+          <p style={{ color: '#aaa' }}>
+            We've reached maximum capacity for this event.<br />
+            Thank you for your interest!
+          </p>
+          <button
+            className="btn-secondary"
+            style={{ marginTop: '24px' }}
+            onClick={() => navigate(-1)}
+          >
+            ← Go Back
+          </button>
+        </div>
+      </div>
+    );
+  }
+  // ──────────────────────────────────────────────────────────────────────────
+
   if (submitted) {
     return (
       <div className="registration-container">
