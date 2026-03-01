@@ -305,7 +305,7 @@ function RegistrationForm() {
   if (!event) return null;
 
   // ── Capacity-full gate ────────────────────────────────────────────────────
-  const FULL_EVENTS = ['E-sports (Free Fire)', 'The Squid Hunt (Treasure Hunt)'];
+  const FULL_EVENTS = ['E-sports (Free Fire)', 'The Squid Hunt (Treasure Hunt)', 'E - Sports BGMI'];
   if (FULL_EVENTS.includes(event.title)) {
     return (
       <div className="registration-container">
