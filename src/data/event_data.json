@@ -28,9 +28,9 @@
       "players_per_team": 1
     },
     "rounds": [
-      { "name": "The Awakening", "focus": "MCQ & Output Prediction", "format": "15-20 MCQs", "duration": "30 minutes" },
-      { "name": "The Trial by Fire", "focus": " Logical Thinking & Syntax Mastery, 2 coding problems,Only ONE compilation attempt allowed", "duration": "45-60 minutes" },
-      { "name": "The Final Showdown", "focus": "Blind Coding Challenge, 1 coding problem (screens OFF)", "duration": "60 minutes" }
+      { "name": "The Awakening", "focus": "MCQ & Output Prediction", "format": "20 MCQs", "duration": "30 minutes" },
+      { "name": "The Trial by Fire", "focus": " Logical Thinking & Syntax Mastery, 2 coding problems", "duration": "30 minutes" },
+      { "name": "The Final Showdown", "focus": "Blind Coding Challenge, 1 coding problem (screens OFF), One compilation attempt allowed", "duration": "30 minutes" }
     ],
     "rules": [
       "College ID is compulsory, without it you won't be allowed on campus",
