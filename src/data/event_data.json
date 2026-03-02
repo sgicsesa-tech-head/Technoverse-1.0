@@ -36,6 +36,7 @@
       "College ID is compulsory, without it you won't be allowed on campus",
       "Solo participation only",
       "Allowed languages: C and C++ only",
+      "Must have a HackerRank account for the event; participants will be added to a private HackerRank group",
       "Personal laptops are not allowed. Participants must use the systems provided by the organizers",
       "AI tools and plagiarism lead to immediate disqualification"
     ]
