@@ -306,6 +306,12 @@ function RegistrationForm() {
 
   // ── Capacity-full gate ────────────────────────────────────────────────────
   // Add event titles here to disable registrations for those events
+  // Events added to `CANCELLED_EVENTS` will show a "Registration Cancelled" message
+  const CANCELLED_EVENTS = [
+    // e.g. 'The Hiring Room',
+    'The Grand Prix of Code',
+  ];
+
   const FULL_EVENTS = [
     'E-sports (Free Fire)',
     'The Squid Hunt (Treasure Hunt)',
@@ -325,6 +331,31 @@ function RegistrationForm() {
           <p style={{ color: '#aaa' }}>
             We've reached maximum capacity for this event.<br />
             Thank you for your interest!
+          </p>
+          <button
+            className="btn-secondary"
+            style={{ marginTop: '24px' }}
+            onClick={() => navigate(-1)}
+          >
+            ← Go Back
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Cancelled events: show a friendly cancellation message (works like FULL_EVENTS block)
+  if (CANCELLED_EVENTS.includes(event.title)) {
+    return (
+      <div className="registration-container">
+        <div className="success-message" style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: 80 }}>❌</div>
+          <h2 style={{ color: '#666', marginTop: '16px' }}>Registration Cancelled</h2>
+          <p style={{ fontSize: '1.1rem', fontWeight: 600 }}>
+            <strong>{event.title}</strong> has been <span style={{ color: '#666' }}>cancelled</span>.
+          </p>
+          <p style={{ color: '#aaa' }}>
+            We're sorry for the inconvenience. Please check other events or contact the organizers for details.
           </p>
           <button
             className="btn-secondary"

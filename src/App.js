@@ -11,7 +11,7 @@ import ScrollToTop from './components/ScrollToTop';
 
 // ── Maintenance Banner ────────────────────────────────────────────────────────
 // Set MAINTENANCE_MODE to false to remove the popup when the site is back up.
-const MAINTENANCE_MODE = true;
+const MAINTENANCE_MODE = false;
 
 function MaintenancePopup() {
   if (!MAINTENANCE_MODE) return null;
