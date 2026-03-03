@@ -317,7 +317,8 @@ function RegistrationForm() {
     'The Squid Hunt (Treasure Hunt)',
     'E - Sports BGMI',
     'Pixel Fix',
-    'Ideaverse'
+    'Ideaverse',
+    'Daredevil - The Blind Coding Arena'
   ];
   if (FULL_EVENTS.includes(event.title)) {
     return (
