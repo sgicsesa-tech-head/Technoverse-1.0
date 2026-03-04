@@ -278,7 +278,7 @@ function RegistrationForm() {
         registrationPayload.teamMembers = formData.teamMembers;
       }
 
-      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+      const apiUrl = 'http://localhost:5000';
       const response = await fetch(`${apiUrl}/api/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -307,6 +307,10 @@ function RegistrationForm() {
   // ── Capacity-full gate ────────────────────────────────────────────────────
   // Add event titles here to disable registrations for those events
   // Events added to `CANCELLED_EVENTS` will show a "Registration Cancelled" message
+  // NOTE: Registrations are completed for all events.
+  // The original FULL_EVENTS and CANCELLED_EVENTS handling has been commented out
+  // so clicking "Register" now shows a completion message (2-3 March).
+  /*
   const CANCELLED_EVENTS = [
     // e.g. 'The Hiring Room',
     'The Grand Prix of Code',
@@ -357,6 +361,33 @@ function RegistrationForm() {
           </p>
           <p style={{ color: '#aaa' }}>
             We're sorry for the inconvenience. Please check other events or contact the organizers for details.
+          </p>
+          <button
+            className="btn-secondary"
+            style={{ marginTop: '24px' }}
+            onClick={() => navigate(-1)}
+          >
+            ← Go Back
+          </button>
+        </div>
+      </div>
+    );
+  }
+  */
+
+  // Global override: show final-completed message for any event opened via Register
+  const EVENTS_COMPLETED = true;
+  if (EVENTS_COMPLETED) {
+    return (
+      <div className="registration-container">
+        <div className="success-message" style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: 80 }}>🎉</div>
+          <h2 style={{ color: '#e50914', marginTop: '16px' }}>Event Completed</h2>
+          <p style={{ fontSize: '1.2rem', fontWeight: 600 }}>
+            <strong>{event.title}</strong> was completed successfully on <strong>2-3 March</strong>.
+          </p>
+          <p style={{ color: '#aaa' }}>
+            Thanks for your support!
           </p>
           <button
             className="btn-secondary"

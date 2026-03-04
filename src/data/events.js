@@ -32,7 +32,7 @@ const eventDetails = {
     time: "2:30 PM - 4:30 PM",
     venue: "Web Technologies Lab, Machine Learning Lab, Data Science Lab",
     coordinators: ["Atharv Tambekar", "Nipun Shah"],
-    coordinatorPhones: ["9730898106", "8208320893"],
+    coordinatorPhones: ["xxxxxxxxxx", "xxxxxxxxxx"],
     entryFee: "₹100",
     entryType: "Solo"
   },
@@ -41,7 +41,7 @@ const eventDetails = {
     time: "1:30 PM onwards",
     venue: "Open Auditorium",
     coordinators: ["Sharayu Arankar", "Samreen Chaugule"],
-    coordinatorPhones: ["8793419327", "7773931377"],
+    coordinatorPhones: ["xxxxxxxxxx", "xxxxxxxxxx"],
     entryFee: "Solo: ₹100, Duo: ₹150, Group: ₹500",
     entryType: "Solo/Duo/Group"
   },
@@ -50,7 +50,7 @@ const eventDetails = {
     time: "10:30 AM - 2:00 PM",
     venue: "Web Lab, ML Lab, DS Lab",
     coordinators: ["Nipun Shah", "Shreya Gurav"],
-    coordinatorPhones: ["8208320893", "6361790149"],
+    coordinatorPhones: ["xxxxxxxxxx", "xxxxxxxxxx"],
     entryFee: "₹100",
     entryType: "Solo"
   },
@@ -59,7 +59,7 @@ const eventDetails = {
     time: "11:00 AM - 4:00 PM",
     venue: "HOD Cabin 'D' Block 3rd Floor",
     coordinators: ["Siddhi Salunkhe", "Onkar Jadhavar"],
-    coordinatorPhones: ["9423174366", "7972961313"],
+    coordinatorPhones: ["xxxxxxxxxx", "xxxxxxxxxx"],
     entryFee: "₹100",
     entryType: "Solo"
   },
@@ -67,8 +67,8 @@ const eventDetails = {
    day: 2,
    time: "10:30 AM - 4:00 PM",
    venue: "D Block Seminar Hall",
-   coordinators: ["Rutuja Pinate", "Amol Khot"],
-   coordinatorPhones: ["8446176586", "7666028044"],
+  coordinators: ["Rutuja Pinate", "Amol Khot"],
+  coordinatorPhones: ["xxxxxxxxxx", "xxxxxxxxxx"],
    entryFee: "₹100 per person",
    entryType: "Team (4 members)"
  },
@@ -77,7 +77,7 @@ const eventDetails = {
     time: "11:00 AM - 4:00 PM",
     venue: "CC Lab - C Block 3rd Floor",
     coordinators: ["Amol Khot", "Shreya Gurav"],
-    coordinatorPhones: ["7666028044", "6361790149"],
+    coordinatorPhones: ["xxxxxxxxxx", "xxxxxxxxxx"],
     entryFee: "₹100 per person",
     entryType: "Solo/Duo"
   },
@@ -86,7 +86,7 @@ const eventDetails = {
     time: "11:00 AM - 4:00 PM",
     venue: "Campus-wide",
     coordinators: ["Anushka Murchite", "Rohan Patil"],
-    coordinatorPhones: ["8956394594", "7666040924"],
+    coordinatorPhones: ["xxxxxxxxxx", "xxxxxxxxxx"],
     entryFee: "₹100 per person",
     entryType: "Team (max 5 members)"
   },
@@ -95,7 +95,7 @@ const eventDetails = {
     time: "11:00 AM - 4:00 PM",
     venue: "Seminar Hall - D Block",
     coordinators: ["Rasik Samudre", "Sanket Sutar"],
-    coordinatorPhones: ["9021211916", "7219643252"],
+    coordinatorPhones: ["xxxxxxxxxx", "xxxxxxxxxx"],
     entryFee: "₹100 per person",
     entryType: "Team (4 members)"
   },
@@ -104,7 +104,7 @@ const eventDetails = {
     time: "10:30 AM - 4:00 PM",
     venue: "TBD",
     coordinators: ["Asmita Desai", "Janhavi Gavali"],
-    coordinatorPhones: ["8767457336", "9325552559"],
+    coordinatorPhones: ["xxxxxxxxxx", "xxxxxxxxxx"],
     entryFee: "₹100 per person",
     entryType: "Team (2-4 members)"
   }
